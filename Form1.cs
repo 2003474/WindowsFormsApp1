@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using RestSharp;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace WindowsFormsApp1
 {
@@ -38,7 +34,7 @@ namespace WindowsFormsApp1
             string apiKey = "acc_9c5c51261ab01d5";
             string apiSecret = "b680d8eedfbe4612f74f93e42c02b25f";
             string imageUrl = "https://docs.imagga.com/static/images/docs/sample/japan-605234_1280.jpg";
-            string image = "filePath.Text";
+            string image = filePath.Text;
             string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
  
 
