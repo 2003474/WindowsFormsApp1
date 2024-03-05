@@ -17,19 +17,21 @@ namespace WindowsFormsApp1
 
         }
 
-        private void file_Click(object sender, EventArgs e)
+        private void File_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "select file";
-            ofd.InitialDirectory = @"C:\";
-            ofd.Filter = "All files (*.*)|*.*|Image File (*.bmp; *.jpeg; *.jpg; *.png)|*.bmp; *.jpeg; *.jpg; *.png";
-            ofd.FilterIndex = 2;
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Title = "select file",
+                InitialDirectory = @"C:\",
+                Filter = "All files (*.*)|*.*|Image File (*.bmp; *.jpeg; *.jpg; *.png)|*.bmp; *.jpeg; *.jpg; *.png",
+                FilterIndex = 2
+            };
             ofd.ShowDialog();
             filePath.Text = ofd.FileName;
             pictureBox.Image = new Bitmap(ofd.FileName);
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void Button1_Click(object sender, EventArgs e)
         {
             string apiKey = "acc_9c5c51261ab01d5";
             string apiSecret = "b680d8eedfbe4612f74f93e42c02b25f";
@@ -43,22 +45,24 @@ namespace WindowsFormsApp1
             var client = new RestClient("https://api.imagga.com");
 
             // POST request
-            var request = new RestRequest("v2/uploads", Method.Post);
-            request.AlwaysMultipartFormData = true;
+            var request = new RestRequest("v2/uploads", Method.Post)
+            {
+                AlwaysMultipartFormData = true
+            };
             request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
             request.AddFile("image", image);
 
 
 
             RestResponse response = await client.ExecuteAsync(request);
-            //Console.WriteLine(response.Content);
-            //Console.ReadLine();
+            Console.WriteLine(response.Content);
+            Console.ReadLine();
             
 
             //GET request
             request = new RestRequest("v2/tags", Method.Get);
-            // request.AddParameter("image_id", (get upload ID from post");
-                request.AddParameter("image_url", imageUrl);
+            request.AddParameter("image_upload_id", "i17b121Q3GWAK");
+            //request.AddParameter("image_url", imageUrl);
                 request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
 
             response = await client.GetAsync(request);

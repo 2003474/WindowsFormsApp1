@@ -56,7 +56,7 @@
             this.fileInput.TabIndex = 0;
             this.fileInput.Text = "input file";
             this.fileInput.UseVisualStyleBackColor = true;
-            this.fileInput.Click += new System.EventHandler(this.file_Click);
+            this.fileInput.Click += new System.EventHandler(this.File_Click);
             // 
             // filePath
             // 
@@ -83,7 +83,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Analyze";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // tableLayoutPanel1
             // 
