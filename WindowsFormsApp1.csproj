@@ -84,7 +84,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GetResponse.cs" />
+    <Compile Include="GetResult.cs" />
+    <Compile Include="PostResponse.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="PostResult.cs" />
+    <Compile Include="Status.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="TagName.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

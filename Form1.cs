@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics.Tracing;
 using System.Drawing;
+using System.Text.Json;
 using System.Windows.Forms;
 using RestSharp;
 
@@ -22,7 +24,7 @@ namespace WindowsFormsApp1
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "select file",
-                InitialDirectory = @"C:\",
+                InitialDirectory = @"C:\Users\2003474\Downloads",
                 Filter = "All files (*.*)|*.*|Image File (*.bmp; *.jpeg; *.jpg; *.png)|*.bmp; *.jpeg; *.jpg; *.png",
                 FilterIndex = 2
             };
@@ -52,25 +54,28 @@ namespace WindowsFormsApp1
             request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
             request.AddFile("image", image);
 
-
-
             RestResponse response = await client.ExecuteAsync(request);
-            Console.WriteLine(response.Content);
-            Console.ReadLine();
-            
+            PostResponse postResponse = JsonSerializer.Deserialize<PostResponse>(response.Content);
+
+
+
 
             //GET request
             request = new RestRequest("v2/tags", Method.Get);
-            request.AddParameter("image_upload_id", "i17b121Q3GWAK");
-            //request.AddParameter("image_url", imageUrl);
-                request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
+            request.AddParameter("image_upload_id", postResponse.result.upload_id);
+            request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
 
             response = await client.GetAsync(request);
             Console.WriteLine(response.Content);
-            Console.ReadLine();
+            GetResponse getResponse = JsonSerializer.Deserialize<GetResponse>(response.Content);
+            Tag[] tags = getResponse.result.tags;
+            foreach (Tag tag in tags)
+            {
+                Console.WriteLine(tag.confidence + " : " + tag.tag.en);
+            }
 
 
-            
+
 
         }
 
