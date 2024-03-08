@@ -39,7 +39,6 @@ namespace WindowsFormsApp1
         {
             string apiKey = "acc_9c5c51261ab01d5";
             string apiSecret = "b680d8eedfbe4612f74f93e42c02b25f";
-            string imageUrl = "https://docs.imagga.com/static/images/docs/sample/japan-605234_1280.jpg";
             string image = filePath.Text;
             string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
  
@@ -57,21 +56,32 @@ namespace WindowsFormsApp1
             request.AddFile("image", image);
 
             RestResponse response = await client.ExecuteAsync(request);
-            dynamic postResponse = JsonSerializer.Deserialize<dynamic>(response.Content);
-            string uploadID = postResponse.result.upload_id;
+            //dynamic postResponse = JsonSerializer.Deserialize<dynamic>(response.Content);
+            //string uploadID = postResponse.result.upload_id;
+            dynamic x = Newtonsoft.Json.JsonConvert.DeserializeObject(response.Content);
+            var result = x.result;
+            string upload_id = result.upload_id;
 
 
 
 
             //GET request
             request = new RestRequest("v2/tags", Method.Get);
-            request.AddParameter("image_upload_id", uploadID);
+            request.AddParameter("image_upload_id", upload_id);
             request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
 
             response = await client.GetAsync(request);
             Console.WriteLine(response.Content);
-            dynamic getResponse = JsonSerializer.Deserialize<dynamic>(response.Content);
-
+            x = Newtonsoft.Json.JsonConvert.DeserializeObject(response.Content);
+            result = x.result;
+            var tagsPlaceholder = result.tags;
+            Tag[] tags = new Tag[10];
+            for(int i = 0; i < tags.Length; i++)
+            {
+                Console.Out.WriteLine();
+                tags[i].confidence = tagsPlaceholder[i].confidence.ToObject<decimal>();
+                tags[i].confidence = tagsPlaceholder[i].tag.en.ToString();
+            }
 
 
 
