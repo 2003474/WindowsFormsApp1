@@ -2,7 +2,9 @@
 using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
+//using Newtonsoft.Json;
 using RestSharp;
 
 namespace WindowsFormsApp1
@@ -55,24 +57,22 @@ namespace WindowsFormsApp1
             request.AddFile("image", image);
 
             RestResponse response = await client.ExecuteAsync(request);
-            PostResponse postResponse = JsonSerializer.Deserialize<PostResponse>(response.Content);
+            dynamic postResponse = JsonSerializer.Deserialize<dynamic>(response.Content);
+            string uploadID = postResponse.result.upload_id;
 
 
 
 
             //GET request
             request = new RestRequest("v2/tags", Method.Get);
-            request.AddParameter("image_upload_id", postResponse.result.upload_id);
+            request.AddParameter("image_upload_id", uploadID);
             request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
 
             response = await client.GetAsync(request);
             Console.WriteLine(response.Content);
-            GetResponse getResponse = JsonSerializer.Deserialize<GetResponse>(response.Content);
-            Tag[] tags = getResponse.result.tags;
-            foreach (Tag tag in tags)
-            {
-                Console.WriteLine(tag.confidence + " : " + tag.tag.en);
-            }
+            dynamic getResponse = JsonSerializer.Deserialize<dynamic>(response.Content);
+
+
 
 
 
