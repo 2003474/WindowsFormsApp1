@@ -8,7 +8,11 @@ namespace WindowsFormsApp1
 {
     internal class Neuron
     {
-        decimal[] weight;
-        decimal bias;
+        public decimal[] weight;
+        public decimal bias;
+
+        public int output(decimal[] inputs) {
+            return bias + inputs[0]*weight[0] + inputs[1]*weight[1] + inputs[2]*weight[2] + inputs[3]*weight[3]
+        }
     }
 }
