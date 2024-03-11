@@ -87,6 +87,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Neuron.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tag.cs" />
     <EmbeddedResource Include="Form1.resx">
