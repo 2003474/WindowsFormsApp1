@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         public decimal[] weight;
         public decimal bias;
 
-        public int output(decimal[] inputs) {
+        public decimal output(decimal[] inputs) {
             return bias + inputs[0]*weight[0] + inputs[1]*weight[1] + inputs[2]*weight[2] + inputs[3]*weight[3]
         }
     }
