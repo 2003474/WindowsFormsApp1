@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     internal class Neuron
     {
-        int[] weight;
-        int bias;
+        decimal[] weight;
+        decimal bias;
     }
 }
