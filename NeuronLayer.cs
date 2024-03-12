@@ -12,20 +12,6 @@ namespace WindowsFormsApp1
         Neuron[] neurons = null;
 
 
-        public NeuronLayer(double[][] weights, double[] biases)
-        {
-            neurons = new Neuron[weights.Length];
-            for (int i = 0; i < neurons.Length; i++)
-            {
-                neurons[i] = new Neuron(weights[i], biases[i]);
-            }
-        }
-
-        public NeuronLayer(Neuron[] neurons)
-        {
-            this.neurons = neurons;
-        }
-
         public NeuronLayer(int num_inputs, int num_neurons)
         {
             this.neurons = new Neuron[num_neurons];
