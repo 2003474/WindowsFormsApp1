@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
     {
         public double[] weight;
         public double bias;
-        public output = null;
+        public double output = null;
 
         public Neuron(int num_inputs)
         {
