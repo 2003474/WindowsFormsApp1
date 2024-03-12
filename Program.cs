@@ -16,11 +16,21 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            double[] inputs = new double[2] { 5.9, 9.3 };
+            double[][] inputs = new double[4][2] { {5.9, 9.3}, {7.2, -4.6}, {0.1, -1.3}, {-0.7, -2.1},};
             NeuronLayer hidenLayer1 = new NeuronLayer(2, 8);
             NeuronLayer hidenLayer2 = new NeuronLayer(8, 8);
-            Console.WriteLine(string.Join(" ", hidenLayer1.Output(inputs)) + " " + string.Join(" ", hidenLayer2.Output(hidenLayer1.Output(inputs))));
+            
+            hiddenLayer1.Forward(inputs);
+            Console.WriteLine(string.Join(" ", hiddenLayer1.getWeights()));
+            Console.WriteLine(string.Join(" ", hiddenLayer1.getBiases()));
+            Console.WriteLine(string.Join(" ", hiddenLayer1.output));
 
+            
+            hiddenLayer2.Forward(hiddenLayer1.output);
+            Console.WriteLine(string.Join(" ", hiddenLayer2.getWeights()));
+            Console.WriteLine(string.Join(" ", hiddenLayer2.getBiases()));
+            Console.WriteLine(string.Join(" ", hiddenLayer2.output));
+            
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
