@@ -10,8 +10,8 @@ namespace WindowsFormsApp1
     internal class NeuronLayer
     {
         public Neuron[] neurons = null;
-        public decimal[] output = null;
-
+        public double[][] output = null;
+        
 
         public NeuronLayer(int num_inputs, int num_neurons)
         {
@@ -24,14 +24,29 @@ namespace WindowsFormsApp1
 
 
 
-        public Forward Output(double[] inputs)
+        public void Forward(double[] inputs)
         {
-            output = new double[neurons.Length];
+            output = new double[1][neurons.Length];
+            output[0] = singleOutput(inputs);
+        }
+
+        private double[] singleOutput(double[] inputs){
+            temopOutput = new double[neurons.Length];
             for(int i = 0; i < inputs.Length; i++)
             {
                 neurons[i].Forward(inputs);
-                output[i] = neurons[i].output;
+                temopOutput[i] = neurons[i].output;
+            }
+            retrun tempOutput;
+        }
+
+        public void Forward(double[][] inputs) {
+            output = new double[inputs.Length][neurons.Length];
+            for(int i = 0; i < inputs.Length; i++)
+            {
+                output[i] = singleOutput(inputs[i]);
             }
         }
+        
     }
 }
