@@ -47,6 +47,22 @@ namespace WindowsFormsApp1
                 output[i] = singleOutput(inputs[i]);
             }
         }
+
+        public double[][] getWeights() {
+            double[][] weights = new double[neuron.Length][neuron[0].weight.Length];
+            for(int i = 0; i < neurons.Length; i++) {
+                weights[i] = neurons[i].weight;
+            }
+            return weights;
+        }
+
+        public double[] getBiases() {
+            double[] biases = new double[neurons.Length];
+            for(int i = 0; i < neurons.Length; i++) {
+                biases[i] = neurons[i].bias;
+            }
+            return biases;
+        }
         
     }
 }
