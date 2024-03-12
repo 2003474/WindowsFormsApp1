@@ -12,22 +12,16 @@ namespace WindowsFormsApp1
     {
         public double[] weight;
         public double bias;
-
-
-        public Neuron(double[] weight, double bias)
-        {
-            this.weight = weight;
-            this.bias = bias;
-        }
+        public output = null;
 
         public Neuron(int num_inputs)
         {
-            this.weight = Vector.Random(num_inputs);
-            this.bias = 0.0;
+            weight = Vector.Random(num_inputs);
+            bias = Vector.Random(1);
         }
 
-        public double Output(double[] inputs) {
-            return Matrix.Dot(weight, inputs) + bias;
+        public void Forward(double[] inputs) {
+            output = Matrix.Dot(weight, inputs) + bias;
         }
     }
 }
