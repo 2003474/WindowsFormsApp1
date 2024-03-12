@@ -1,18 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+//using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accord.Math;
 
 namespace WindowsFormsApp1
 {
     internal class Neuron
     {
-        public decimal[] weight;
-        public decimal bias;
+        public double[] weight;
+        public double bias;
 
-        public decimal output(decimal[] inputs) {
-            return bias + inputs[0] * weight[0] + inputs[1] * weight[1] + inputs[2] * weight[2] + inputs[3] * weight[3];
+
+        public Neuron(double[] weight, double bias)
+        {
+            this.weight = weight;
+            this.bias = bias;
+        }
+
+        public Neuron(int num_inputs)
+        {
+            this.weight = Vector.Random(num_inputs);
+            this.bias = 0.0;
+        }
+
+        public double Output(double[] inputs) {
+            return Matrix.Dot(weight, inputs) + bias;
         }
     }
 }
