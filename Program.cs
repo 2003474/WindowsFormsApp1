@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            double[][] inputs = new double[4][2] { {5.9, 9.3}, {7.2, -4.6}, {0.1, -1.3}, {-0.7, -2.1},};
+            double[][] inputs = new double[4, 2] { {5.9, 9.3}, {7.2, -4.6}, {0.1, -1.3}, {-0.7, -2.1},};
             NeuronLayer hidenLayer1 = new NeuronLayer(2, 8);
             NeuronLayer hidenLayer2 = new NeuronLayer(8, 8);
             

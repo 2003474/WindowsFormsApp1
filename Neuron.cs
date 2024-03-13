@@ -12,12 +12,12 @@ namespace WindowsFormsApp1
     {
         public double[] weight;
         public double bias;
-        public double output = null;
+        public double output = 0.0;
 
         public Neuron(int num_inputs)
         {
             weight = Vector.Random(num_inputs);
-            bias = Vector.Random(1);
+            bias = Vector.Random(1)[0];
         }
 
         public void Forward(double[] inputs) {
