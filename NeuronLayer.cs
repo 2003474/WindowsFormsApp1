@@ -27,10 +27,10 @@ namespace WindowsFormsApp1
         public void Forward(double[] inputs)
         {
             output = new double[1][];
-            output[0] = singleOutput(inputs);
+            output[0] = SingleOutput(inputs);
         }
 
-        private double[] singleOutput(double[] inputs){
+        private double[] SingleOutput(double[] inputs){
             double[] tempOutput = new double[neurons.Length];
             for(int i = 0; i < neurons.Length; i++)
             {
@@ -44,11 +44,11 @@ namespace WindowsFormsApp1
             output = new double[inputs.Length][];
             for(int i = 0; i < inputs.Length; i++)
             {
-                output[i] = singleOutput(inputs[i]);
+                output[i] = SingleOutput(inputs[i]);
             }
         }
 
-        public double[][] getWeights() {
+        public double[][] GetWeights() {
             double[][] weights = new double[neurons.Length][];
             for(int i = 0; i < neurons.Length; i++) {
                 weights[i] = neurons[i].weight;
@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
             return weights;
         }
 
-        public double[] getBiases() {
+        public double[] GetBiases() {
             double[] biases = new double[neurons.Length];
             for(int i = 0; i < neurons.Length; i++) {
                 biases[i] = neurons[i].bias;

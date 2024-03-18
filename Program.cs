@@ -17,12 +17,12 @@ namespace WindowsFormsApp1
         static void Main()
         {
             double[][] inputs = new double[3][] { new double[] {5.9, -9.3}, new double[] { 1, 2 }, new double[] { -1, -2 } };
-            NeuronLayer hiddenLayer1 = new NeuronLayer(2, 8);
-            NeuronLayer hiddenLayer2 = new NeuronLayer(8, 8);
+            NeuronLayer hiddenLayer1 = new(2, 8);
+            NeuronLayer hiddenLayer2 = new(8, 8);
             
             hiddenLayer1.Forward(inputs);
-            var weights = hiddenLayer1.getWeights();
-            var biases = hiddenLayer1.getBiases();
+            var weights = hiddenLayer1.GetWeights();
+            var biases = hiddenLayer1.GetBiases();
             var output = hiddenLayer1.output;
             Console.WriteLine("Weights: ");
             for (int x = 0; x < weights.Length; x++)
@@ -56,8 +56,8 @@ namespace WindowsFormsApp1
             Console.WriteLine();
 
             hiddenLayer2.Forward(hiddenLayer1.output);
-            var weights2 = hiddenLayer2.getWeights();
-            var biases2 = hiddenLayer2.getBiases();
+            var weights2 = hiddenLayer2.GetWeights();
+            var biases2 = hiddenLayer2.GetBiases();
             var output2 = hiddenLayer2.output;
             //prints weights
             Console.WriteLine("Weights: ");
