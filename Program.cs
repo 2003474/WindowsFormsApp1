@@ -17,8 +17,8 @@ namespace WindowsFormsApp1
         static void Main()
         {
             double[][] inputs = new double[3][] { new double[] {5.9, -9.3}, new double[] { 1, 2 }, new double[] { -1, -2 } };
-            NeuronLayer hiddenLayer1 = new(2, 8);
-            NeuronLayer hiddenLayer2 = new(8, 8);
+            NeuronLayer hiddenLayer1 = new NeuronLayer(2, 8);
+            NeuronLayer hiddenLayer2 = new NeuronLayer(8, 8);
             
             hiddenLayer1.Forward(inputs);
             var weights = hiddenLayer1.GetWeights();
