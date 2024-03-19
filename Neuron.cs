@@ -15,7 +15,11 @@ namespace WindowsFormsApp1
 
         public Neuron(int num_inputs)
         {
-            weight = Vector.Random(num_inputs);
+            //weight = Vector.Random(num_inputs);
+            weight = new double[num_inputs];
+            for(int i = 0; i < weight.Length; i++) {
+                weight[i] = 0.0;
+            }
             bias = Vector.Random(1)[0];
         }
 
