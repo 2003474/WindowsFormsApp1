@@ -23,24 +23,5 @@ namespace WindowsFormsApp1
             output = Matrix.Dot(weight, inputs) + bias;
             output = aFunction.forward(output);
         }
-
-        public double ReLU(double input, char type)
-        {
-            if (type == 'f')
-            {
-                if (input < 0)
-                {
-                    return 0.0;
-                }
-                else
-                {
-                    return input;
-                }
-            } else
-            {
-                //back pass
-                return 0.0;
-            }
-        }
     }
 }

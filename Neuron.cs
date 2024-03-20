@@ -13,7 +13,5 @@ namespace WindowsFormsApp1
         public double output = 0.0;
 
         public abstract void Forward(double[] inputs);
-
-
     }
 }

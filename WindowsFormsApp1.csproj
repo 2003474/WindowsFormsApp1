@@ -102,6 +102,7 @@
     <Compile Include="Layer.cs" />
     <Compile Include="DenseNeuron.cs" />
     <Compile Include="DenseLayer.cs" />
+    <Compile Include="NeuralNetwork.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="OutputLayer.cs" />
     <Compile Include="OutputNeuron.cs" />
