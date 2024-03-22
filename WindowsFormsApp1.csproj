@@ -92,6 +92,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data.cs" />
+    <Compile Include="DataGenerator.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +104,7 @@
     <Compile Include="Layer.cs" />
     <Compile Include="DenseNeuron.cs" />
     <Compile Include="DenseLayer.cs" />
+    <Compile Include="NetworkTrainer.cs" />
     <Compile Include="NeuralNetwork.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="OutputLayer.cs" />
