@@ -31,14 +31,14 @@ namespace WindowsFormsApp1
                 tempOutput[i] = neurons[i].output;
             }
             double maxValue = tempOutput.Max();
-            Console.WriteLine("" + string.Join(", ", tempOutput));
+            //Console.WriteLine("" + string.Join(", ", tempOutput));
             for(int i = 0;i < tempOutput.Length; i++)
             {
                 tempOutput[i] -= maxValue;
                 tempOutput[i] = Math.Exp(tempOutput[i]);
             }
             double total = tempOutput.Sum();
-            Console.WriteLine("" + string.Join(", ", tempOutput));
+            //Console.WriteLine("" + string.Join(", ", tempOutput));
             for (int i = 0; i < tempOutput.Length; i++)
             {
                 tempOutput[i] /= total;

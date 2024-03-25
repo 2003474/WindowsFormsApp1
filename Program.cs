@@ -10,7 +10,8 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-
+            NetworkTrainer w = new NetworkTrainer(1, 2, 8, 10);
+            w.Train();
             //NeuralNetwork network = new NeuralNetwork(2, 2, 8);
             //network.input = input;
             //network.Forward();
@@ -19,8 +20,6 @@ namespace WindowsFormsApp1
 
             // TODO
             // test network trainer
-            // make loss function
-            // re-add batch input
             // add some sort of training/ selection algorithm
         }
     }

@@ -4,9 +4,9 @@
     {
         public double[] input;
         public double[] output;
-        DenseLayer dLayer1;
-        DenseLayer dLayer2;
-        OutputLayer oLayer;
+        readonly DenseLayer dLayer1;
+        readonly DenseLayer dLayer2;
+        readonly OutputLayer oLayer;
 
         public NeuralNetwork(int numInputs, int numOutputs, int numNeurons)
         {

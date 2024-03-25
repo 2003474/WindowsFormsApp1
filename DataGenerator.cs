@@ -21,12 +21,13 @@ namespace WindowsFormsApp1
             
             for (int i = 0; i < numData; i++)
             {
-                data[i] = new Data();
-                data[i].input = new double[] { rnd.Next(-100, 100) };
-                Console.WriteLine(data[i].input[0]);
+                data[i] = new Data
+                {
+                    input = new double[] { rnd.Next(-100, 100) }
+                };
                 if (data[i].input[0] < 0)
                 {
-                    data[i].output = new double[] { -1.0 };
+                    data[i].output = new double[] { 0.0 };
                 } else
                 {
                     data[i].output = new double[] { 1.0 };
