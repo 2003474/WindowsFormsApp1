@@ -13,6 +13,15 @@
             }
         }
 
+        public DenseLayer(DenseLayer layer1, DenseLayer layer2, int mutationLvl)
+        {
+            // for every neuron
+            // randomly chooses between neurons either a 0 1 2
+            // 0 is layer1 neruon
+            // 1 is layer2 neuron
+            // 2 is combination of both (neurons[i] = new DenseNeuron(layer1.neurons[i], layer2.neurons[i], mutationLvl)
+        }
+
         public override double[] SingleOutput(double[] inputs)
         {
             double[] tempOutput = new double[neurons.Length];

@@ -11,13 +11,20 @@ namespace WindowsFormsApp1
     {
 
         public ActivationFunction aFunction;
-        //public activationFunctionBackward backword;
         public DenseNeuron(int num_inputs, ActivationFunction function)
         {
             weight = Vector.Random(num_inputs);
             bias = Vector.Random(1)[0];
             aFunction = function;
         }
+
+        //combine 2 neurons together
+        //public DenseNeuron(DenseNeuron neuron1, DenseNeuron neuron2, int MutationLvl)
+        //{
+        //chooses activation function, or combines (smh)
+        //combines weight values, (chooses 1 from each or averages both)
+        //mutation
+        //}
 
         public override void Forward(double[] inputs) {
             output = Matrix.Dot(weight, inputs) + bias;

@@ -10,7 +10,6 @@ namespace WindowsFormsApp1
     internal class OutputLayer : Layer
     {
 
-
         public OutputLayer(int num_inputs, int num_neurons)
         {
             
@@ -21,6 +20,17 @@ namespace WindowsFormsApp1
                 this.neurons[i] = new OutputNeuron(num_inputs);
             }
         }
+
+        public OutputLayer(OutputLayer oLayer1, OutputLayer oLayer2, int mutationLvl)
+        {
+            // for every neuron
+            // randomly chooses between neurons either a 0 1 2
+            // 0 is layer1 neruon
+            // 1 is layer2 neuron
+            // 2 is combination of both (neurons[i] = new DenseNeuron(layer1.neurons[i], layer2.neurons[i], mutationLvl)
+            // maybe different for output, if not just put it into the "Layer" class instead
+        }
+
         public override double[] SingleOutput(double[] inputs)
         {
 

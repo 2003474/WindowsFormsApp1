@@ -31,7 +31,7 @@ namespace WindowsFormsApp1
                 {
 
                     double[] tempLoss = new double[8];
-                    for (int j = 8 * k; j < j + tempLoss.Length; j++)
+                    for (int j = 8 * k; j < 8 * k + tempLoss.Length; j++)
                     {
                         networks[i].input = trainingData[j].input;
                         networks[i].Forward();
@@ -40,13 +40,20 @@ namespace WindowsFormsApp1
                     }
                     loss[i] = tempLoss.Sum();
                     Console.WriteLine("Network #" + (i + 1) + ": loss: " + loss[i]);
-                    //Console.WriteLine("Output: [" + network.output[0].ToString() + "," + network.output[1].ToString() + "] expected index: " + trainingData[0].output[0] + " loss: " + loss(network.output, trainingData[0].output[0]));
                 }
-                NeuralNetwork best = networks[loss.IndexOf(loss.Min())];
-                Console.WriteLine("Best NN is... #" + (loss.IndexOf(loss.Min()) + 1));
-                best.input = trainingData[9].input;
-                best.Forward();
-                Console.WriteLine(best.output[0].ToString() + " " + best.output[1].ToString() + " " + trainingData[9].output[0]);
+                NeuralNetwork best1 = networks[loss.IndexOf(loss.Min())];
+                loss[loss.IndexOf(loss.Min())] = 10000.00;
+                NeuralNetwork best2 = networks[loss.IndexOf(loss.Min())];
+                for(int i = 0; i < networks.Length; i++)
+                {
+                    networks[i] = new NeuralNetwork(best1, best2, 0);
+                }
+                //Console.WriteLine("Best Network is... #" + (loss.IndexOf(loss.Min()) + 1));
+                //best.input = trainingData[100 + k].input;
+                //best.Forward();
+                //Console.WriteLine(best.output[0].ToString() + " " + best.output[1].ToString() + " " + trainingData[100 + k].output[0]);
+                // finds the best, maybe best 2 then combines them and populates the array of Networks with their children, might be different every time,
+                // add mutation, completely random, changing weights and/ or biases
             }
         }
         
