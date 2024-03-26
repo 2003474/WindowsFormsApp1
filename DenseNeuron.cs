@@ -19,12 +19,16 @@ namespace WindowsFormsApp1
         }
 
         //combine 2 neurons together
-        //public DenseNeuron(DenseNeuron neuron1, DenseNeuron neuron2, int MutationLvl)
-        //{
+        public DenseNeuron(DenseNeuron neuron1, DenseNeuron neuron2, int MutationLvl)
+        {
         //chooses activation function, or combines (smh)
+        //rand num 1, 2, 3
+        // 1 is neuron1 actFunc
+        // 2 is neuron2 actFunc
+        // 3 is comb new ActivationFunction(neuron1.aFunction, neuron2.aFunction)
         //combines weight values, (chooses 1 from each or averages both)
         //mutation
-        //}
+        }
 
         public override void Forward(double[] inputs) {
             output = Matrix.Dot(weight, inputs) + bias;
