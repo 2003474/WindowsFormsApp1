@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             NetworkTrainer w = new NetworkTrainer(1, 2, 8, 10);
-            w.Train();
+            NeuralNetwork final = w.Train();
             //NeuralNetwork network = new NeuralNetwork(2, 2, 8);
             //network.input = input;
             //network.Forward();
