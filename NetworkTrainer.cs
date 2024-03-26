@@ -22,10 +22,10 @@ namespace WindowsFormsApp1
             trainingData = dataGen.Generate();
         }
 
-        public void Train()
+        public NeuralNetwork Train()
         {
             double[] loss = new double[networks.Length];
-            for (int k = 0; k < 10; k++)
+            for (int k = 0; k < 11; k++)
             {
                 for (int i = 0; i < networks.Length; i++)
                 {
@@ -43,9 +43,12 @@ namespace WindowsFormsApp1
                 NeuralNetwork best1 = networks[loss.IndexOf(loss.Min())];
                 loss[loss.IndexOf(loss.Min())] = 10000.00;
                 NeuralNetwork best2 = networks[loss.IndexOf(loss.Min())];
-                for(int i = 0; i < networks.Length; i++)
+                if(k < 10) 
                 {
-                    networks[i] = new NeuralNetwork(best1, best2, 0);
+                    for(int i = 0; i < networks.Length; i++)
+                    {
+                        networks[i] = new NeuralNetwork(best1, best2, 0);
+                    }
                 }
                 //Console.WriteLine("Best Network is... #" + (loss.IndexOf(loss.Min()) + 1));
                 //best.input = trainingData[100 + k].input;
@@ -54,6 +57,7 @@ namespace WindowsFormsApp1
                 // finds the best, maybe best 2 then combines them and populates the array of Networks with their children, might be different every time,
                 // add mutation, completely random, changing weights and/ or biases
             }
+            return best1;
         }
         
         public double Loss(double[] output, double expOutput)
