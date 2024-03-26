@@ -35,7 +35,6 @@ namespace WindowsFormsApp1
                     {
                         networks[i].input = trainingData[j].input;
                         networks[i].Forward();
-                        //bug
                         tempLoss[j - 8 * k] = Loss(networks[i].output, trainingData[j].output[0]);
                     }
                     loss[i] = tempLoss.Sum();
