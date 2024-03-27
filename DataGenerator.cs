@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             {
                 data[i] = new Data
                 {
-                    input = new double[] { rnd.Next(-100, 100) }
+                    input = new double[] { rnd.Next (-100, 100) }
                 };
                 if (data[i].input[0] < 0)
                 {

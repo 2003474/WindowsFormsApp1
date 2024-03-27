@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
@@ -12,30 +8,36 @@ namespace WindowsFormsApp1
 
         public OutputLayer(int num_inputs, int num_neurons)
         {
-            
 
-            this.neurons = new OutputNeuron[num_neurons];
+
+            neurons = new OutputNeuron[num_neurons];
             for (int i = 0; i < num_neurons; i++)
             {
-                this.neurons[i] = new OutputNeuron(num_inputs);
+                neurons[i] = new OutputNeuron(num_inputs);
             }
         }
 
         public OutputLayer(OutputLayer oLayer1, OutputLayer oLayer2, int mutationLvl)
         {
             // for every neuron
-            this.neurons = new DenseNeuron[num_neurons];
+            neurons = new OutputNeuron[oLayer1.neurons.Length];
             Random rnd = new Random();
             int num = rnd.Next();
-            for (int i = 0; i < num_neurons; i++)
-            {    num = rnd.Next(1, 4);
-                 if(num == 1) {
-                     neurons[i] = layer1.neurons[i];
-                 } else if ( num == 2) {
-                     neurons[i] = layer2.neurons[i];
-                 } else {
-                     neurons[i] = new OutputNeuron(layer1.neurons[i], layer2.neurons[i]);
-                 }
+            for (int i = 0; i < neurons.Length; i++)
+            {
+                num = rnd.Next(1, 4);
+                if (num == 1)
+                {
+                    neurons[i] = oLayer1.neurons[i];
+                }
+                else if (num == 2)
+                {
+                    neurons[i] = oLayer2.neurons[i];
+                }
+                else
+                {
+                    neurons[i] = new OutputNeuron((OutputNeuron)oLayer1.neurons[i], (OutputNeuron)oLayer2.neurons[i], mutationLvl);
+                }
             }
             // randomly chooses between neurons either a 0 1 2
             // 0 is layer1 neruon
@@ -54,7 +56,7 @@ namespace WindowsFormsApp1
             }
             double maxValue = tempOutput.Max();
             //Console.WriteLine("" + string.Join(", ", tempOutput));
-            for(int i = 0;i < tempOutput.Length; i++)
+            for (int i = 0; i < tempOutput.Length; i++)
             {
                 tempOutput[i] -= maxValue;
                 tempOutput[i] = Math.Exp(tempOutput[i]);

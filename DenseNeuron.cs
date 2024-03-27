@@ -35,8 +35,8 @@ namespace WindowsFormsApp1
             // 2 is neuron2 actFunc
             // prolly same one tho for now
             //combines weight values, (chooses 1 from each or averages both)
-            weight = new double[8];
-            for(int i = 0, i < weight.Length; i++) {
+            weight = new double[neuron1.weight.Length];
+            for(int i = 0; i < weight.Length; i++) {
                 num = rnd.Next(1, 4);
                 if (num == 1) 
                 {

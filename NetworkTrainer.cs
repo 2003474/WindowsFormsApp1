@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
 
         public NeuralNetwork Train()
         {
+            NeuralNetwork best1 = networks[0];
             double[] loss = new double[networks.Length];
             for (int k = 0; k < 11; k++)
             {
@@ -40,7 +41,7 @@ namespace WindowsFormsApp1
                     loss[i] = tempLoss.Sum();
                     Console.WriteLine("Network #" + (i + 1) + ": loss: " + loss[i]);
                 }
-                NeuralNetwork best1 = networks[loss.IndexOf(loss.Min())];
+                best1 = networks[loss.IndexOf(loss.Min())];
                 loss[loss.IndexOf(loss.Min())] = 10000.00;
                 NeuralNetwork best2 = networks[loss.IndexOf(loss.Min())];
                 if(k < 10) 

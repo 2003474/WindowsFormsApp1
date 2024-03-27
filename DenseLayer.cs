@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp1
+﻿using System;
+
+namespace WindowsFormsApp1
 {
     class DenseLayer : Layer
     {
@@ -16,17 +18,17 @@
         public DenseLayer(DenseLayer layer1, DenseLayer layer2, int mutationLvl)
         {
             // for every neuron
-            this.neurons = new DenseNeuron[num_neurons];
+            neurons = new DenseNeuron[layer1.neurons.Length];
             Random rnd = new Random();
-            int num = rnd.Next();
-            for (int i = 0; i < num_neurons; i++)
+            int num;
+            for (int i = 0; i < neurons.Length; i++)
             {    num = rnd.Next(1, 4);
                  if(num == 1) {
                      neurons[i] = layer1.neurons[i];
                  } else if ( num == 2) {
                      neurons[i] = layer2.neurons[i];
                  } else {
-                     neurons[i] = new DenseNeuron(layer1.neurons[i], layer2.neurons[i]);
+                     neurons[i] = new DenseNeuron((DenseNeuron)layer1.neurons[i], (DenseNeuron)layer2.neurons[i], mutationLvl);
                  }
             }
             // randomly chooses between neurons either a 0 1 2

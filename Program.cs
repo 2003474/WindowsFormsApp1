@@ -15,7 +15,12 @@ namespace WindowsFormsApp1
             
             final.input = new double[1] { 25.0 };
             final.Forward();
-            // should return 0 and 1 or extremely close, like EXTREMELY close
+            // should return 0 and 1 or extremely close
+            Console.WriteLine(final.output[0] + ", " + final.output[1]);
+
+            final.input = new double[1] { -25.0 };
+            final.Forward();
+            // should return 1 and 0 or extremely close
             Console.WriteLine(final.output[0] + ", " + final.output[1]);
             //NeuralNetwork network = new NeuralNetwork(2, 2, 8);
             //network.input = input;
