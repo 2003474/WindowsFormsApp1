@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
             // for every neuron
             neurons = new DenseNeuron[layer1.neurons.Length];
             Random rnd = new Random();
-            int num;
+            int num = 0;
             for (int i = 0; i < neurons.Length; i++)
             {    num = rnd.Next(1, 4);
                  if(num == 1) {

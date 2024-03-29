@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
             // for every neuron
             neurons = new OutputNeuron[oLayer1.neurons.Length];
             Random rnd = new Random();
-            int num = rnd.Next();
+            int num = 0;
             for (int i = 0; i < neurons.Length; i++)
             {
                 num = rnd.Next(1, 4);
