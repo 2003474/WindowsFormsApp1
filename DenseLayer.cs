@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1
 {
     class DenseLayer : Layer
     {
@@ -23,12 +21,12 @@ namespace WindowsFormsApp1
             for (int i = 0; i < neurons.Length; i++)
             {
                 num = Globals.rnd.Next(1, 4);
-                
+
 
 
 
                 if (num == 1)
-                
+
                 {
                     neurons[i] = layer1.neurons[i];
                 }

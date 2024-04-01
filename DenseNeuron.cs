@@ -78,7 +78,7 @@ namespace WindowsFormsApp1
         public override void Forward(double[] inputs)
         {
             output = Matrix.Dot(weight, inputs) + bias;
-            //output = aFunction.forward(output);
+            //output = aFunction.Forward(output);
         }
     }
 }

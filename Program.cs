@@ -10,9 +10,9 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            NetworkTrainer w = new NetworkTrainer(2, 2, 8, 10);
+            NetworkTrainer w = new NetworkTrainer(2, 2, 64, 8, 100);
             NeuralNetwork final = w.Train();
-            
+
             final.input = new double[2] { 25.0, -5.0 };
             final.Forward();
             // should return 0 and 1 or extremely close

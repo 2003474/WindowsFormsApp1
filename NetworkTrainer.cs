@@ -1,9 +1,6 @@
 ﻿using Accord.Math;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
@@ -12,21 +9,22 @@ namespace WindowsFormsApp1
         public NeuralNetwork[] networks;
         public Data[] trainingData;
 
-        public NetworkTrainer(int numInputs, int numOutputs, int numNeurons, int numNetworks)
+        public NetworkTrainer(int numInputs, int numOutputs, int numNeurons, int numLayers, int numNetworks)
         {
             networks = new NeuralNetwork[numNetworks];
-            for (int i = 0; i < networks.Length; i++) {
-                networks[i] = new NeuralNetwork(numInputs, numOutputs, numNeurons);
+            for (int i = 0; i < networks.Length; i++)
+            {
+                networks[i] = new NeuralNetwork(numInputs, numOutputs, numNeurons, numLayers);
             }
             DataGenerator dataGen = new DataGenerator();
-            trainingData = dataGen.Generate(100);
+            trainingData = dataGen.Generate(10000);
         }
 
         public NeuralNetwork Train()
         {
             NeuralNetwork best1 = null;
             double[] loss = new double[networks.Length];
-            for (int k = 0; k < 11; k++)
+            for (int k = 0; k < 25; k++)
             {
                 for (int i = 0; i < networks.Length; i++)
                 {
@@ -44,27 +42,27 @@ namespace WindowsFormsApp1
                     loss[i] = tempLoss.Sum();
                     Console.WriteLine("Network #" + (i + 1) + ": loss: " + loss[i]);
                 }
-                best1 = networks[loss.IndexOf(loss.Min())];
-                loss[loss.IndexOf(loss.Min())] = 10000.00;
-                NeuralNetwork best2 = networks[loss.IndexOf(loss.Min())];
-                if(k < 10) 
+                // take the top 10% of networks
+                NeuralNetwork[] top10 = new NeuralNetwork[networks.Length/10];
+                for(int i = 0; i < top10.Length; i++)
                 {
-                    for(int i = 0; i < networks.Length; i++)
-                    {
-                        networks[i] = new NeuralNetwork(best1, best2, 0);
-                    }
+                    top10[i] = networks[loss.IndexOf(loss.Min())];
+                    loss[loss.IndexOf(loss.Min())] = 100000000.00;
                 }
-                //Console.WriteLine("Best Network is... #" + (loss.IndexOf(loss.Min()) + 1));
-                //best.input = trainingData[100 + k].input;
-                //best.Forward();
-                //Console.WriteLine(best.output[0].ToString() + " " + best.output[1].ToString() + " " + trainingData[100 + k].output[0]);
-                // finds the best, maybe best 2 then combines them and populates the array of Networks with their children, might be different every time,
-                // add mutation, completely random, changing weights and/ or biases
+                NeuralNetwork[] tempNetworks = new NeuralNetwork[networks.Length];
+                for (int i = 0; i < networks.Length; i++)
+                {
+                    NeuralNetwork father = top10[0];
+                    NeuralNetwork mother = top10[1];
+                    tempNetworks[i] = new NeuralNetwork(father, mother, 0);
+                }
+
+                networks = tempNetworks;
             }
 
             return best1;
         }
-        
+
         public double Loss(double[] output, double expOutput)
         {
             return -(Math.Log10(output[(int)expOutput]));

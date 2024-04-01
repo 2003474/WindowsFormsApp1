@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
     internal class ReLU : ActivationFunction
     {
-        public double backward(double input)
+        public double Backward(double input)
         {
             throw new NotImplementedException();
         }
 
-        public double forward(double input)
+        public double Forward(double input)
         {
             if (input < 0)
             {
