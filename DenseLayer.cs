@@ -17,7 +17,7 @@
         {
             // for every neuron
             neurons = new DenseNeuron[layer1.neurons.Length];
-            int num = 0;
+            int num;
             for (int i = 0; i < neurons.Length; i++)
             {
                 num = Globals.rnd.Next(1, 4);

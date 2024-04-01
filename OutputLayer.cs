@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
         {
             // for every neuron
             neurons = new OutputNeuron[oLayer1.neurons.Length];
-            int num = 0;
+            int num;
             for (int i = 0; i < neurons.Length; i++)
             {
                 num = Globals.rnd.Next(1, 4);
