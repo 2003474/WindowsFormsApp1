@@ -17,14 +17,14 @@ namespace WindowsFormsApp1
                 networks[i] = new NeuralNetwork(numInputs, numOutputs, numNeurons, numLayers);
             }
             DataGenerator dataGen = new DataGenerator();
-            trainingData = dataGen.Generate(10000);
+            trainingData = dataGen.Generate(100000);
         }
 
         public NeuralNetwork Train()
         {
             NeuralNetwork best1 = null;
             double[] loss = new double[networks.Length];
-            for (int k = 0; k < 25; k++)
+            for (int k = 0; k < 10; k++)
             {
                 for (int i = 0; i < networks.Length; i++)
                 {
