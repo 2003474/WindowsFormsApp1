@@ -58,6 +58,7 @@ namespace WindowsFormsApp1
                 }
 
                 networks = tempNetworks;
+                best1 = top10[0];
             }
 
             return best1;
