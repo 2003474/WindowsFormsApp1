@@ -8,29 +8,21 @@ namespace WindowsFormsApp1
 {
     internal class DataGenerator
     {
-        public int numData;
-
-        public DataGenerator(int numData) {
-            this.numData = numData;
-        }
-
-        public Data[] Generate()
+        public Data[] Generate(int numData)
         {
             Data[] data = new Data[numData];
-            Random rnd = new Random();
             
             for (int i = 0; i < numData; i++)
             {
-                data[i] = new Data
+                data[i] = new Data();
+                data[i].input[0] = Globals.rnd.Next(-100, 100);
+                data[i].input[1] = Globals.rnd.Next(-100, 100);
+                if (data[i].input.Sum() < 0)
                 {
-                    input = new double[] { rnd.Next (-100, 100) }
-                };
-                if (data[i].input[0] < 0)
-                {
-                    data[i].output = new double[] { 0.0 };
+                    data[i].output[0] = 0.0;
                 } else
                 {
-                    data[i].output = new double[] { 1.0 };
+                    data[i].output[0] = 1.0;
                 }
             }
             return data;

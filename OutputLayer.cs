@@ -21,11 +21,10 @@ namespace WindowsFormsApp1
         {
             // for every neuron
             neurons = new OutputNeuron[oLayer1.neurons.Length];
-            Random rnd = new Random();
             int num = 0;
             for (int i = 0; i < neurons.Length; i++)
             {
-                num = rnd.Next(1, 4);
+                num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
                     neurons[i] = oLayer1.neurons[i];

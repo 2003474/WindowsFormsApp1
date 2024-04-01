@@ -125,6 +125,11 @@ namespace WindowsFormsApp1
             textBox6.Text = (int)tags[4].confidence + "%";
 
 
+            progressBar2.Style = ProgressBarStyle.Marquee;  
+            progressBar2.MarqueeAnimationSpeed = 0;
+
+
+
 
         }
 

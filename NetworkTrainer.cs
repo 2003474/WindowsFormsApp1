@@ -18,13 +18,13 @@ namespace WindowsFormsApp1
             for (int i = 0; i < networks.Length; i++) {
                 networks[i] = new NeuralNetwork(numInputs, numOutputs, numNeurons);
             }
-            DataGenerator dataGen = new DataGenerator(10000000);
-            trainingData = dataGen.Generate();
+            DataGenerator dataGen = new DataGenerator();
+            trainingData = dataGen.Generate(100);
         }
 
         public NeuralNetwork Train()
         {
-            NeuralNetwork best1 = networks[0];
+            NeuralNetwork best1 = null;
             double[] loss = new double[networks.Length];
             for (int k = 0; k < 11; k++)
             {
@@ -34,6 +34,9 @@ namespace WindowsFormsApp1
                     double[] tempLoss = new double[8];
                     for (int j = 8 * k; j < 8 * k + tempLoss.Length; j++)
                     {
+                        if (j > (trainingData.Length - 1))
+                            Console.WriteLine(j + " is not a valid index in trainingData of size : " + trainingData.Length);
+
                         networks[i].input = trainingData[j].input;
                         networks[i].Forward();
                         tempLoss[j - 8 * k] = Loss(networks[i].output, trainingData[j].output[0]);
@@ -58,6 +61,7 @@ namespace WindowsFormsApp1
                 // finds the best, maybe best 2 then combines them and populates the array of Networks with their children, might be different every time,
                 // add mutation, completely random, changing weights and/ or biases
             }
+
             return best1;
         }
         

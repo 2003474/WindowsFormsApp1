@@ -21,13 +21,14 @@ namespace WindowsFormsApp1
 
         public NeuralNetwork(NeuralNetwork network1, NeuralNetwork network2, int mutationLvl)
         {
+           
             input = new double[network1.input.Length];
             output = new double[network1.output.Length];
-            //Random rnd = new Random();
             //int mutChange = rnd.Next(-mutationLvl, mutationLvl + 1);
             dLayer1 = new DenseLayer(network1.dLayer1, network2.dLayer1, mutationLvl);
             dLayer2 = new DenseLayer(network1.dLayer2, network2.dLayer2, mutationLvl);
             oLayer  = new OutputLayer(network1.oLayer, network2.oLayer,  mutationLvl);
+            
         }
 
         public void Forward()

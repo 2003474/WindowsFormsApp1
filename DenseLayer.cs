@@ -19,17 +19,27 @@ namespace WindowsFormsApp1
         {
             // for every neuron
             neurons = new DenseNeuron[layer1.neurons.Length];
-            Random rnd = new Random();
             int num = 0;
             for (int i = 0; i < neurons.Length; i++)
-            {    num = rnd.Next(1, 4);
-                 if(num == 1) {
-                     neurons[i] = layer1.neurons[i];
-                 } else if ( num == 2) {
-                     neurons[i] = layer2.neurons[i];
-                 } else {
-                     neurons[i] = new DenseNeuron((DenseNeuron)layer1.neurons[i], (DenseNeuron)layer2.neurons[i], mutationLvl);
-                 }
+            {
+                num = Globals.rnd.Next(1, 4);
+                
+
+
+
+                if (num == 1)
+                
+                {
+                    neurons[i] = layer1.neurons[i];
+                }
+                else if (num == 2)
+                {
+                    neurons[i] = layer2.neurons[i];
+                }
+                else
+                {
+                    neurons[i] = new DenseNeuron((DenseNeuron)layer1.neurons[i], (DenseNeuron)layer2.neurons[i], mutationLvl);
+                }
             }
             // randomly chooses between neurons either a 0 1 2
             // 0 is layer1 neruon

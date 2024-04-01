@@ -18,7 +18,6 @@ namespace WindowsFormsApp1
         {
             //chooses activation function
             //rand num 1, 2
-            Random rnd = new Random();
             int num;
             // 1 is neuron1 actFunc
             // 2 is neuron2 actFunc
@@ -26,7 +25,7 @@ namespace WindowsFormsApp1
             //combines weight values, (chooses 1 from each or averages both)
             weight = new double[neuron1.weight.Length];
             for(int i = 0; i < weight.Length; i++) {
-                num = rnd.Next(1, 4);
+                num = Globals.rnd.Next(1, 4);
                 if (num == 1) 
                 {
                     weight[i] = neuron1.weight[i];
@@ -39,7 +38,7 @@ namespace WindowsFormsApp1
             }
             //combines bias values
             //rand num 1, 2, 3
-            num = rnd.Next(1, 4);
+            num = Globals.rnd.Next(1, 4);
             if (num == 1) 
             {
                 bias = neuron1.bias;
