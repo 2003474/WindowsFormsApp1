@@ -6,6 +6,8 @@
         public double[] output;
         public DenseLayer[] dLayers;
         public OutputLayer oLayer;
+        public double breedibility;
+        public double mutibility;
 
         public NeuralNetwork(int numInputs, int numOutputs, int numNeurons, int numLayers)
         {
@@ -17,6 +19,8 @@
                 dLayers[i] = new DenseLayer(numInputs, numNeurons);
             }
             oLayer = new OutputLayer(numNeurons, numOutputs);
+            breedibility = Globals.rnd.NextDouble();
+            mutibility = Globals.rnd.NextDouble();
         }
 
         public NeuralNetwork(NeuralNetwork network1, NeuralNetwork network2, int mutationLvl)
@@ -30,7 +34,33 @@
                 dLayers[i] = new DenseLayer(network1.dLayers[i], network2.dLayers[i], mutationLvl);
             }
             oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutationLvl);
+            int num = Globals.rnd.Next(1,4);
+            if(num == 1)
+            {
+                breedibility = network1.breedibility;
+            } else if(num == 2)
+            {
+                breedibility = network2.breedibility;
+            }
+            else
+            {
+                breedibility = (network1.breedibility + network2.breedibility) / 2;
+            }
 
+
+            num = Globals.rnd.Next(1, 4);
+            if (num == 1)
+            {
+                mutibility = network1.mutibility;
+            }
+            else if (num == 2)
+            {
+                mutibility = network2.mutibility;
+            }
+            else
+            {
+                mutibility = (network1.mutibility + network2.mutibility) / 2;
+            }
         }
 
         public void Forward()
