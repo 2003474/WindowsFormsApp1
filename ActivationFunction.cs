@@ -4,6 +4,5 @@
     {
         double Forward(double input);
 
-        double Backward(double input);
     }
 }

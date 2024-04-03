@@ -10,23 +10,23 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            NetworkTrainer w = new NetworkTrainer(1, 15, 16, 4, 20);
+            NetworkTrainer w = new NetworkTrainer(2, 2, 64, 16, 100);
             NeuralNetwork final = w.Train();
 
-            final.input = new double[1] { 1};
+            final.input = new double[2] { 1.0, 2.0 };
             final.Forward();
             // should return 0 and 1 or extremely close
             int greatestIndex = 0;
-            for(int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.output.Length; i++)
             {
-                if(final.output[i] > final.output[greatestIndex])
+                if (final.output[i] > final.output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[1] {5};
+            final.input = new double[2] { -5.0, -7.0 };
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[1] { 3 };
+            final.input = new double[2] { -3.0, 8.0 };
             final.Forward();
             // should return 0 and 1 or extremely close
             greatestIndex = 0;
@@ -52,7 +52,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[1] { 0};
+            final.input = new double[2] { 1.0, -9.0 };
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
@@ -65,7 +65,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[1] {4 };
+            final.input = new double[2] { 4.0, 1.0 };
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;

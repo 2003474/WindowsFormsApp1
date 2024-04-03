@@ -11,9 +11,13 @@ namespace WindowsFormsApp1
             weight = new double[num_inputs];
             for (int i = 0; i < num_inputs; i++)
             {
-                weight[i] =Globals.rnd.NextDouble();
+                weight[i] = Globals.rnd.NextDouble();
+                if(Globals.rnd.Next(-1,1) == -1.0)
+                {
+                    weight[i] = -weight[i];
+                }
             }
-            bias =Globals.rnd.NextDouble();
+            bias = Globals.rnd.NextDouble();
             aFunction = function;
         }
 
@@ -78,7 +82,7 @@ namespace WindowsFormsApp1
         public override void Forward(double[] inputs)
         {
             output = Matrix.Dot(weight, inputs) + bias;
-            output = aFunction.Forward(output);
+            //output = aFunction.Forward(output);
         }
     }
 }

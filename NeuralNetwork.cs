@@ -34,11 +34,12 @@
                 dLayers[i] = new DenseLayer(network1.dLayers[i], network2.dLayers[i], mutationLvl);
             }
             oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutationLvl);
-            int num = Globals.rnd.Next(1,4);
-            if(num == 1)
+            int num = Globals.rnd.Next(1, 4);
+            if (num == 1)
             {
                 breedibility = network1.breedibility;
-            } else if(num == 2)
+            }
+            else if (num == 2)
             {
                 breedibility = network2.breedibility;
             }

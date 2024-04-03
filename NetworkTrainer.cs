@@ -24,27 +24,27 @@ namespace WindowsFormsApp1
         {
             NeuralNetwork best1 = null;
             double[] loss = new double[networks.Length];
-            for (int k = 0; k < 10; k++)
+            for (int k = 0; k < 20; k++)
             {
                 for (int i = 0; i < networks.Length; i++)
                 {
 
-                    double[] tempLoss = new double[8];
-                    for (int j = 8 * k; j < 8 * k + tempLoss.Length; j++)
+                    double[] tempLoss = new double[16];
+                    for (int j = 16 * k; j < 16 * k + tempLoss.Length; j++)
                     {
                         if (j > (trainingData.Length - 1))
                             Console.WriteLine(j + " is not a valid index in trainingData of size : " + trainingData.Length);
 
                         networks[i].input = trainingData[j].input;
                         networks[i].Forward();
-                        tempLoss[j - 8 * k] = Loss(networks[i].output, trainingData[j].output[0]);
+                        tempLoss[j - 16 * k] = Loss(networks[i].output, trainingData[j].output[0]);
                     }
                     loss[i] = tempLoss.Sum();
                     Console.WriteLine("Network #" + (i + 1) + ": loss: " + loss[i]);
                 }
                 // take the top 10% of networks
-                NeuralNetwork[] top10 = new NeuralNetwork[networks.Length/10];
-                for(int i = 0; i < top10.Length; i++)
+                NeuralNetwork[] top10 = new NeuralNetwork[networks.Length / 10];
+                for (int i = 0; i < top10.Length; i++)
                 {
                     top10[i] = networks[loss.IndexOf(loss.Min())];
                     loss[loss.IndexOf(loss.Min())] = 100000000.00;
@@ -56,9 +56,9 @@ namespace WindowsFormsApp1
                     NeuralNetwork father = top10[fatherNum];
                     NeuralNetwork mother = top10[1];
                     //father chooses a random "mate" high chance of it being from top 10, if from bottom 90 then the random double has to be greater than the breedibility
-                    int randNum = Globals.rnd.Next(0,25);
+                    int randNum = Globals.rnd.Next(0, 25);
                     // this is choosing from lower 90%
-                    if(randNum == 3)
+                    if (randNum == 3)
                     {
                         double randDouble = Globals.rnd.NextDouble();
                         int randInt = Globals.rnd.Next(0, 20);
@@ -68,17 +68,18 @@ namespace WindowsFormsApp1
                             randDouble = Globals.rnd.NextDouble();
                         }
                         mother = networks[randInt];
-                    } else
+                    }
+                    else
                     // chosse a random other network from the top10
                     {
                         int motherNum = Globals.rnd.Next(0, 2);
-                        while(fatherNum == motherNum)
+                        while (fatherNum == motherNum)
                         {
                             motherNum = Globals.rnd.Next(0, 2);
                         }
                         mother = top10[motherNum];
                     }
-                    
+
 
 
                     tempNetworks[i] = new NeuralNetwork(father, mother, 0);
