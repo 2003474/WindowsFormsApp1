@@ -4,7 +4,7 @@
     {
         public double[] input;
         public double[] output;
-        public DenseLayer[] dLayers;
+        public HiddenLayer[] dLayers;
         public OutputLayer oLayer;
         public double breedibility;
         public double mutibility;
@@ -13,10 +13,10 @@
         {
             input = new double[numInputs];
             output = new double[numOutputs];
-            dLayers = new DenseLayer[numLayers];
+            dLayers = new HiddenLayer[numLayers];
             for (int i = 0; i < numLayers; i++)
             {
-                dLayers[i] = new DenseLayer(numInputs, numNeurons);
+                dLayers[i] = new HiddenLayer(numInputs, numNeurons);
             }
             oLayer = new OutputLayer(numNeurons, numOutputs);
             breedibility = Globals.rnd.NextDouble();
@@ -28,10 +28,10 @@
 
             input = new double[network1.input.Length];
             output = new double[network1.output.Length];
-            dLayers = new DenseLayer[network1.dLayers.Length];
+            dLayers = new HiddenLayer[network1.dLayers.Length];
             for (int i = 0; i < dLayers.Length; i++)
             {
-                dLayers[i] = new DenseLayer(network1.dLayers[i], network2.dLayers[i], mutationLvl);
+                dLayers[i] = new HiddenLayer(network1.dLayers[i], network2.dLayers[i], mutationLvl);
             }
             oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutationLvl);
             int num = Globals.rnd.Next(1, 4);

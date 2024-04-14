@@ -2,27 +2,27 @@
 
 namespace WindowsFormsApp1
 {
-    internal class DenseNeuron : Neuron
+    internal class MultiplicationNeuron : Neuron
     {
 
         public ActivationFunction aFunction;
-        public DenseNeuron(int num_inputs, ActivationFunction function)
+        public MultiplicationNeuron(int num_inputs/*, ActivationFunction function*/)
         {
             weight = new double[num_inputs];
             for (int i = 0; i < num_inputs; i++)
             {
                 weight[i] = Globals.rnd.NextDouble();
-                if(Globals.rnd.Next(-1,1) == -1.0)
+                if (Globals.rnd.Next(-1, 1) == -1.0)
                 {
                     weight[i] = -weight[i];
                 }
             }
             bias = Globals.rnd.NextDouble();
-            aFunction = function;
+            //aFunction = function;
         }
 
         //combine 2 neurons together
-        public DenseNeuron(DenseNeuron neuron1, DenseNeuron neuron2, int MutationLvl)
+        public MultiplicationNeuron(MultiplicationNeuron neuron1, MultiplicationNeuron neuron2, int MutationLvl)
         {
             //chooses activation function
             //rand num 1, 2
