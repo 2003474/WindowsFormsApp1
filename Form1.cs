@@ -1,12 +1,8 @@
-﻿using System;
-using System.Diagnostics.Tracing;
-using System.Drawing;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Windows.Forms;
-//using Newtonsoft.Json;
+﻿//using Newtonsoft.Json;
 using RestSharp;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -42,7 +38,7 @@ namespace WindowsFormsApp1
             string apiSecret = "b680d8eedfbe4612f74f93e42c02b25f";
             string image = filePath.Text;
             string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
- 
+
 
 
 
@@ -77,7 +73,7 @@ namespace WindowsFormsApp1
             var tagsPlaceholder = result.tags;
             Tag[] tags = new Tag[10];
 
-           
+
             for (int i = 0; i < tags.Length; i++)
             {
                 Console.Out.WriteLine();
@@ -125,7 +121,7 @@ namespace WindowsFormsApp1
             textBox6.Text = (int)tags[4].confidence + "%";
 
 
-            progressBar2.Style = ProgressBarStyle.Marquee;  
+            progressBar2.Style = ProgressBarStyle.Marquee;
             progressBar2.MarqueeAnimationSpeed = 0;
 
 

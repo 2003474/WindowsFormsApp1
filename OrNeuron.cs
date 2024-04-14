@@ -20,6 +20,7 @@
 
         public OrNeuron(OrNeuron neuron1, OrNeuron neuron2, int MutationLvl)
         {
+            weight = new double[neuron1.weight.Length];
             int num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {
@@ -33,6 +34,7 @@
             {
                 threshold = (neuron1.threshold + neuron2.threshold) / 2;
             }
+
         }
 
         public override void Forward(double[] inputs)

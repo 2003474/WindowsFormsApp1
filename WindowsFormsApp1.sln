@@ -12,9 +12,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{175A6C5C-EC53-4ABB-B10D-52C086CB8912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{175A6C5C-EC53-4ABB-B10D-52C086CB8912}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{175A6C5C-EC53-4ABB-B10D-52C086CB8912}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{175A6C5C-EC53-4ABB-B10D-52C086CB8912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
         {
             NeuralNetwork best1 = null;
             double[] loss = new double[networks.Length];
-            for (int k = 0; k < 20; k++)
+            for (int k = 0; k < 400; k++)
             {
                 for (int i = 0; i < networks.Length; i++)
                 {
