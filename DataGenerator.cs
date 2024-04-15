@@ -9,17 +9,17 @@
             for (int i = 0; i < numData; i++)
             {
                 data[i] = new Data();
-                data[i].input[0] = Globals.rnd.Next(0, 5);
-                data[i].input[1] = Globals.rnd.Next(0, 6);
-                data[i].output[0] = (data[i].input[0] + data[i].input[1]);
-                //if ((data[i].input[0] * data[i].input[1]) < 0.0)
-                //{
-                //    data[i].output[0] = 0.0;
-                //}
-                //else
-                //{
-                //    data[i].output[0] = 1.0;
-                //}
+                data[i].input[0] = Globals.rnd.Next(-10, 10);
+                data[i].input[1] = Globals.rnd.Next(-10, 10);
+                //data[i].output[0] = data[i].input[0];
+                if ((data[i].input[0] * data[i].input[1]) < 0.0)
+                {
+                    data[i].output[0] = 0.0;
+                }
+                else
+                {
+                    data[i].output[0] = 1.0;
+                }
 
             }
             return data;

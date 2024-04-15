@@ -13,6 +13,9 @@
         {
             input = new double[numInputs];
             output = new double[numOutputs];
+            // add -1, 0, or 1 layer
+            //int num = Globals.rnd.Next(-1, 2);
+            //numLayers += num;
             dLayers = new HiddenLayer[numLayers];
             for (int i = 0; i < numLayers; i++)
             {

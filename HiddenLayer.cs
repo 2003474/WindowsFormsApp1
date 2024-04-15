@@ -5,14 +5,16 @@ namespace WindowsFormsApp1
 {
     class HiddenLayer : Layer
     {
-
         public HiddenLayer(int num_inputs, int num_neurons)
         {
-            ActivationFunction ReLU = new ReLU();
+            // add -1, 0, or 1 layer
+            int num = Globals.rnd.Next(-1, 2);
+            //Console.WriteLine(num);
+            //num_neurons += num;
             this.neurons = new Neuron[num_neurons];
             for (int i = 0; i < num_neurons; i++)
             {
-                int num = Globals.rnd.Next(1, 4);
+                num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
                     this.neurons[i] = new MultiplicationNeuron(num_inputs);
@@ -55,7 +57,6 @@ namespace WindowsFormsApp1
                         Type objectType = layer1.neurons[i].GetType();
                         Type Int = ((int)1).GetType();
                         ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int });
-
                         ConstructorInfo constructor2 = objectType.GetConstructor(new[] { Int });
                         object[] paramaters = { layer1.neurons[i].weight.Length };
                         object n = constructor2.Invoke(paramaters);
