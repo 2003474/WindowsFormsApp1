@@ -9,8 +9,8 @@
             for (int i = 0; i < numData; i++)
             {
                 data[i] = new Data();
-                data[i].input[0] = Globals.rnd.Next(-10, 10);
-                data[i].input[1] = Globals.rnd.Next(-10, 10);
+                data[i].input[0] = Globals.rnd.Next(-10, 11);
+                data[i].input[1] = Globals.rnd.Next(-10, 11);
                 //data[i].output[0] = data[i].input[0];
                 if ((data[i].input[0] * data[i].input[1]) < 0.0)
                 {
