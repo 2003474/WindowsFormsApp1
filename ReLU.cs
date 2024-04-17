@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    internal class ReLU : ActivationFunction
+    internal class ReLU : IActivationFunction
     {
         public double Forward(double input)
         {

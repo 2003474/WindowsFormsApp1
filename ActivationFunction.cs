@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    internal interface ActivationFunction
+    internal interface IActivationFunction
     {
         double Forward(double input);
 

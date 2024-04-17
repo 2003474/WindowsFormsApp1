@@ -92,6 +92,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GreaterThanNeuron.cs" />
+    <Compile Include="LessThanNeuron.cs" />
     <Compile Include="OrNeuron.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DataGenerator.cs" />
@@ -105,7 +107,6 @@
     <Compile Include="Globals.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="AndNeuron.cs" />
-    <Compile Include="MultiplicationNeuron.cs" />
     <Compile Include="HiddenLayer.cs" />
     <Compile Include="NetworkTrainer.cs" />
     <Compile Include="NeuralNetwork.cs" />

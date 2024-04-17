@@ -6,6 +6,7 @@
         public double[] output;
         public HiddenLayer[] dLayers;
         public OutputLayer oLayer;
+        public int numLayers;
         public double breedibility;
         public double mutibility;
 
@@ -16,27 +17,76 @@
             // add -1, 0, or 1 layer
             //int num = Globals.rnd.Next(-1, 2);
             //numLayers += num;
-            dLayers = new HiddenLayer[numLayers];
-            for (int i = 0; i < numLayers; i++)
+            this.numLayers = numLayers;
+            int change = Globals.rnd.Next(-10, 10);
+            this.numLayers += change;
+            if (this.numLayers < 2)
             {
-                dLayers[i] = new HiddenLayer(numInputs, numNeurons);
+                this.numLayers = 2;
             }
-            oLayer = new OutputLayer(numNeurons, numOutputs);
+            dLayers = new HiddenLayer[numLayers];
+            dLayers[0] = new HiddenLayer(numInputs, numNeurons);
+            for (int i = 1; i < numLayers; i++)
+            {
+                dLayers[i] = new HiddenLayer(dLayers[i - 1].numNeurons, numNeurons);
+            }
+            oLayer = new OutputLayer(dLayers[numLayers - 1].numNeurons, numOutputs);
             breedibility = Globals.rnd.NextDouble();
-            mutibility = Globals.rnd.NextDouble();
+            mutibility = Globals.rnd.NextDouble() * 10;
         }
 
         public NeuralNetwork(NeuralNetwork network1, NeuralNetwork network2, int mutationLvl)
         {
-
+            double mutation = mutationLvl * mutibility;
             input = new double[network1.input.Length];
             output = new double[network1.output.Length];
-            dLayers = new HiddenLayer[network1.dLayers.Length];
+
+
+            int n1DLength = network1.dLayers.Length;
+            int n2DLength = network2.dLayers.Length;
+
+            // makes a new layer array with length from parents or average
+            if (network1.dLayers.Length != network2.dLayers.Length)
+            {
+                int numb = Globals.rnd.Next(1, 4);
+                if (numb == 1)
+                {
+                    dLayers = new HiddenLayer[n1DLength];
+                }
+                else if (numb == 2)
+                {
+                    dLayers = new HiddenLayer[n2DLength];
+                }
+                else
+                {
+                    dLayers = new HiddenLayer[(n1DLength + n2DLength) / 2];
+                }
+            }
+            else
+            {
+                dLayers = new HiddenLayer[n1DLength];
+            }
+
+
+
+
             for (int i = 0; i < dLayers.Length; i++)
             {
-                dLayers[i] = new HiddenLayer(network1.dLayers[i], network2.dLayers[i], mutationLvl);
+                if (i >= n1DLength)
+                {
+                    dLayers[i] = new HiddenLayer(network1.dLayers[i % n1DLength], network2.dLayers[i], mutation);
+                }
+                else if (i >= n2DLength)
+                {
+                    dLayers[i] = new HiddenLayer(network1.dLayers[i], network2.dLayers[i % n2DLength], mutation);
+                }
+                else
+                {
+                    dLayers[i] = new HiddenLayer(network1.dLayers[i], network2.dLayers[i], mutation);
+                }
+
             }
-            oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutationLvl);
+            oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutation);
             int num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {

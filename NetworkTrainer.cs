@@ -54,7 +54,7 @@ namespace WindowsFormsApp1
                 {
                     int fatherNum = Globals.rnd.Next(0, 2);
                     NeuralNetwork father = top10[fatherNum];
-                    NeuralNetwork mother = top10[1];
+                    NeuralNetwork mother;
                     //father chooses a random "mate" high chance of it being from top 10, if from bottom 90 then the random double has to be greater than the breedibility
                     int randNum = Globals.rnd.Next(0, 25);
                     // this is choosing from lower 90%

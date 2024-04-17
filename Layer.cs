@@ -4,6 +4,7 @@
     {
         public Neuron[] neurons;
         public double[] output;
+        public int numNeurons;
 
 
 

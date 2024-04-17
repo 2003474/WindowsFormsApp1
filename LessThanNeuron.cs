@@ -2,9 +2,9 @@
 
 namespace WindowsFormsApp1
 {
-    internal class AndNeuron : Neuron
+    internal class LessThanNeuron : Neuron
     {
-        public AndNeuron(int num_inputs)
+        public LessThanNeuron(int num_inputs)
         {
             weight = new double[num_inputs];
             for (int i = 0; i < num_inputs; i++)
@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
 
         }
 
-        public AndNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl)
+        public LessThanNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl)
         {
             weight = new double[neuron1.weight.Length];
             int num = Globals.rnd.Next(1, 4);
@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
             }
 
             //mutation threshold
-            if(Globals.rnd.Next(0, 100) < MutationLvl)
+            if (Globals.rnd.Next(0, 100) < MutationLvl)
             {
                 threshold = Globals.rnd.NextDouble() * 4 - 2;
             }
@@ -91,19 +91,14 @@ namespace WindowsFormsApp1
 
         public override void Forward(double[] inputs)
         {
-            output = 1.0;
-            //output = Matrix.Dot(weight, inputs) + bias;
-            double[] weightedInputs = new double[inputs.Length];
-            for(int i = 0; i < weightedInputs.Length;i++)
+
+            output = Matrix.Dot(weight, inputs) + bias;
+            if(output > threshold)
             {
-                weightedInputs[i] = inputs[i] * weight[i];
-            }
-            foreach (double input in weightedInputs)
+                output = 0.0;
+            } else
             {
-                if (input < threshold)
-                {
-                    output = 0.0; break;
-                }
+                output = threshold;
             }
         }
     }

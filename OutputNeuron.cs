@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
             bias = Vector.Random(1)[0];
         }
 
-        public OutputNeuron(OutputNeuron neuron1, OutputNeuron neuron2, int MutationLvl)
+        public OutputNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl)
         {
             //chooses activation function
             //rand num 1, 2
@@ -36,6 +36,14 @@ namespace WindowsFormsApp1
                     weight[i] = (neuron1.weight[i] + neuron2.weight[i]) / 2;
                 }
             }
+
+            //mutation weights
+            if (Globals.rnd.Next(0, 100) < MutationLvl)
+            {
+                weight[Globals.rnd.Next(0, weight.Length)] = Globals.rnd.NextDouble() * 4 - 2;
+            }
+
+
             //combines bias values
             //rand num 1, 2, 3
             num = Globals.rnd.Next(1, 4);
@@ -51,12 +59,13 @@ namespace WindowsFormsApp1
             {
                 bias = (neuron1.bias + neuron2.bias) / 2;
             }
-            // if 1 neuron 1 bias
-            // if 2 neuron 2 bias
-            // if 3 bias = (neuron1.bias + neuron2.bias)/2  (avg)
-            //mutation ideas
-            // mutliply, or add mutation
-            // activation function for mutation ( if mutation is less than a certain value than it doesn't do anything
+
+            //mutation threshold
+            if (Globals.rnd.Next(0, 100) < MutationLvl)
+            {
+                bias = Globals.rnd.NextDouble() * 4 - 2;
+            }
+
         }
 
         public override void Forward(double[] inputs)

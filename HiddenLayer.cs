@@ -8,44 +8,100 @@ namespace WindowsFormsApp1
         public HiddenLayer(int num_inputs, int num_neurons)
         {
             // add -1, 0, or 1 layer
-            int num = Globals.rnd.Next(-1, 2);
+            int num;
             //Console.WriteLine(num);
             //num_neurons += num;
-            this.neurons = new Neuron[num_neurons];
-            for (int i = 0; i < num_neurons; i++)
+            this.numNeurons = num_neurons;
+            int change = Globals.rnd.Next(-10, 10);
+            this.numNeurons += change;
+            if (numNeurons < 2)
+            {
+                numNeurons = 2;
+            }
+            this.neurons = new Neuron[numNeurons];
+            for (int i = 0; i < numNeurons; i++)
             {
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    this.neurons[i] = new MultiplicationNeuron(num_inputs);
+                    this.neurons[i] = new AndNeuron(num_inputs);
                 }
                 else if (num == 2)
                 {
                     this.neurons[i] = new OrNeuron(num_inputs);
                 }
+                else if (num == 3)
+                {
+                    this.neurons[i] = new GreaterThanNeuron(num_inputs);
+                }
                 else
                 {
-                    this.neurons[i] = new AndNeuron(num_inputs);
+                    this.neurons[i] = new LessThanNeuron(num_inputs);
                 }
 
             }
         }
 
-        public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, int mutationLvl)
+        public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, double mutationLvl)
         {
             // for every neuron
-            neurons = new Neuron[layer1.neurons.Length];
+
+            int l1NLength = layer1.neurons.Length;
+            int l2NLength = layer2.neurons.Length;
+
+            // makes a new layer array with length from parents or average
+            if (l1NLength != l2NLength)
+            {
+                int numb = Globals.rnd.Next(1, 4);
+                if (numb == 1)
+                {
+                    neurons = new Neuron[l1NLength];
+                }
+                else if (numb == 2)
+                {
+                    neurons = new Neuron[l2NLength];
+                }
+                else
+                {
+                    neurons = new Neuron[(l1NLength + l2NLength) / 2];
+                }
+            }
+            else
+            {
+                neurons = new Neuron[l1NLength];
+            }
+
             int num;
             for (int i = 0; i < neurons.Length; i++)
             {
+
+                Neuron n1;
+                Neuron n2;
+
+                if (i >= l1NLength)
+                {
+                    n1 = layer1.neurons[i % l1NLength];
+                    n2 = layer2.neurons[i];
+                }
+                else if (i >= l2NLength)
+                {
+                    n1 = layer1.neurons[i];
+                    n2 = layer2.neurons[i % l2NLength];
+                }
+                else
+                {
+                    n1 = layer1.neurons[i];
+                    n2 = layer2.neurons[i];
+                }
+
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    neurons[i] = layer1.neurons[i];
+                    neurons[i] = n1;
                 }
                 else if (num == 2)
                 {
-                    neurons[i] = layer2.neurons[i];
+                    neurons[i] = n2;
                 }
                 else
                 {
@@ -54,34 +110,24 @@ namespace WindowsFormsApp1
                     num = Globals.rnd.Next(1, 3);
                     if (num == 1)
                     {
-                        Type objectType = layer1.neurons[i].GetType();
+                        Type objectType = n1.GetType();
                         Type Int = ((int)1).GetType();
                         ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int });
-                        ConstructorInfo constructor2 = objectType.GetConstructor(new[] { Int });
-                        object[] paramaters = { layer1.neurons[i].weight.Length };
-                        object n = constructor2.Invoke(paramaters);
-                        object[] paramaters2 = { layer1.neurons[i], n, 0 };
-                        neurons[i] = (Neuron)constructor.Invoke(paramaters2);
+                        object[] paramaters = { n1, n2, mutationLvl };
+                        neurons[i] = (Neuron)constructor.Invoke(paramaters);
                     }
                     else
                     {
-                        Type objectType = layer2.neurons[i].GetType();
+                        Type objectType = n2.GetType();
                         Type Int = ((int)1).GetType();
                         ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int });
-
-                        ConstructorInfo constructor2 = objectType.GetConstructor(new[] { Int });
-                        object[] paramaters = { layer2.neurons[i].weight.Length };
-                        object n = constructor2.Invoke(paramaters);
-                        object[] paramaters2 = { layer2.neurons[i], n, 0 };
-                        neurons[i] = (Neuron)constructor.Invoke(paramaters2);
+                        object[] paramaters = { n1, n2, mutationLvl };
+                        neurons[i] = (Neuron)constructor.Invoke(paramaters);
                     }
 
                 }
             }
-            // randomly chooses between neurons either a 0 1 2
-            // 0 is layer1 neruon
-            // 1 is layer2 neuron
-            // 2 is combination of both (neurons[i] = new DenseNeuron(layer1.neurons[i], layer2.neurons[i], mutationLvl)
+
         }
 
         public override double[] SingleOutput(double[] inputs)
