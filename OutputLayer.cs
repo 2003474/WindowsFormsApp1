@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public OutputLayer(OutputLayer oLayer1, OutputLayer oLayer2, double mutationLvl)
+        public OutputLayer(OutputLayer oLayer1, OutputLayer oLayer2, double mutationLvl, int num_inputs)
         {
             int l1NLength = oLayer1.neurons.Length;
             int l2NLength = oLayer2.neurons.Length;
@@ -91,7 +91,7 @@ namespace WindowsFormsApp1
                 }
                 else
                 {
-                    neurons[i] = new OutputNeuron(n1, n2, mutationLvl);
+                    neurons[i] = new OutputNeuron(n1, n2, mutationLvl, num_inputs);
                 }
             }
             // randomly chooses between neurons either a 0 1 2

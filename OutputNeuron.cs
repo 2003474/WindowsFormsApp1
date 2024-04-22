@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
             bias = Vector.Random(1)[0];
         }
 
-        public OutputNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl)
+        public OutputNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
         {
             //chooses activation function
             //rand num 1, 2
@@ -19,21 +19,25 @@ namespace WindowsFormsApp1
             // 2 is neuron2 actFunc
             // prolly same one tho for now
             //combines weight values, (chooses 1 from each or averages both)
-            weight = new double[neuron1.weight.Length];
+            int weight1Length = neuron1.weight.Length;
+            int weight2Length = neuron2.weight.Length;
+            weight = new double[num_inputs];
+
+
             for (int i = 0; i < weight.Length; i++)
             {
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    weight[i] = neuron1.weight[i];
+                    weight[i] = neuron1.weight[i % weight1Length];
                 }
                 else if (num == 2)
                 {
-                    weight[i] = neuron2.weight[i];
+                    weight[i] = neuron2.weight[i % weight2Length];
                 }
                 else
                 {
-                    weight[i] = (neuron1.weight[i] + neuron2.weight[i]) / 2;
+                    weight[i] = (neuron1.weight[i % weight1Length] + neuron2.weight[i % weight2Length]) / 2;
                 }
             }
 

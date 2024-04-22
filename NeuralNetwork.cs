@@ -68,25 +68,14 @@
             }
 
 
+            dLayers[0] = new HiddenLayer(network1.dLayers[0], network2.dLayers[0], mutation, input.Length);
 
-
-            for (int i = 0; i < dLayers.Length; i++)
+            for (int i = 1; i < dLayers.Length; i++)
             {
-                if (i >= n1DLength)
-                {
-                    dLayers[i] = new HiddenLayer(network1.dLayers[i % n1DLength], network2.dLayers[i], mutation);
-                }
-                else if (i >= n2DLength)
-                {
-                    dLayers[i] = new HiddenLayer(network1.dLayers[i], network2.dLayers[i % n2DLength], mutation);
-                }
-                else
-                {
-                    dLayers[i] = new HiddenLayer(network1.dLayers[i], network2.dLayers[i], mutation);
-                }
+                dLayers[i] = new HiddenLayer(network1.dLayers[i % n1DLength], network2.dLayers[i % n2DLength], mutation, dLayers[i-1].numNeurons);
 
             }
-            oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutation);
+            oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutation, dLayers[dLayers.Length - 1].numNeurons);
             int num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {

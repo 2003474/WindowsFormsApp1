@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, double mutationLvl)
+        public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, double mutationLvl, int num_inputs)
         {
             // for every neuron
 
@@ -78,21 +78,8 @@ namespace WindowsFormsApp1
                 Neuron n1;
                 Neuron n2;
 
-                if (i >= l1NLength)
-                {
-                    n1 = layer1.neurons[i % l1NLength];
-                    n2 = layer2.neurons[i];
-                }
-                else if (i >= l2NLength)
-                {
-                    n1 = layer1.neurons[i];
-                    n2 = layer2.neurons[i % l2NLength];
-                }
-                else
-                {
-                    n1 = layer1.neurons[i];
-                    n2 = layer2.neurons[i];
-                }
+                n1 = layer1.neurons[i % l1NLength];
+                n2 = layer2.neurons[i % l2NLength];
 
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
@@ -112,16 +99,16 @@ namespace WindowsFormsApp1
                     {
                         Type objectType = n1.GetType();
                         Type Int = ((int)1).GetType();
-                        ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int });
-                        object[] paramaters = { n1, n2, mutationLvl };
+                        ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int, Int });
+                        object[] paramaters = { n1, n2, mutationLvl, num_inputs };
                         neurons[i] = (Neuron)constructor.Invoke(paramaters);
                     }
                     else
                     {
                         Type objectType = n2.GetType();
                         Type Int = ((int)1).GetType();
-                        ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int });
-                        object[] paramaters = { n1, n2, mutationLvl };
+                        ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int, Int });
+                        object[] paramaters = { n1, n2, mutationLvl, num_inputs };
                         neurons[i] = (Neuron)constructor.Invoke(paramaters);
                     }
 
