@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             {
                 neurons = new Neuron[l1NLength];
             }
-
+            numNeurons = neurons.Length;
             // for every neuron
             neurons = new OutputNeuron[oLayer1.neurons.Length];
             int num;
@@ -58,26 +58,9 @@ namespace WindowsFormsApp1
                 Neuron n1;
                 Neuron n2;
 
-                if (i >= l1NLength)
-                {
-                    int tempI = i;
-                    while (i >= l1NLength)
-                    {
-                        tempI -= l1NLength;
-                    }
-                    n1 = oLayer1.neurons[i % l1NLength];
-                    n2 = oLayer2.neurons[i];
-                }
-                else if (i >= l2NLength)
-                {
-                    n1 = oLayer1.neurons[i];
-                    n2 = oLayer2.neurons[i % l2NLength];
-                }
-                else
-                {
-                    n1 = oLayer1.neurons[i];
-                    n2 = oLayer2.neurons[i];
-                }
+                n1 = oLayer1.neurons[i % l1NLength];
+                n2 = oLayer2.neurons[i % l2NLength];
+
 
 
                 num = Globals.rnd.Next(1, 4);
@@ -93,6 +76,19 @@ namespace WindowsFormsApp1
                 {
                     neurons[i] = new OutputNeuron(n1, n2, mutationLvl, num_inputs);
                 }
+
+                if (neurons[i].weight.Length != num_inputs)
+                {
+                    Neuron n = neurons[i];
+                    double[] oldWeights = n.weight;
+                    n.weight = new double[num_inputs];
+                    for (int k = 0; k < num_inputs; k++)
+                    {
+                        n.weight[k] = oldWeights[k % oldWeights.Length];
+                    }
+                }
+
+
             }
             // randomly chooses between neurons either a 0 1 2
             // 0 is layer1 neruon

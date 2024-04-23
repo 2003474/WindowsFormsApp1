@@ -10,7 +10,6 @@
 
         public void Forward(double[] inputs)
         {
-            output = new double[inputs.Length];
             output = SingleOutput(inputs);
         }
 

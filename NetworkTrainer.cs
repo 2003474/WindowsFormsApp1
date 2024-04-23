@@ -50,7 +50,11 @@ namespace WindowsFormsApp1
                     loss[loss.IndexOf(loss.Min())] = 100000000.00;
                 }
                 NeuralNetwork[] tempNetworks = new NeuralNetwork[networks.Length];
-                for (int i = 0; i < tempNetworks.Length; i++)
+                for(int i = 0; i < 10; i++)
+                {
+                    tempNetworks[i] = top10[i];
+                }
+                for (int i = 10; i < tempNetworks.Length; i++)
                 {
                     int fatherNum = Globals.rnd.Next(0, 2);
                     NeuralNetwork father = top10[fatherNum];
@@ -82,7 +86,7 @@ namespace WindowsFormsApp1
 
 
 
-                    tempNetworks[i] = new NeuralNetwork(father, mother, 0);
+                    tempNetworks[i] = new NeuralNetwork(father, mother, 3);
                 }
 
                 networks = tempNetworks;

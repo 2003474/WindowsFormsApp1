@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace WindowsFormsApp1
@@ -12,7 +13,7 @@ namespace WindowsFormsApp1
             //Console.WriteLine(num);
             //num_neurons += num;
             this.numNeurons = num_neurons;
-            int change = Globals.rnd.Next(-10, 10);
+            int change = Globals.rnd.Next(-2, 3);
             this.numNeurons += change;
             if (numNeurons < 2)
             {
@@ -45,7 +46,7 @@ namespace WindowsFormsApp1
         public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, double mutationLvl, int num_inputs)
         {
             // for every neuron
-
+            int num_inputs_TEST = num_inputs;
             int l1NLength = layer1.neurons.Length;
             int l2NLength = layer2.neurons.Length;
 
@@ -77,6 +78,7 @@ namespace WindowsFormsApp1
 
                 Neuron n1;
                 Neuron n2;
+                Neuron nChild;
 
                 n1 = layer1.neurons[i % l1NLength];
                 n2 = layer2.neurons[i % l2NLength];
@@ -84,15 +86,14 @@ namespace WindowsFormsApp1
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    neurons[i] = n1;
+                    nChild = n1;
                 }
                 else if (num == 2)
                 {
-                    neurons[i] = n2;
+                    nChild = n2;
                 }
                 else
                 {
-
                     //if its a combination then choose one and carry over something
                     num = Globals.rnd.Next(1, 3);
                     if (num == 1)
@@ -101,7 +102,7 @@ namespace WindowsFormsApp1
                         Type Int = ((int)1).GetType();
                         ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int, Int });
                         object[] paramaters = { n1, n2, mutationLvl, num_inputs };
-                        neurons[i] = (Neuron)constructor.Invoke(paramaters);
+                        nChild = (Neuron)constructor.Invoke(paramaters);
                     }
                     else
                     {
@@ -109,18 +110,31 @@ namespace WindowsFormsApp1
                         Type Int = ((int)1).GetType();
                         ConstructorInfo constructor = objectType.GetConstructor(new[] { objectType, objectType, Int, Int });
                         object[] paramaters = { n1, n2, mutationLvl, num_inputs };
-                        neurons[i] = (Neuron)constructor.Invoke(paramaters);
+                        nChild = (Neuron)constructor.Invoke(paramaters);
+                    }
+                }
+
+                //check to make sure the weights are right
+                if (nChild.weight.Length != num_inputs)
+                {
+                    double[] newWeights = new double[num_inputs];
+                    for (int k = 0; k < num_inputs; k++)
+                    {
+                        newWeights[k] = nChild.weight[k % nChild.weight.Length];
                     }
 
+                    nChild.weight = newWeights;
                 }
-            }
 
+                neurons[i] = nChild;
+                Debug.Assert(neurons[i].weight.Length == num_inputs_TEST);
+            }
         }
 
         public override double[] SingleOutput(double[] inputs)
         {
-            double[] tempOutput = new double[neurons.Length];
-            for (int i = 0; i < neurons.Length; i++)
+            double[] tempOutput = new double[numNeurons];
+            for (int i = 0; i < numNeurons; i++)
             {
                 neurons[i].Forward(inputs);
                 tempOutput[i] = neurons[i].output;
