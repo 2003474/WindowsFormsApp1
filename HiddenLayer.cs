@@ -71,7 +71,7 @@ namespace WindowsFormsApp1
             {
                 neurons = new Neuron[l1NLength];
             }
-
+            numNeurons = neurons.Length;
             int num;
             for (int i = 0; i < neurons.Length; i++)
             {

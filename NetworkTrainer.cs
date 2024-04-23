@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
                 }
                 for (int i = 10; i < tempNetworks.Length; i++)
                 {
-                    int fatherNum = Globals.rnd.Next(0, 2);
+                    int fatherNum = Globals.rnd.Next(0, top10.Length);
                     NeuralNetwork father = top10[fatherNum];
                     NeuralNetwork mother;
                     //father chooses a random "mate" high chance of it being from top 10, if from bottom 90 then the random double has to be greater than the breedibility
@@ -65,10 +65,10 @@ namespace WindowsFormsApp1
                     if (randNum == 3)
                     {
                         double randDouble = Globals.rnd.NextDouble();
-                        int randInt = Globals.rnd.Next(0, 20);
+                        int randInt = Globals.rnd.Next(top10.Length, networks.Length);
                         while (networks[randInt].breedibility < randDouble)
                         {
-                            randInt = Globals.rnd.Next(0, 20);
+                            randInt = Globals.rnd.Next(top10.Length, networks.Length);
                             randDouble = Globals.rnd.NextDouble();
                         }
                         mother = networks[randInt];
@@ -76,10 +76,10 @@ namespace WindowsFormsApp1
                     else
                     // chosse a random other network from the top10
                     {
-                        int motherNum = Globals.rnd.Next(0, 2);
+                        int motherNum = Globals.rnd.Next(0, top10.Length);
                         while (fatherNum == motherNum)
                         {
-                            motherNum = Globals.rnd.Next(0, 2);
+                            motherNum = Globals.rnd.Next(0, top10.Length);
                         }
                         mother = top10[motherNum];
                     }
