@@ -86,6 +86,7 @@
 
             for (int i = 1; i < dLayers.Length; i++)
             {
+                //issue
                 dLayers[i] = new HiddenLayer(network1.dLayers[i % n1DLength], network2.dLayers[i % n2DLength], mutation, dLayers[i - 1].numNeurons);
 
             }

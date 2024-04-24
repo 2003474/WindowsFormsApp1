@@ -136,7 +136,7 @@ namespace WindowsFormsApp1
             double[] tempOutput = new double[numNeurons];
             for (int i = 0; i < numNeurons; i++)
             {
-                neurons[i].Forward(inputs);
+                 neurons[i].Forward(inputs);
                 tempOutput[i] = neurons[i].output;
             }
             return tempOutput;
