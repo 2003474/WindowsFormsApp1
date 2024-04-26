@@ -1,13 +1,19 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
-    abstract class Neuron
+    abstract class Neuron : ICloneable
     {
         public double[] weight;
         public double bias;
         public double output = 0.0;
         public double threshold;
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
 
 
         public void Intitialize(int num_inputs)

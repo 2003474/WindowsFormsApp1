@@ -86,11 +86,11 @@ namespace WindowsFormsApp1
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    nChild = n1;
+                    nChild = (Neuron)n1.Clone();
                 }
                 else if (num == 2)
                 {
-                    nChild = n2;
+                    nChild = (Neuron)n2.Clone(); ;
                 }
                 else
                 {

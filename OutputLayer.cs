@@ -66,11 +66,11 @@ namespace WindowsFormsApp1
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    neurons[i] = n1;
+                    neurons[i] = (Neuron)n1.Clone();
                 }
                 else if (num == 2)
                 {
-                    neurons[i] = n2;
+                    neurons[i] = (Neuron)n2.Clone();
                 }
                 else
                 {

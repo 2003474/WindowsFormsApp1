@@ -22,10 +22,6 @@ namespace WindowsFormsApp1
             {
                 output = 0.0;
             }
-            else
-            {
-                output = threshold;
-            }
         }
     }
 }
