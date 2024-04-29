@@ -38,6 +38,12 @@ namespace WindowsFormsApp1
 
         private async void Button1_Click(object sender, EventArgs e)
         {
+            progressBar1.Value = 0;
+            progressBar2.Value = 0;
+            progressBar3.Value = 0;
+            progressBar4.Value = 0;
+            progressBar5.Value = 0;
+
             string apiKey = "acc_9c5c51261ab01d5";
             string apiSecret = "b680d8eedfbe4612f74f93e42c02b25f";
             string image = filePath.Text;
