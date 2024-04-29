@@ -24,6 +24,7 @@ namespace WindowsFormsApp1
 
         private void File_Click(object sender, EventArgs e)
         {
+            
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "select file",
@@ -34,6 +35,7 @@ namespace WindowsFormsApp1
             ofd.ShowDialog();
             filePath.Text = ofd.FileName;
             pictureBox.Image = new Bitmap(ofd.FileName);
+            button1.Visible = true;
         }
 
         private async void Button1_Click(object sender, EventArgs e)
