@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            NetworkTrainer w = new NetworkTrainer(2, 2, 8, 8, 100);
+            NetworkTrainer w = new NetworkTrainer(2, 2, 16, 16, 100);
             NeuralNetwork final = w.Train();
 
             final.input = new double[2] { 10.78, 3.234 };

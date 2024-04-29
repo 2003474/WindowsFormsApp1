@@ -18,7 +18,7 @@
             //int num = Globals.rnd.Next(-1, 2);
             //numLayers += num;
             numLayers = num_Layers;
-            int change = Globals.rnd.Next(-2, 3);
+            int change = Globals.rnd.Next(-4, 5);
             numLayers += change;
             if (numLayers < 2)
             {
