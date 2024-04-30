@@ -1,4 +1,7 @@
-﻿namespace WindowsFormsApp1
+﻿// essentially a collection of layers
+// can construct a neural network with number inputs, or with 2 other neural networks and it produces a single neural network
+
+namespace WindowsFormsApp1
 {
     internal class NeuralNetwork
     {

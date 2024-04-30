@@ -1,4 +1,7 @@
-﻿using System;
+﻿// has weights and bias
+// can be constructed using 2 other neurons
+
+using System;
 using System.Diagnostics;
 
 namespace WindowsFormsApp1

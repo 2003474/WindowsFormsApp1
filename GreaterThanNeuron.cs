@@ -1,4 +1,6 @@
-﻿using Accord.Math;
+﻿// if the sum of all of the inputs is greater than the threshold than it returns that number else it returns 0
+
+using Accord.Math;
 
 namespace WindowsFormsApp1
 {

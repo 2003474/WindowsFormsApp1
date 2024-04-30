@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp1
+﻿// generates a lot of training data
+
+namespace WindowsFormsApp1
 {
     internal class DataGenerator
     {

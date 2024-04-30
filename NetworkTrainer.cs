@@ -1,4 +1,6 @@
-﻿using Accord.Math;
+﻿// trains a bunch of networks to generate a network that is able to solve the problem at hand
+
+using Accord.Math;
 using System;
 using System.Linq;
 
@@ -10,8 +12,16 @@ namespace WindowsFormsApp1
         public Data[] trainingData;
         public NeuralNetwork[] top10;
         double[] loss;
+
+        // creates a new network trainer
+        // parameters: number of inputs the neural network recieves,
+        // number of possible outputs the network could produce
+        // number of neurons per layer
+        // number of layers per network
+        // number  of networks to train
         public NetworkTrainer(int numInputs, int numOutputs, int numNeurons, int numLayers, int numNetworks)
         {
+
             networks = new NeuralNetwork[numNetworks];
             for (int i = 0; i < networks.Length; i++)
             {

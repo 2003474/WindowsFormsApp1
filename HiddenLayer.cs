@@ -1,4 +1,8 @@
-﻿using System;
+﻿// a "calculation" layer of neurons
+// the output of a layer is an array of the neurons in the layer
+// constructor either takes inputs, or takes 2 layers and makes a singe layer
+
+using System;
 using System.Diagnostics;
 using System.Reflection;
 

@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp1
+﻿
+
+namespace WindowsFormsApp1
 {
     abstract class Layer
     {

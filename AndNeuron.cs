@@ -1,4 +1,6 @@
-﻿using Accord.Math;
+﻿// this is a type of neuron that if all of the wiehgted inputs are greater than the threshold then it returns a 1 otherwise returns 0
+
+using Accord.Math;
 
 namespace WindowsFormsApp1
 {

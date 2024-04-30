@@ -1,4 +1,6 @@
-﻿using Accord.Math;
+﻿// if the sum of the weighted inputs is less than the threshold than it returns that number otherwise returns 0.0
+
+using Accord.Math;
 
 namespace WindowsFormsApp1
 {
