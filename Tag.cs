@@ -1,4 +1,7 @@
-﻿namespace WindowsFormsApp1
+﻿// a class that sorts 2 pieces of information together
+// used to deserialize JSON
+
+namespace WindowsFormsApp1
 {
     internal class Tag
     {

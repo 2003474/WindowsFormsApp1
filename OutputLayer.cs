@@ -1,4 +1,8 @@
-﻿using System;
+﻿// a class that has a bunch of output neurons and outputs an array of the neurons outputs
+// makes all of the outputs into a percentage
+
+
+using System;
 using System.Linq;
 
 namespace WindowsFormsApp1

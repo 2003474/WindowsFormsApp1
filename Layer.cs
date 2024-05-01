@@ -1,4 +1,4 @@
-﻿
+﻿// parent class for hidden layer and for output layer, basically a collection of neurons that produces an array of outputs
 
 namespace WindowsFormsApp1
 {

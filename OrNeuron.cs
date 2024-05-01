@@ -1,4 +1,4 @@
-﻿// 
+﻿// same as normal neuron but if one of the weighted inputs is greater than the threshold than it retunrs 1 otherwise it returns 0
 
 namespace WindowsFormsApp1
 {

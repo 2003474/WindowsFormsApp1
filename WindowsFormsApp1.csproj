@@ -113,7 +113,6 @@
     <Compile Include="OutputLayer.cs" />
     <Compile Include="OutputNeuron.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ReLU.cs" />
     <Compile Include="Tag.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
