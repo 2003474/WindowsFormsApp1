@@ -1,4 +1,5 @@
-﻿// essentially a collection of layers
+﻿
+// essentially a collection of layers
 // can construct a neural network with number inputs, or with 2 other neural networks and it produces a single neural network
 
 namespace WindowsFormsApp1
@@ -21,7 +22,7 @@ namespace WindowsFormsApp1
             //int num = Globals.rnd.Next(-1, 2);
             //numLayers += num;
             numLayers = num_Layers;
-            int change = Globals.rnd.Next(-4, 5);
+            int change = Globals.rnd.Next(-8, 9);
             numLayers += change;
             if (numLayers < 2)
             {

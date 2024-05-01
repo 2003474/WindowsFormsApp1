@@ -14,12 +14,6 @@ namespace WindowsFormsApp1
         {
 
             this.numNeurons = num_neurons;
-            int change = Globals.rnd.Next(-10, 10);
-            this.numNeurons += change;
-            if (numNeurons < 2)
-            {
-                numNeurons = 2;
-            }
             neurons = new OutputNeuron[num_neurons];
             for (int i = 0; i < num_neurons; i++)
             {

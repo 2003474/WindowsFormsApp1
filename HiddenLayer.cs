@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
             //Console.WriteLine(num);
             //num_neurons += num;
             this.numNeurons = num_neurons;
-            int change = Globals.rnd.Next(-4, 5);
+            int change = Globals.rnd.Next(-8, 9);
             this.numNeurons += change;
             if (numNeurons < 2)
             {

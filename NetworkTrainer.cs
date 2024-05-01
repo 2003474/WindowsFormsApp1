@@ -28,7 +28,7 @@ namespace WindowsFormsApp1
                 networks[i] = new NeuralNetwork(numInputs, numOutputs, numNeurons, numLayers);
             }
             DataGenerator dataGen = new DataGenerator();
-            trainingData = dataGen.Generate(100000);
+            trainingData = dataGen.Generate(1000000);
         }
 
         public NeuralNetwork Train()
@@ -36,23 +36,23 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; k < 100; k++)
+            for (int k = 0; k < 5000; k++)
             {
                 for (int i = 0; i < networks.Length; i++)
                 {
 
-                    double[] tempLoss = new double[16];
-                    for (int j = 16 * k; j < 16 * k + tempLoss.Length; j++)
+                    double[] tempLoss = new double[8];
+                    for (int j = 8 * k; j < 8 * k + tempLoss.Length; j++)
                     {
                         if (j > (trainingData.Length - 1))
                             Console.WriteLine(j + " is not a valid index in trainingData of size : " + trainingData.Length);
 
                         networks[i].input = trainingData[j].input;
                         networks[i].Forward();
-                        tempLoss[j - 16 * k] = Loss(networks[i].output, trainingData[j].output[0]);
+                        tempLoss[j - 8 * k] = Loss(networks[i].output, trainingData[j].output[0]);
                     }
                     loss[i] = tempLoss.Sum();
-                    Console.WriteLine("Network #" + (i + 1) + ": loss: " + loss[i]);
+                    Console.WriteLine(k + "Network #" + (i + 1) + ": loss: " + loss[i]/8.0);
                 }
                 // take the top 10% of networks
                 top10 = new NeuralNetwork[networks.Length / 10];
