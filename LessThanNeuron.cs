@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
         {
 
             output = Matrix.Dot(weight, inputs) + bias;
-            if(output > threshold)
+            if (output > threshold)
             {
                 output = 0.0;
             }

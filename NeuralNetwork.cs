@@ -54,7 +54,7 @@ namespace WindowsFormsApp1
             {
                 mutibility = (network1.mutibility + network2.mutibility) / 2;
             }
-            
+
             double mutation = mutationLvl * mutibility;
             input = new double[network1.input.Length];
             output = new double[network1.output.Length];
@@ -110,7 +110,7 @@ namespace WindowsFormsApp1
             }
 
 
-            
+
         }
 
         public void Forward()

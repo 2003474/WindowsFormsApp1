@@ -1,7 +1,5 @@
 ﻿// this is a type of neuron that if all of the wiehgted inputs are greater than the threshold then it returns a 1 otherwise returns 0
 
-using Accord.Math;
-
 namespace WindowsFormsApp1
 {
     internal class AndNeuron : Neuron
@@ -22,7 +20,7 @@ namespace WindowsFormsApp1
             output = 1.0;
             //output = Matrix.Dot(weight, inputs) + bias;
             double[] weightedInputs = new double[inputs.Length];
-            for(int i = 0; i < weightedInputs.Length;i++)
+            for (int i = 0; i < weightedInputs.Length; i++)
             {
                 weightedInputs[i] = inputs[i] * weight[i];
             }

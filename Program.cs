@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(2, 10, 20, 16, 100);
+            NetworkTrainer w = new NetworkTrainer(2, 101, 32, 32, 100);
             NeuralNetwork final = w.Train();
 
             // testing
@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 1, 2  };
+            final.input = new double[2] { 1, 2 };
             final.Forward();
 
             greatestIndex = 0;
@@ -95,6 +95,19 @@ namespace WindowsFormsApp1
             Console.WriteLine(greatestIndex);
 
             final.input = new double[2] { 3, 3 };
+            final.Forward();
+
+            greatestIndex = 0;
+            for (int i = 0; i < final.output.Length; i++)
+            {
+                if (final.output[i] > final.output[greatestIndex])
+                {
+                    greatestIndex = i;
+                }
+            }
+            Console.WriteLine(greatestIndex);
+
+            final.input = new double[2] { 5, 4 };
             final.Forward();
 
             greatestIndex = 0;
