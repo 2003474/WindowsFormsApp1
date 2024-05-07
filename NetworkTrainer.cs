@@ -1,8 +1,11 @@
 ﻿// trains a bunch of networks to generate a network that is able to solve the problem at hand
 
 using Accord.Math;
+using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Linq;
+
 
 namespace WindowsFormsApp1
 {
@@ -38,6 +41,10 @@ namespace WindowsFormsApp1
             Boolean convergence = false;
             for (int k = 0; k < 10000; k++)
             {
+                if (k % 250 == 0)
+                {
+                    this.ToFile();
+                }
                 for (int i = 0; i < networks.Length; i++)
                 {
 
@@ -110,7 +117,26 @@ namespace WindowsFormsApp1
                 best1 = top10[0];
             }
 
+
+
+            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "BestNetwork.txt")))
+            {
+                outputFile.WriteLine(JsonConvert.SerializeObject(best1));
+            }
             return best1;
+        }
+
+        private void ToFile()
+        {
+            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks.txt")))
+            {
+                outputFile.WriteLine(JsonConvert.SerializeObject(networks));
+            }
+
         }
 
         public double Loss(double[] output, double expOutput)

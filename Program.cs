@@ -1,7 +1,9 @@
 ﻿// program file (starts the program)
 
 
+using Newtonsoft.Json;
 using System;
+using System.IO;
 
 namespace WindowsFormsApp1
 {
@@ -13,6 +15,8 @@ namespace WindowsFormsApp1
         {
             // starts the training proccess
             NetworkTrainer w = new NetworkTrainer(2, 101, 32, 32, 100);
+
+            w.networks = JsonConvert.DeserializeObject<NeuralNetwork[]>(File.ReadAllText("Networks.txt"));
             NeuralNetwork final = w.Train();
 
             // testing
