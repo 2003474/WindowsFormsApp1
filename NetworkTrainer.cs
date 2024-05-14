@@ -132,9 +132,9 @@ namespace WindowsFormsApp1
         {
             string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks.txt")))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks.json")))
             {
-                outputFile.WriteLine(JsonConvert.SerializeObject(networks));
+                outputFile.WriteLine(JsonConvert.SerializeObject(networks[0]));
             }
 
         }
