@@ -8,17 +8,23 @@ namespace WindowsFormsApp1
 {
     abstract class Neuron : ICloneable
     {
-        public double[] weight;
-        public double bias;
-        public double output = 0.0;
-        public double threshold;
+        public double[] weight { get; set; }
+        public double bias { get; set; }
+        public double output { get; set; }
+        public double threshold { get; set; }
 
         public object Clone()
         {
             return this.MemberwiseClone();
         }
 
-
+        //public Neuron(double[] weight, double bias, double output, double threshold)
+        //{
+        //    this.weight = weight;
+        //    this.bias = bias;
+        //    this.output = output;
+        //    this.threshold = threshold;
+        //}
         public void Intitialize(int num_inputs)
         {
             Debug.Assert(num_inputs != 0);

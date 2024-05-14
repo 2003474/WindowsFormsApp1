@@ -11,6 +11,7 @@ namespace WindowsFormsApp1
     class HiddenLayer : Layer
     {
         public HiddenLayer(int num_inputs, int num_neurons)
+            : base(null, null, 0)
         {
             // add -1, 0, or 1 layer
             int num;
@@ -48,6 +49,7 @@ namespace WindowsFormsApp1
         }
 
         public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, double mutationLvl, int num_inputs)
+            : base(null, null, 0)
         {
             // for every neuron
             int num_inputs_TEST = num_inputs;

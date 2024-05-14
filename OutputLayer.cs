@@ -11,6 +11,7 @@ namespace WindowsFormsApp1
     {
 
         public OutputLayer(int num_inputs, int num_neurons)
+            :base(null, null, 0)
         {
 
             this.numNeurons = num_neurons;
@@ -22,6 +23,7 @@ namespace WindowsFormsApp1
         }
 
         public OutputLayer(OutputLayer oLayer1, OutputLayer oLayer2, double mutationLvl, int num_inputs)
+            : base(null, null, 0)
         {
             int l1NLength = oLayer1.neurons.Length;
             int l2NLength = oLayer2.neurons.Length;

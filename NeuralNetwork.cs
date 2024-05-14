@@ -6,13 +6,24 @@ namespace WindowsFormsApp1
 {
     internal class NeuralNetwork
     {
-        public double[] input;
-        public double[] output;
-        public HiddenLayer[] dLayers;
-        public OutputLayer oLayer;
-        public int numLayers;
-        public double breedibility;
-        public double mutibility;
+        public double[] input { get; set; }
+        public double[] output { get; set; }
+        public HiddenLayer[] dLayers { get; set; }
+        public OutputLayer oLayer { get; set; }
+        public int numLayers { get; set; }
+        public double breedibility { get; set; }
+        public double mutibility { get; set; }
+
+        public NeuralNetwork(double[] input, double[] output, HiddenLayer[] dLayers, OutputLayer oLayer, int numLayers, double breedibility, double mutibility)
+        {
+            this.input = input;
+            this.output = output;
+            this.dLayers = dLayers;
+            this.oLayer = oLayer;
+            this.numLayers = numLayers;
+            this.breedibility = breedibility;
+            this.mutibility = mutibility;
+        }
 
         public NeuralNetwork(int numInputs, int numOutputs, int numNeurons, int num_Layers)
         {

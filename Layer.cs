@@ -4,11 +4,16 @@ namespace WindowsFormsApp1
 {
     abstract class Layer
     {
-        public Neuron[] neurons;
-        public double[] output;
-        public int numNeurons;
+        public Neuron[] neurons { get; set; }
+        public double[] output { get; set; }
+        public int numNeurons { get; set; }
 
-
+        public Layer(Neuron[] neurons, double[] output, int numNeurons)
+        {
+            this.neurons = neurons;
+            this.output = output;
+            this.numNeurons = numNeurons;
+        }
 
         public void Forward(double[] inputs)
         {
