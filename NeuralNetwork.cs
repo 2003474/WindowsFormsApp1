@@ -2,6 +2,9 @@
 // essentially a collection of layers
 // can construct a neural network with number inputs, or with 2 other neural networks and it produces a single neural network
 
+using System.Text.Json.Serialization;
+using Newtonsoft;
+using Newtonsoft.Json;
 namespace WindowsFormsApp1
 {
     internal class NeuralNetwork
@@ -14,7 +17,11 @@ namespace WindowsFormsApp1
         public double breedibility { get; set; }
         public double mutibility { get; set; }
 
-        public NeuralNetwork(double[] input, double[] output, HiddenLayer[] dLayers, OutputLayer oLayer, int numLayers, double breedibility, double mutibility)
+
+
+        [Newtonsoft.Json.JsonConstructor]
+        public NeuralNetwork(double breedibility, HiddenLayer[] dLayers, double[] input, double mutibility, int numLayers, OutputLayer oLayer, double[] output)
+
         {
             this.input = input;
             this.output = output;
@@ -24,6 +31,10 @@ namespace WindowsFormsApp1
             this.breedibility = breedibility;
             this.mutibility = mutibility;
         }
+
+        //public NeuralNetwork(string s) {
+        //    this = JsonConvert.DeserializeObject<NeuralNetwork>(s);
+        //}
 
         public NeuralNetwork(int numInputs, int numOutputs, int numNeurons, int num_Layers)
         {

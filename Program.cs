@@ -18,8 +18,9 @@ namespace WindowsFormsApp1
             NetworkTrainer w = new NetworkTrainer(2, 101, 32, 32, 100);
             string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             //Console.WriteLine(File.ReadAllText(Path.Combine(docPath, "Networks.json")));
-
-            w.networks[0] = JsonConvert.DeserializeObject<NeuralNetwork>(File.ReadAllText(Path.Combine(docPath, "Networks.json")));
+            var s = File.ReadAllText(Path.Combine(docPath, "Networks.json"));
+            var k = JsonConvert.DeserializeObject<NeuralNetwork>(s);
+            w.networks[0] = k;
             NeuralNetwork final = w.Train();
 
             // testing

@@ -1,5 +1,5 @@
 ﻿// parent class for hidden layer and for output layer, basically a collection of neurons that produces an array of outputs
-
+using Newtonsoft;
 namespace WindowsFormsApp1
 {
     abstract class Layer
@@ -8,12 +8,13 @@ namespace WindowsFormsApp1
         public double[] output { get; set; }
         public int numNeurons { get; set; }
 
-        public Layer(Neuron[] neurons, double[] output, int numNeurons)
-        {
-            this.neurons = neurons;
-            this.output = output;
-            this.numNeurons = numNeurons;
-        }
+        //[Newtonsoft.Json.JsonConstructor]
+        //public Layer(Neuron[] neuron, double[] outpu, int numNeuron)
+        //{
+        //    this.neurons = neuron;
+        //    this.output = outpu;
+        //    this.numNeurons = numNeuron;
+        //}
 
         public void Forward(double[] inputs)
         {
