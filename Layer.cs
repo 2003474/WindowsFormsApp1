@@ -28,7 +28,7 @@ namespace WindowsFormsApp1
             double[][] weights = new double[neurons.Length][];
             for (int i = 0; i < neurons.Length; i++)
             {
-                weights[i] = neurons[i].weight;
+                weights[i] = neurons[i].Weight;
             }
             return weights;
         }
@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             double[] biases = new double[neurons.Length];
             for (int i = 0; i < neurons.Length; i++)
             {
-                biases[i] = neurons[i].bias;
+                biases[i] = neurons[i].Bias;
             }
             return biases;
         }

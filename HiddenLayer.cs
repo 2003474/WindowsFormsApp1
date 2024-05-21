@@ -129,19 +129,19 @@ namespace WindowsFormsApp1
                 }
 
                 //check to make sure the weights are right
-                if (nChild.weight.Length != num_inputs)
+                if (nChild.Weight.Length != num_inputs)
                 {
                     double[] newWeights = new double[num_inputs];
                     for (int k = 0; k < num_inputs; k++)
                     {
-                        newWeights[k] = nChild.weight[k % nChild.weight.Length];
+                        newWeights[k] = nChild.Weight[k % nChild.Weight.Length];
                     }
 
-                    nChild.weight = newWeights;
+                    nChild.Weight = newWeights;
                 }
 
                 neurons[i] = nChild;
-                Debug.Assert(neurons[i].weight.Length == num_inputs_TEST);
+                Debug.Assert(neurons[i].Weight.Length == num_inputs_TEST);
             }
         }
 
@@ -151,7 +151,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < numNeurons; i++)
             {
                 neurons[i].Forward(inputs);
-                tempOutput[i] = neurons[i].output;
+                tempOutput[i] = neurons[i].Output;
             }
             return tempOutput;
         }

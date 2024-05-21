@@ -4,44 +4,52 @@
 using System;
 using System.Diagnostics;
 
+
 namespace WindowsFormsApp1
 {
-    abstract class Neuron : ICloneable
+    public class Neuron : ICloneable
     {
-        public double[] weight { get; set; }
-        public double bias { get; set; }
-        public double output { get; set; }
-        public double threshold { get; set; }
+        public double[] Weight { get; set; }
+        public double Bias { get; set; }
+        public double Output { get; set; }
+        public double Threshold { get; set; }
+        public String Type { get; set; }
 
         public object Clone()
         {
             return this.MemberwiseClone();
         }
 
-        //public Neuron(double[] weight, double bias, double output, double threshold)
-        //{
-        //    this.weight = weight;
-        //    this.bias = bias;
-        //    this.output = output;
-        //    this.threshold = threshold;
-        //}
+        [Newtonsoft.Json.JsonConstructor]
+        public Neuron(double[] weight, double bias, double output, double threshold, string type)
+        {
+            this.Weight = weight;
+            this.Bias = bias;
+            this.Output = output;
+            this.Threshold = threshold;
+            this.Type = type;
+            if (Type == "O")
+            {
+                this = 
+            }
+        }
         public void Intitialize(int num_inputs)
         {
             Debug.Assert(num_inputs != 0);
-            weight = new double[num_inputs];
+            Weight = new double[num_inputs];
             for (int i = 0; i < num_inputs; i++)
             {
-                weight[i] = Globals.rnd.NextDouble();
+                Weight[i] = Globals.rnd.NextDouble();
                 if (Globals.rnd.Next(-1, 1) == -1.0)
                 {
-                    weight[i] = -weight[i];
+                    Weight[i] = -Weight[i];
                 }
             }
-            bias = Globals.rnd.NextDouble();
-            threshold = Globals.rnd.NextDouble();
+            Bias = Globals.rnd.NextDouble();
+            Threshold = Globals.rnd.NextDouble();
             if (Globals.rnd.Next(-1, 1) == -1.0)
             {
-                threshold = -threshold;
+                Threshold = -Threshold;
             }
         }
 
@@ -51,50 +59,50 @@ namespace WindowsFormsApp1
             int num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {
-                threshold = neuron1.threshold;
+                Threshold = neuron1.Threshold;
             }
             else if (num == 2)
             {
-                threshold = neuron2.threshold;
+                Threshold = neuron2.Threshold;
             }
             else
             {
-                threshold = (neuron1.threshold + neuron2.threshold) / 2;
+                Threshold = (neuron1.Threshold + neuron2.Threshold) / 2;
             }
 
             //mutation threshold
             if (Globals.rnd.Next(0, 100) < MutationLvl)
             {
-                threshold = Globals.rnd.NextDouble() * 4 - 2;
+                Threshold = Globals.rnd.NextDouble() * 4 - 2;
             }
 
 
-            int weight1Length = neuron1.weight.Length;
-            int weight2Length = neuron2.weight.Length;
-            weight = new double[num_inputs];
+            int weight1Length = neuron1.Weight.Length;
+            int weight2Length = neuron2.Weight.Length;
+            Weight = new double[num_inputs];
 
 
-            for (int i = 0; i < weight.Length; i++)
+            for (int i = 0; i < Weight.Length; i++)
             {
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    weight[i] = neuron1.weight[i % weight1Length];
+                    Weight[i] = neuron1.Weight[i % weight1Length];
                 }
                 else if (num == 2)
                 {
-                    weight[i] = neuron2.weight[i % weight2Length];
+                    Weight[i] = neuron2.Weight[i % weight2Length];
                 }
                 else
                 {
-                    weight[i] = (neuron1.weight[i % weight1Length] + neuron2.weight[i % weight2Length]) / 2;
+                    Weight[i] = (neuron1.Weight[i % weight1Length] + neuron2.Weight[i % weight2Length]) / 2;
                 }
             }
 
             //mutation weights
             if (Globals.rnd.Next(0, 100) < MutationLvl)
             {
-                weight[Globals.rnd.Next(0, weight.Length)] = Globals.rnd.NextDouble() * 4 - 2;
+                Weight[Globals.rnd.Next(0, Weight.Length)] = Globals.rnd.NextDouble() * 4 - 2;
             }
 
 
@@ -102,18 +110,21 @@ namespace WindowsFormsApp1
             num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {
-                bias = neuron1.bias;
+                Bias = neuron1.Bias;
             }
             else if (num == 2)
             {
-                bias = neuron2.bias;
+                Bias = neuron2.Bias;
             }
             else
             {
-                bias = (neuron1.bias + neuron2.bias) / 2;
+                Bias = (neuron1.Bias + neuron2.Bias) / 2;
             }
         }
 
-        public abstract void Forward(double[] inputs);
+        public virtual void Forward(double[] inputs)
+        {
+
+        }
     }
 }

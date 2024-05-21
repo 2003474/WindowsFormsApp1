@@ -9,20 +9,22 @@ namespace WindowsFormsApp1
         public GreaterThanNeuron(int number)
         {
             Intitialize(number);
+            Type = "GT";
         }
 
         public GreaterThanNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
         {
             Intitialize(neuron1, neuron2, MutationLvl, num_inputs);
+            Type = "GT";
         }
 
 
-        public override void Forward(double[] inputs)
+        public new void Forward(double[] inputs)
         {
-            output = Matrix.Dot(weight, inputs) + bias;
-            if (output < threshold)
+            Output = Matrix.Dot(Weight, inputs) + Bias;
+            if (Output < Threshold)
             {
-                output = 0.0;
+                Output = 0.0;
             }
         }
     }

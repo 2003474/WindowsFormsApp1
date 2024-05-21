@@ -8,27 +8,29 @@ namespace WindowsFormsApp1
         public AndNeuron(int number)
         {
             Intitialize(number);
+            Type = "A";
         }
 
         public AndNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
         {
             Intitialize(neuron1, neuron2, MutationLvl, num_inputs);
+            Type = "A";
         }
 
-        public override void Forward(double[] inputs)
+        public new void Forward(double[] inputs)
         {
-            output = 1.0;
+            Output = 1.0;
             //output = Matrix.Dot(weight, inputs) + bias;
             double[] weightedInputs = new double[inputs.Length];
             for (int i = 0; i < weightedInputs.Length; i++)
             {
-                weightedInputs[i] = inputs[i] * weight[i];
+                weightedInputs[i] = inputs[i] * Weight[i];
             }
             foreach (double input in weightedInputs)
             {
-                if (input < threshold)
+                if (input < Threshold)
                 {
-                    output = 0.0; break;
+                    Output = 0.0; break;
                 }
             }
         }

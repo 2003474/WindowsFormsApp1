@@ -77,14 +77,14 @@ namespace WindowsFormsApp1
                     neurons[i] = new OutputNeuron(n1, n2, mutationLvl, num_inputs);
                 }
 
-                if (neurons[i].weight.Length != num_inputs)
+                if (neurons[i].Weight.Length != num_inputs)
                 {
                     Neuron n = neurons[i];
-                    double[] oldWeights = n.weight;
-                    n.weight = new double[num_inputs];
+                    double[] oldWeights = n.Weight;
+                    n.Weight = new double[num_inputs];
                     for (int k = 0; k < num_inputs; k++)
                     {
-                        n.weight[k] = oldWeights[k % oldWeights.Length];
+                        n.Weight[k] = oldWeights[k % oldWeights.Length];
                     }
                 }
 
@@ -103,7 +103,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < neurons.Length; i++)
             {
                 neurons[i].Forward(inputs);
-                tempOutput[i] = neurons[i].output;
+                tempOutput[i] = neurons[i].Output;
             }
             double maxValue = tempOutput.Max();
             for (int i = 0; i < tempOutput.Length; i++)
