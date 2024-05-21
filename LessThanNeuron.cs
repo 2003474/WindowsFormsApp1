@@ -7,6 +7,7 @@ namespace WindowsFormsApp1
     internal class LessThanNeuron : Neuron
     {
         public LessThanNeuron(int number)
+            : base(new double[] {0,0 },0,0,0,null)
         {
             Intitialize(number);
             Type = "LT";
