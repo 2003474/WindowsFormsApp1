@@ -43,7 +43,11 @@ namespace WindowsFormsApp1
             {
                 if (k % 250 == 0)
                 {
-                    this.ToFile();
+                    for(int i = 0; i < 100; i++)
+                    {
+                        this.ToFile(i);
+                    }
+                    
                 }
                 for (int i = 0; i < networks.Length; i++)
                 {
@@ -121,18 +125,18 @@ namespace WindowsFormsApp1
 
             string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "BestNetwork.txt")))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Best.json")))
             {
                 outputFile.WriteLine(JsonConvert.SerializeObject(best1));
             }
             return best1;
         }
 
-        private void ToFile()
+        private void ToFile(int numNetwork)
         {
             string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks.json")))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks" + numNetwork + ".json")))
             {
                 outputFile.WriteLine(JsonConvert.SerializeObject(networks[0]));
             }

@@ -16,13 +16,14 @@ namespace WindowsFormsApp1
         {
             // starts the training proccess
             NetworkTrainer w = new NetworkTrainer(2, 101, 32, 32, 100);
-            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
-            //Console.WriteLine(File.ReadAllText(Path.Combine(docPath, "Networks.json")));
-            var s = File.ReadAllText(Path.Combine(docPath, "Networks.json"));
-            var k = JsonConvert.DeserializeObject<NeuralNetwork>(s);
-            w.networks[0] = k;
+            for (int i = 0; i < 100; i++)
+            {
+                String file = "Networks" + i + ".json";
+                NeuralNetwork f = FromFile(file);
+                w.networks[i] = f;
+            }
             NeuralNetwork final = w.Train();
-
+            NeuralNetwork bestFromFIle = FromFile("Best.json");
             // testing
             final.input = new double[2] { 0, 0 };
             final.Forward();
@@ -128,6 +129,66 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
+        }
+
+        static NeuralNetwork FromFile(string file)
+        {
+            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            //Console.WriteLine(File.ReadAllText(Path.Combine(docPath, "Networks.json")));
+            var s = File.ReadAllText(Path.Combine(docPath, file));
+            var f = JsonConvert.DeserializeObject<NeuralNetwork>(s);
+            for (int i = 0; i < f.dLayers.Length; i++)
+            {
+                for (int k = 0; k < f.dLayers[i].neurons.Length; k++)
+                {
+                    string type = f.dLayers[i].neurons[k].Type;
+                    Neuron cur = (Neuron)f.dLayers[i].neurons[k].Clone();
+                    switch (type)
+                    {
+                        case "O":
+                            f.dLayers[i].neurons[k] = new OrNeuron(cur.Weight.Length)
+                            {
+                                Weight = cur.Weight,
+                                Bias = cur.Bias,
+                                Threshold = cur.Threshold
+                            };
+                            break;
+                        case "A":
+                            f.dLayers[i].neurons[k] = new AndNeuron(cur.Weight.Length)
+                            {
+                                Weight = cur.Weight,
+                                Bias = cur.Bias,
+                                Threshold = cur.Threshold
+                            };
+                            break;
+                        case "GT":
+                            f.dLayers[i].neurons[k] = new GreaterThanNeuron(cur.Weight.Length)
+                            {
+                                Weight = cur.Weight,
+                                Bias = cur.Bias,
+                                Threshold = cur.Threshold
+                            };
+                            break;
+                        case "LT":
+                            f.dLayers[i].neurons[k] = new LessThanNeuron(cur.Weight.Length)
+                            {
+                                Weight = cur.Weight,
+                                Bias = cur.Bias,
+                                Threshold = cur.Threshold
+                            };
+                            break;
+                        case "OT":
+                            f.dLayers[i].neurons[k] = new OutputNeuron(cur.Weight.Length)
+                            {
+                                Weight = cur.Weight,
+                                Bias = cur.Bias,
+                                Threshold = cur.Threshold
+                            };
+                            break;
+                    }
+                }
+            }
+            return f;
         }
     }
 }

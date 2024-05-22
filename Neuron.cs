@@ -23,14 +23,14 @@ namespace WindowsFormsApp1
         [Newtonsoft.Json.JsonConstructor]
         public Neuron(double[] weight, double bias, double output, double threshold, string type)
         {
-            
+
             this.Weight = weight;
             this.Bias = bias;
             this.Output = output;
             this.Threshold = threshold;
             this.Type = type;
-            
-            
+
+
         }
         public void Intitialize(int num_inputs)
         {

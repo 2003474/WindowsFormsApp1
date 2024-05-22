@@ -7,12 +7,14 @@ namespace WindowsFormsApp1
     internal class GreaterThanNeuron : Neuron
     {
         public GreaterThanNeuron(int number)
+            : base(new double[] { 0, 0 }, 0, 0, 0, null)
         {
             Intitialize(number);
             Type = "GT";
         }
 
         public GreaterThanNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
+            : base(new double[] { 0, 0 }, 0, 0, 0, null)
         {
             Intitialize(neuron1, neuron2, MutationLvl, num_inputs);
             Type = "GT";

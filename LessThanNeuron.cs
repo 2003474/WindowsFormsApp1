@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
         }
 
         public LessThanNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
+            : base(new double[] { 0, 0 }, 0, 0, 0, null)
         {
             Intitialize(neuron1, neuron2, MutationLvl, num_inputs);
             Type = "LT";
