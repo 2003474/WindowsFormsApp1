@@ -16,11 +16,12 @@ namespace WindowsFormsApp1
         public int numLayers { get; set; }
         public double breedibility { get; set; }
         public double mutibility { get; set; }
+        public int repetition { get; set; }
 
 
 
         [Newtonsoft.Json.JsonConstructor]
-        public NeuralNetwork(double breedibility, HiddenLayer[] dLayers, double[] input, double mutibility, int numLayers, OutputLayer oLayer, double[] output)
+        public NeuralNetwork(double breedibility, HiddenLayer[] dLayers, double[] input, double mutibility, int numLayers, OutputLayer oLayer, double[] output, int repetition)
 
         {
             this.input = input;
@@ -30,6 +31,7 @@ namespace WindowsFormsApp1
             this.numLayers = numLayers;
             this.breedibility = breedibility;
             this.mutibility = mutibility;
+            this.repetition = repetition;
         }
 
         //public NeuralNetwork(string s) {
@@ -38,6 +40,7 @@ namespace WindowsFormsApp1
 
         public NeuralNetwork(int numInputs, int numOutputs, int numNeurons, int num_Layers)
         {
+            repetition = 0;
             input = new double[numInputs];
             output = new double[numOutputs];
             // add -1, 0, or 1 layer
@@ -131,7 +134,7 @@ namespace WindowsFormsApp1
                 breedibility = (network1.breedibility + network2.breedibility) / 2;
             }
 
-
+            repetition = 0;
 
         }
 
