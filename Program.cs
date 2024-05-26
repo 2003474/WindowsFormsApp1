@@ -25,104 +25,104 @@ namespace WindowsFormsApp1
             NeuralNetwork final = w.Train();
             NeuralNetwork bestFromFIle = FromFile("Best.json");
             // testing
-            final.input = new double[2] { 0, 0 };
+            final.Input = new double[2] { 0, 0 };
             final.Forward();
 
             int greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 1, 1 };
+            final.Input = new double[2] { 1, 1 };
             final.Forward();
 
             greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 1, 2 };
+            final.Input = new double[2] { 1, 2 };
             final.Forward();
 
             greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 1, 3 };
+            final.Input = new double[2] { 1, 3 };
             final.Forward();
 
             greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 2, 2 };
+            final.Input = new double[2] { 2, 2 };
             final.Forward();
 
             greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 2, 3 };
+            final.Input = new double[2] { 2, 3 };
             final.Forward();
 
             greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 3, 3 };
+            final.Input = new double[2] { 3, 3 };
             final.Forward();
 
             greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 5, 4 };
+            final.Input = new double[2] { 5, 4 };
             final.Forward();
 
             greatestIndex = 0;
-            for (int i = 0; i < final.output.Length; i++)
+            for (int i = 0; i < final.Output.Length; i++)
             {
-                if (final.output[i] > final.output[greatestIndex])
+                if (final.Output[i] > final.Output[greatestIndex])
                 {
                     greatestIndex = i;
                 }
@@ -137,16 +137,16 @@ namespace WindowsFormsApp1
             //Console.WriteLine(File.ReadAllText(Path.Combine(docPath, "Networks.json")));
             var s = File.ReadAllText(Path.Combine(docPath, file));
             var f = JsonConvert.DeserializeObject<NeuralNetwork>(s);
-            for (int i = 0; i < f.dLayers.Length; i++)
+            for (int i = 0; i < f.DLayers.Length; i++)
             {
-                for (int k = 0; k < f.dLayers[i].neurons.Length; k++)
+                for (int k = 0; k < f.DLayers[i].neurons.Length; k++)
                 {
-                    string type = f.dLayers[i].neurons[k].Type;
-                    Neuron cur = (Neuron)f.dLayers[i].neurons[k].Clone();
+                    string type = f.DLayers[i].neurons[k].Type;
+                    Neuron cur = (Neuron)f.DLayers[i].neurons[k].Clone();
                     switch (type)
                     {
                         case "O":
-                            f.dLayers[i].neurons[k] = new OrNeuron(cur.Weight.Length)
+                            f.DLayers[i].neurons[k] = new OrNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -154,7 +154,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "A":
-                            f.dLayers[i].neurons[k] = new AndNeuron(cur.Weight.Length)
+                            f.DLayers[i].neurons[k] = new AndNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -162,7 +162,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "GT":
-                            f.dLayers[i].neurons[k] = new GreaterThanNeuron(cur.Weight.Length)
+                            f.DLayers[i].neurons[k] = new GreaterThanNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -170,7 +170,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "LT":
-                            f.dLayers[i].neurons[k] = new LessThanNeuron(cur.Weight.Length)
+                            f.DLayers[i].neurons[k] = new LessThanNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -178,7 +178,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "OT":
-                            f.dLayers[i].neurons[k] = new OutputNeuron(cur.Weight.Length)
+                            f.DLayers[i].neurons[k] = new OutputNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,

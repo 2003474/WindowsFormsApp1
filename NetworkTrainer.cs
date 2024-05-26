@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; k < 10000; k++)
+            for (int k = 0; convergence == false || k < 10000; k++)
             {
                 if (k % 250 == 0)
                 {
@@ -51,30 +51,33 @@ namespace WindowsFormsApp1
                 }
                 for (int i = 0; i < networks.Length; i++)
                 {
-
+                    networks[i].Repetition++;
+                    if (networks[i].Repetition >= 100)
+                    {
+                        convergence = true;
+                    }
                     double[] tempLoss = new double[16];
                     for (int j = 16 * k; j < 16 * k + tempLoss.Length; j++)
                     {
                         if (j > (trainingData.Length - 1))
                             Console.WriteLine(j + " is not a valid index in trainingData of size : " + trainingData.Length);
 
-                        networks[i].input = trainingData[j].input;
+                        networks[i].Input = trainingData[j].input;
                         networks[i].Forward();
-                        tempLoss[j - 16 * k] = Loss(networks[i].output, trainingData[j].output[0]);
+                        tempLoss[j - 16 * k] = Loss(networks[i].Output, trainingData[j].output[0]);
                     }
                     loss[i] = tempLoss.Sum();
                     Console.WriteLine(k + "Network #" + (i + 1) + ": loss: " + loss[i] / 16.0);
                 }
                 // take the top 10% of networks
                 top10 = new NeuralNetwork[networks.Length / 10];
-                convergence = true;
                 for (int i = 0; i < top10.Length; i++)
                 {
                     top10[i] = networks[loss.IndexOf(loss.Min())];
-                    if (loss[loss.IndexOf(loss.Min())] > 0.000000000000000000000000000000001)
-                    {
-                        convergence = false;
-                    }
+                    //if (loss[loss.IndexOf(loss.Min())] > 0.000000000000000000000000000000001)
+                    //{
+                    //    convergence = false;
+                    //}
                     loss[loss.IndexOf(loss.Min())] = 100000000.00;
                 }
                 NeuralNetwork[] tempNetworks = new NeuralNetwork[networks.Length];
@@ -94,7 +97,7 @@ namespace WindowsFormsApp1
                     {
                         double randDouble = Globals.rnd.NextDouble();
                         int randInt = Globals.rnd.Next(top10.Length, networks.Length);
-                        while (networks[randInt].breedibility < randDouble)
+                        while (networks[randInt].Breedibility < randDouble)
                         {
                             randInt = Globals.rnd.Next(top10.Length, networks.Length);
                             randDouble = Globals.rnd.NextDouble();

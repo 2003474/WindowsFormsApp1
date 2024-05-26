@@ -9,14 +9,14 @@ namespace WindowsFormsApp1
 {
     internal class NeuralNetwork
     {
-        public double[] input { get; set; }
-        public double[] output { get; set; }
-        public HiddenLayer[] dLayers { get; set; }
-        public OutputLayer oLayer { get; set; }
-        public int numLayers { get; set; }
-        public double breedibility { get; set; }
-        public double mutibility { get; set; }
-        public int repetition { get; set; }
+        public double[] Input { get; set; }
+        public double[] Output { get; set; }
+        public HiddenLayer[] DLayers { get; set; }
+        public OutputLayer OLayer { get; set; }
+        public int NumLayers { get; set; }
+        public double Breedibility { get; set; }
+        public double Mutibility { get; set; }
+        public int Repetition { get; set; }
 
 
 
@@ -24,14 +24,14 @@ namespace WindowsFormsApp1
         public NeuralNetwork(double breedibility, HiddenLayer[] dLayers, double[] input, double mutibility, int numLayers, OutputLayer oLayer, double[] output, int repetition)
 
         {
-            this.input = input;
-            this.output = output;
-            this.dLayers = dLayers;
-            this.oLayer = oLayer;
-            this.numLayers = numLayers;
-            this.breedibility = breedibility;
-            this.mutibility = mutibility;
-            this.repetition = repetition;
+            this.Input = input;
+            this.Output = output;
+            this.DLayers = dLayers;
+            this.OLayer = oLayer;
+            this.NumLayers = numLayers;
+            this.Breedibility = breedibility;
+            this.Mutibility = mutibility;
+            this.Repetition = repetition;
         }
 
         //public NeuralNetwork(string s) {
@@ -40,28 +40,28 @@ namespace WindowsFormsApp1
 
         public NeuralNetwork(int numInputs, int numOutputs, int numNeurons, int num_Layers)
         {
-            repetition = 0;
-            input = new double[numInputs];
-            output = new double[numOutputs];
+            Repetition = 0;
+            Input = new double[numInputs];
+            Output = new double[numOutputs];
             // add -1, 0, or 1 layer
             //int num = Globals.rnd.Next(-1, 2);
             //numLayers += num;
-            numLayers = num_Layers;
+            NumLayers = num_Layers;
             int change = Globals.rnd.Next(-8, 9);
-            numLayers += change;
-            if (numLayers < 2)
+            NumLayers += change;
+            if (NumLayers < 2)
             {
-                numLayers = 2;
+                NumLayers = 2;
             }
-            dLayers = new HiddenLayer[numLayers];
-            dLayers[0] = new HiddenLayer(numInputs, numNeurons);
-            for (int i = 1; i < numLayers; i++)
+            DLayers = new HiddenLayer[NumLayers];
+            DLayers[0] = new HiddenLayer(numInputs, numNeurons);
+            for (int i = 1; i < NumLayers; i++)
             {
-                dLayers[i] = new HiddenLayer(dLayers[i - 1].numNeurons, numNeurons);
+                DLayers[i] = new HiddenLayer(DLayers[i - 1].numNeurons, numNeurons);
             }
-            oLayer = new OutputLayer(dLayers[numLayers - 1].numNeurons, numOutputs);
-            breedibility = Globals.rnd.NextDouble();
-            mutibility = Globals.rnd.NextDouble() * 10;
+            OLayer = new OutputLayer(DLayers[NumLayers - 1].numNeurons, numOutputs);
+            Breedibility = Globals.rnd.NextDouble();
+            Mutibility = Globals.rnd.NextDouble() * 10;
         }
 
         public NeuralNetwork(NeuralNetwork network1, NeuralNetwork network2, int mutationLvl)
@@ -69,84 +69,84 @@ namespace WindowsFormsApp1
             int num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {
-                mutibility = network1.mutibility;
+                Mutibility = network1.Mutibility;
             }
             else if (num == 2)
             {
-                mutibility = network2.mutibility;
+                Mutibility = network2.Mutibility;
             }
             else
             {
-                mutibility = (network1.mutibility + network2.mutibility) / 2;
+                Mutibility = (network1.Mutibility + network2.Mutibility) / 2;
             }
 
-            double mutation = mutationLvl * mutibility;
-            input = new double[network1.input.Length];
-            output = new double[network1.output.Length];
+            double mutation = mutationLvl * Mutibility;
+            Input = new double[network1.Input.Length];
+            Output = new double[network1.Output.Length];
 
 
-            int n1DLength = network1.dLayers.Length;
-            int n2DLength = network2.dLayers.Length;
+            int n1DLength = network1.DLayers.Length;
+            int n2DLength = network2.DLayers.Length;
 
             // makes a new layer array with length from parents or average
-            if (network1.dLayers.Length != network2.dLayers.Length)
+            if (network1.DLayers.Length != network2.DLayers.Length)
             {
                 int numb = Globals.rnd.Next(1, 4);
                 if (numb == 1)
                 {
-                    dLayers = new HiddenLayer[n1DLength];
+                    DLayers = new HiddenLayer[n1DLength];
                 }
                 else if (numb == 2)
                 {
-                    dLayers = new HiddenLayer[n2DLength];
+                    DLayers = new HiddenLayer[n2DLength];
                 }
                 else
                 {
-                    dLayers = new HiddenLayer[(n1DLength + n2DLength) / 2];
+                    DLayers = new HiddenLayer[(n1DLength + n2DLength) / 2];
                 }
             }
             else
             {
-                dLayers = new HiddenLayer[n1DLength];
+                DLayers = new HiddenLayer[n1DLength];
             }
-            numLayers = dLayers.Length;
+            NumLayers = DLayers.Length;
 
-            dLayers[0] = new HiddenLayer(network1.dLayers[0], network2.dLayers[0], mutation, input.Length);
+            DLayers[0] = new HiddenLayer(network1.DLayers[0], network2.DLayers[0], mutation, Input.Length);
 
-            for (int i = 1; i < dLayers.Length; i++)
+            for (int i = 1; i < DLayers.Length; i++)
             {
                 //issue
-                dLayers[i] = new HiddenLayer(network1.dLayers[i % n1DLength], network2.dLayers[i % n2DLength], mutation, dLayers[i - 1].numNeurons);
+                DLayers[i] = new HiddenLayer(network1.DLayers[i % n1DLength], network2.DLayers[i % n2DLength], mutation, DLayers[i - 1].numNeurons);
 
             }
-            oLayer = new OutputLayer(network1.oLayer, network2.oLayer, mutation, dLayers[dLayers.Length - 1].numNeurons);
+            OLayer = new OutputLayer(network1.OLayer, network2.OLayer, mutation, DLayers[DLayers.Length - 1].numNeurons);
             num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {
-                breedibility = network1.breedibility;
+                Breedibility = network1.Breedibility;
             }
             else if (num == 2)
             {
-                breedibility = network2.breedibility;
+                Breedibility = network2.Breedibility;
             }
             else
             {
-                breedibility = (network1.breedibility + network2.breedibility) / 2;
+                Breedibility = (network1.Breedibility + network2.Breedibility) / 2;
             }
 
-            repetition = 0;
+            Repetition = 0;
 
         }
 
         public void Forward()
         {
-            dLayers[0].Forward(input);
-            for (int i = 1; i < dLayers.Length; i++)
+            DLayers[0].Forward(Input);
+            for (int i = 1; i < DLayers.Length; i++)
             {
-                dLayers[i].Forward(dLayers[i - 1].output);
+                DLayers[i].Forward(DLayers[i - 1].output);
             }
-            oLayer.Forward(dLayers[dLayers.Length - 1].output);
-            output = oLayer.output;
+            OLayer.Forward(DLayers[DLayers.Length - 1].output);
+            Output = OLayer.output;
         }
     }
 }
