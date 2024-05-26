@@ -15,15 +15,15 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(2, 101, 32, 32, 100);
-            for (int i = 0; i < 100; i++)
-            {
-                String file = "Networks" + i + ".json";
-                NeuralNetwork f = FromFile(file);
-                w.networks[i] = f;
-            }
+            NetworkTrainer w = new NetworkTrainer(2, 11, 8, 4, 100);
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    String file = "Networks" + i + ".json";
+            //    NeuralNetwork f = FromFile(file);
+            //    w.networks[i] = f;
+            //}
             NeuralNetwork final = w.Train();
-            NeuralNetwork bestFromFIle = FromFile("Best.json");
+            //NeuralNetwork bestFromFIle = FromFile("Best.json");
             // testing
             final.Input = new double[2] { 0, 0 };
             final.Forward();

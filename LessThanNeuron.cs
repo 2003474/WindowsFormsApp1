@@ -7,16 +7,15 @@ namespace WindowsFormsApp1
     internal class LessThanNeuron : Neuron
     {
         public LessThanNeuron(int number)
-            : base(new double[] {0,0 },0,0,0,null)
+            : base(number)
         {
-            Intitialize(number);
+
             Type = "LT";
         }
 
         public LessThanNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
-            : base(new double[] { 0, 0 }, 0, 0, 0, null)
+            : base(neuron1, neuron2, MutationLvl, num_inputs)
         {
-            Intitialize(neuron1, neuron2, MutationLvl, num_inputs);
             Type = "LT";
         }
 

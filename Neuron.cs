@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
 
 
         }
-        public void Intitialize(int num_inputs)
+        public Neuron(int num_inputs)
         {
             Debug.Assert(num_inputs != 0);
             Weight = new double[num_inputs];
@@ -53,7 +53,7 @@ namespace WindowsFormsApp1
         }
 
 
-        public void Intitialize(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
+        public Neuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
         {
             int num = Globals.rnd.Next(1, 4);
             if (num == 1)
@@ -99,11 +99,14 @@ namespace WindowsFormsApp1
             }
 
             //mutation weights
-            if (Globals.rnd.Next(0, 100) < MutationLvl)
+            int rNum = Globals.rnd.Next(0, Weight.Length);
+            for (int i = 0; i < rNum; i++)
             {
-                Weight[Globals.rnd.Next(0, Weight.Length)] = Globals.rnd.NextDouble() * 4 - 2;
+                if (Globals.rnd.Next(0, 100) < MutationLvl)
+                {
+                    Weight[Globals.rnd.Next(0, Weight.Length)] = Globals.rnd.NextDouble() * 4 - 2;
+                }
             }
-
 
 
             num = Globals.rnd.Next(1, 4);

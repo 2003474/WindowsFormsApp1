@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; convergence == false || k < 10000; k++)
+            for (int k = 0; convergence == false || k < 1000; k++)
             {
                 if (k % 250 == 0)
                 {
@@ -56,18 +56,19 @@ namespace WindowsFormsApp1
                     {
                         convergence = true;
                     }
-                    double[] tempLoss = new double[16];
-                    for (int j = 16 * k; j < 16 * k + tempLoss.Length; j++)
+                    int batchSize = 8;
+                    double[] tempLoss = new double[batchSize];
+                    for (int j = batchSize * k; j < batchSize * k + tempLoss.Length; j++)
                     {
                         if (j > (trainingData.Length - 1))
                             Console.WriteLine(j + " is not a valid index in trainingData of size : " + trainingData.Length);
 
                         networks[i].Input = trainingData[j].input;
                         networks[i].Forward();
-                        tempLoss[j - 16 * k] = Loss(networks[i].Output, trainingData[j].output[0]);
+                        tempLoss[j - batchSize * k] = Loss(networks[i].Output, trainingData[j].output[0]);
                     }
                     loss[i] = tempLoss.Sum();
-                    Console.WriteLine(k + "Network #" + (i + 1) + ": loss: " + loss[i] / 16.0);
+                    Console.WriteLine(k + "Network #" + (i + 1) + ": loss: " + loss[i] / (double)batchSize);
                 }
                 // take the top 10% of networks
                 top10 = new NeuralNetwork[networks.Length / 10];
@@ -117,7 +118,7 @@ namespace WindowsFormsApp1
 
 
 
-                    tempNetworks[i] = new NeuralNetwork(father, mother, 3);
+                    tempNetworks[i] = new NeuralNetwork(father, mother, 5);
                 }
 
                 networks = tempNetworks;
@@ -126,7 +127,7 @@ namespace WindowsFormsApp1
 
 
 
-            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            string docPath = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Best.json")))
             {
@@ -137,11 +138,13 @@ namespace WindowsFormsApp1
 
         private void ToFile(int numNetwork)
         {
-            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            //C:\\Users\\nikbr\\projects\\WindowsFormsApp1
+            //C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1
+            string docPath = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks" + numNetwork + ".json")))
             {
-                outputFile.WriteLine(JsonConvert.SerializeObject(networks[0]));
+                outputFile.WriteLine(JsonConvert.SerializeObject(networks[numNetwork]));
             }
 
         }
