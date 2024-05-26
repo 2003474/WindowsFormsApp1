@@ -1,10 +1,6 @@
-﻿
-// essentially a collection of layers
+﻿// essentially a collection of layers
 // can construct a neural network with number inputs, or with 2 other neural networks and it produces a single neural network
 
-using System.Text.Json.Serialization;
-using Newtonsoft;
-using Newtonsoft.Json;
 namespace WindowsFormsApp1
 {
     internal class NeuralNetwork
@@ -34,9 +30,6 @@ namespace WindowsFormsApp1
             this.Repetition = repetition;
         }
 
-        //public NeuralNetwork(string s) {
-        //    this = JsonConvert.DeserializeObject<NeuralNetwork>(s);
-        //}
 
         public NeuralNetwork(int numInputs, int numOutputs, int numNeurons, int num_Layers)
         {

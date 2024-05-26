@@ -3,7 +3,6 @@
 using Accord.Math;
 using Newtonsoft.Json;
 using System;
-using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 
@@ -40,15 +39,15 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; convergence == false && k < 4; k++)
+            for (int k = 0; convergence == false && k < 100; k++)
             {
                 if (k % 250 == 0)
                 {
-                    for(int i = 0; i < 100; i++)
+                    for (int i = 0; i < 100; i++)
                     {
-                        this.ToFile(i);
+                        ToFile(i);
                     }
-                    
+
                 }
                 for (int i = 0; i < networks.Length; i++)
                 {
@@ -77,10 +76,6 @@ namespace WindowsFormsApp1
                 for (int i = 0; i < top10.Length; i++)
                 {
                     top10[i] = networks[loss.IndexOf(loss.Min())];
-                    //if (loss[loss.IndexOf(loss.Min())] > 0.000000000000000000000000000000001)
-                    //{
-                    //    convergence = false;
-                    //}
                     loss[loss.IndexOf(loss.Min())] = 100000000.00;
                 }
                 NeuralNetwork[] tempNetworks = new NeuralNetwork[networks.Length];

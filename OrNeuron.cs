@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
             Type = "O";
         }
 
-        public new void Forward(double[] inputs)
+        public override void Forward(double[] inputs)
         {
             Output = 0.0;
             //output = Matrix.Dot(weight, inputs) + bias;

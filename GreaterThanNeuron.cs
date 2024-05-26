@@ -21,7 +21,7 @@ namespace WindowsFormsApp1
         }
 
 
-        public new void Forward(double[] inputs)
+        public override void Forward(double[] inputs)
         {
             Output = Matrix.Dot(Weight, inputs) + Bias;
             if (Output < Threshold)
