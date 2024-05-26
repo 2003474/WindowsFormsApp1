@@ -1,4 +1,8 @@
-﻿using System;
+﻿// a class that has a bunch of output neurons and outputs an array of the neurons outputs
+// makes all of the outputs into a percentage
+
+
+using System;
 using System.Linq;
 
 namespace WindowsFormsApp1
@@ -6,16 +10,19 @@ namespace WindowsFormsApp1
     internal class OutputLayer : Layer
     {
 
+        [Newtonsoft.Json.JsonConstructor]
+        public OutputLayer(Neuron[] neurons, double[] output, int numNeurons)
+        {
+            this.neurons = neurons;
+            this.output = output;
+            this.numNeurons = numNeurons;
+        }
+
         public OutputLayer(int num_inputs, int num_neurons)
+            //:base(null, null, 0)
         {
 
             this.numNeurons = num_neurons;
-            int change = Globals.rnd.Next(-10, 10);
-            this.numNeurons += change;
-            if (numNeurons < 2)
-            {
-                numNeurons = 2;
-            }
             neurons = new OutputNeuron[num_neurons];
             for (int i = 0; i < num_neurons; i++)
             {
@@ -24,6 +31,7 @@ namespace WindowsFormsApp1
         }
 
         public OutputLayer(OutputLayer oLayer1, OutputLayer oLayer2, double mutationLvl, int num_inputs)
+            //: base(null, null, 0)
         {
             int l1NLength = oLayer1.neurons.Length;
             int l2NLength = oLayer2.neurons.Length;
@@ -77,14 +85,14 @@ namespace WindowsFormsApp1
                     neurons[i] = new OutputNeuron(n1, n2, mutationLvl, num_inputs);
                 }
 
-                if (neurons[i].weight.Length != num_inputs)
+                if (neurons[i].Weight.Length != num_inputs)
                 {
                     Neuron n = neurons[i];
-                    double[] oldWeights = n.weight;
-                    n.weight = new double[num_inputs];
+                    double[] oldWeights = n.Weight;
+                    n.Weight = new double[num_inputs];
                     for (int k = 0; k < num_inputs; k++)
                     {
-                        n.weight[k] = oldWeights[k % oldWeights.Length];
+                        n.Weight[k] = oldWeights[k % oldWeights.Length];
                     }
                 }
 
@@ -103,7 +111,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < neurons.Length; i++)
             {
                 neurons[i].Forward(inputs);
-                tempOutput[i] = neurons[i].output;
+                tempOutput[i] = neurons[i].Output;
             }
             double maxValue = tempOutput.Max();
             for (int i = 0; i < tempOutput.Length; i++)

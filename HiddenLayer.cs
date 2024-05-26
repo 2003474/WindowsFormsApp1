@@ -1,4 +1,8 @@
-﻿using System;
+﻿// a "calculation" layer of neurons
+// the output of a layer is an array of the neurons in the layer
+// constructor either takes inputs, or takes 2 layers and makes a singe layer
+
+using System;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -6,14 +10,23 @@ namespace WindowsFormsApp1
 {
     class HiddenLayer : Layer
     {
+        [Newtonsoft.Json.JsonConstructor]
+        public HiddenLayer(Neuron[] neurons, double[] output, int numNeurons)
+        {
+            this.neurons = neurons;
+            this.output = output;
+            this.numNeurons = numNeurons;
+        }
+
         public HiddenLayer(int num_inputs, int num_neurons)
+        //: base(null, null, 0)
         {
             // add -1, 0, or 1 layer
             int num;
             //Console.WriteLine(num);
             //num_neurons += num;
             this.numNeurons = num_neurons;
-            int change = Globals.rnd.Next(-4, 5);
+            int change = Globals.rnd.Next(-8, 9);
             this.numNeurons += change;
             if (numNeurons < 2)
             {
@@ -44,6 +57,7 @@ namespace WindowsFormsApp1
         }
 
         public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, double mutationLvl, int num_inputs)
+        //: base(null, null, 0)
         {
             // for every neuron
             int num_inputs_TEST = num_inputs;
@@ -115,19 +129,19 @@ namespace WindowsFormsApp1
                 }
 
                 //check to make sure the weights are right
-                if (nChild.weight.Length != num_inputs)
+                if (nChild.Weight.Length != num_inputs)
                 {
                     double[] newWeights = new double[num_inputs];
                     for (int k = 0; k < num_inputs; k++)
                     {
-                        newWeights[k] = nChild.weight[k % nChild.weight.Length];
+                        newWeights[k] = nChild.Weight[k % nChild.Weight.Length];
                     }
 
-                    nChild.weight = newWeights;
+                    nChild.Weight = newWeights;
                 }
 
                 neurons[i] = nChild;
-                Debug.Assert(neurons[i].weight.Length == num_inputs_TEST);
+                Debug.Assert(neurons[i].Weight.Length == num_inputs_TEST);
             }
         }
 
@@ -136,8 +150,8 @@ namespace WindowsFormsApp1
             double[] tempOutput = new double[numNeurons];
             for (int i = 0; i < numNeurons; i++)
             {
-                 neurons[i].Forward(inputs);
-                tempOutput[i] = neurons[i].output;
+                neurons[i].Forward(inputs);
+                tempOutput[i] = neurons[i].Output;
             }
             return tempOutput;
         }

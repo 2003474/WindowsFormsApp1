@@ -1,4 +1,5 @@
-﻿//using Newtonsoft.Json;
+﻿// controls the actual app,
+//has behavior for different button presses
 using RestSharp;
 using System;
 using System.Drawing;
@@ -128,6 +129,5 @@ namespace WindowsFormsApp1
 
 
         }
-
     }
 }

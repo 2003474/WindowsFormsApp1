@@ -96,6 +96,7 @@
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 5;
             this.progressBar1.Visible = false;
+            
             // 
             // progressBar2
             // 

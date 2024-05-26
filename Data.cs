@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApp1
+﻿// a simple class to sort traning data
+
+namespace WindowsFormsApp1
 {
     internal class Data
     {
