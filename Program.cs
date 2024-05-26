@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(2, 11, 8, 4, 100);
+            NetworkTrainer w = new NetworkTrainer(2, 2, 8, 4, 100);
             //for (int i = 0; i < 100; i++)
             //{
             //    String file = "Networks" + i + ".json";
@@ -131,7 +131,9 @@ namespace WindowsFormsApp1
 
         }
 
+#pragma warning disable IDE0051 // Remove unused private members
         static NeuralNetwork FromFile(string file)
+#pragma warning restore IDE0051 // Remove unused private members
         {
             string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             //Console.WriteLine(File.ReadAllText(Path.Combine(docPath, "Networks.json")));

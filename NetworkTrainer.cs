@@ -3,6 +3,7 @@
 using Accord.Math;
 using Newtonsoft.Json;
 using System;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 
@@ -39,7 +40,7 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; convergence == false || k < 1000; k++)
+            for (int k = 0; convergence == false && k < 4; k++)
             {
                 if (k % 250 == 0)
                 {
@@ -52,11 +53,12 @@ namespace WindowsFormsApp1
                 for (int i = 0; i < networks.Length; i++)
                 {
                     networks[i].Repetition++;
+
                     if (networks[i].Repetition >= 100)
                     {
                         convergence = true;
                     }
-                    int batchSize = 8;
+                    int batchSize = 4;
                     double[] tempLoss = new double[batchSize];
                     for (int j = batchSize * k; j < batchSize * k + tempLoss.Length; j++)
                     {
