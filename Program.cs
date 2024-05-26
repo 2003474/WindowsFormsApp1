@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(2, 2, 8, 4, 100);
+            NetworkTrainer w = new NetworkTrainer(2, 21, 16, 16, 100);
             //for (int i = 0; i < 100; i++)
             //{
             //    String file = "Networks" + i + ".json";
@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.Input = new double[2] { 1, 1 };
+            final.Input = new double[2] { 9, 9 };
             final.Forward();
 
             greatestIndex = 0;
@@ -51,7 +51,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.Input = new double[2] { 1, 2 };
+            final.Input = new double[2] { 6, 8 };
             final.Forward();
 
             greatestIndex = 0;
@@ -77,7 +77,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.Input = new double[2] { 2, 2 };
+            final.Input = new double[2] { 2, 7 };
             final.Forward();
 
             greatestIndex = 0;
@@ -90,7 +90,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.Input = new double[2] { 2, 3 };
+            final.Input = new double[2] { 9, 3 };
             final.Forward();
 
             greatestIndex = 0;
@@ -116,7 +116,21 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.Input = new double[2] { 5, 4 };
+            final.Input = new double[2] { 11, 3 };
+            final.Forward();
+
+            greatestIndex = 0;
+            for (int i = 0; i < final.Output.Length; i++)
+            {
+                if (final.Output[i] > final.Output[greatestIndex])
+                {
+                    greatestIndex = i;
+                }
+            }
+            Console.WriteLine(greatestIndex);
+
+
+            final.Input = new double[2] { 11, 15 };
             final.Forward();
 
             greatestIndex = 0;
@@ -130,6 +144,7 @@ namespace WindowsFormsApp1
             Console.WriteLine(greatestIndex);
 
         }
+
 
 #pragma warning disable IDE0051 // Remove unused private members
         static NeuralNetwork FromFile(string file)
