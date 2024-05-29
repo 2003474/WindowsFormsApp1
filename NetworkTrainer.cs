@@ -73,6 +73,12 @@ namespace WindowsFormsApp1
                 }
                 // take the top 10% of networks
                 top10 = new NeuralNetwork[networks.Length / 10];
+                double topNetworkLoss = loss.Min();
+                double worstNetworkLoss = loss.Max();
+                if((topNetworkLoss - worstNetworkLoss) / topNetworkLoss < 0.001)
+                {
+                    convergence = true;
+                }
                 for (int i = 0; i < top10.Length; i++)
                 {
                     top10[i] = networks[loss.IndexOf(loss.Min())];
