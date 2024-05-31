@@ -12,9 +12,10 @@ namespace WindowsFormsApp1
     internal class NetworkTrainer
     {
         public NeuralNetwork[] networks;
-        public Data[] trainingData;
+        //public Data[] trainingData;
         public NeuralNetwork[] top10;
         double[] loss;
+        public Image[] data;
 
         // creates a new network trainer
         // parameters: number of inputs the neural network recieves,
@@ -30,8 +31,17 @@ namespace WindowsFormsApp1
             {
                 networks[i] = new NeuralNetwork(numInputs, numOutputs, numNeurons, numLayers);
             }
-            DataGenerator dataGen = new DataGenerator();
-            trainingData = dataGen.Generate(10000000);
+            //DataGenerator dataGen = new DataGenerator();
+            //trainingData = dataGen.Generate(1000000);
+
+            data = new Image[60000];
+            int k = 0;
+            foreach (var image in MnistReader.ReadTrainingData())
+            {
+
+                data[k] = image;
+                k++;
+            }
         }
 
         public NeuralNetwork Train()
@@ -39,7 +49,7 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; convergence == false && k < 1000; k++)
+            for (int k = 0; convergence == false && k < 5000; k++)
             {
                 if (k % 250 == 0)
                 {
@@ -57,16 +67,24 @@ namespace WindowsFormsApp1
                     {
                         convergence = true;
                     }
-                    int batchSize = 16;
+                    int batchSize = 8;
                     double[] tempLoss = new double[batchSize];
                     for (int j = batchSize * k; j < batchSize * k + tempLoss.Length; j++)
                     {
-                        if (j > (trainingData.Length - 1))
-                            Console.WriteLine(j + " is not a valid index in trainingData of size : " + trainingData.Length);
+                        if (j > (data.Length - 1))
+                            Console.WriteLine(j + " is not a valid index in trainingData of size : " + data.Length);
 
-                        networks[i].Input = trainingData[j].input;
+                        networks[i].Input = new double[784];
+                        int b = 0;
+                        for (int m = 0; m < 28; m++)
+                        {
+                            for (int n = 0; n < 28; n++)
+                            {
+                                networks[i].Input[b] = (double)data[60000 % j].Data[m, n];
+                            }
+                        }
                         networks[i].Forward();
-                        tempLoss[j - batchSize * k] = Loss(networks[i].Output, trainingData[j].output[0]);
+                        tempLoss[j - batchSize * k] = Loss(networks[i].Output, data[60000 % j].Label);
                     }
                     loss[i] = tempLoss.Sum();
                     Console.WriteLine(k + "Network #" + (i + 1) + ": loss: " + loss[i] / (double)batchSize);
@@ -75,7 +93,7 @@ namespace WindowsFormsApp1
                 top10 = new NeuralNetwork[networks.Length / 10];
                 double topNetworkLoss = loss.Min();
                 double worstNetworkLoss = loss.Max();
-                if((topNetworkLoss - worstNetworkLoss) / topNetworkLoss < 0.001)
+                if ((worstNetworkLoss - topNetworkLoss) / topNetworkLoss < 0.001)
                 {
                     convergence = true;
                 }
@@ -130,7 +148,7 @@ namespace WindowsFormsApp1
 
 
 
-            string docPath = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
+            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Best.json")))
             {
@@ -143,7 +161,7 @@ namespace WindowsFormsApp1
         {
             //C:\\Users\\nikbr\\projects\\WindowsFormsApp1
             //C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1
-            string docPath = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
+            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks" + numNetwork + ".json")))
             {

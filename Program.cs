@@ -15,134 +15,58 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(2, 21, 16, 16, 100);
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    String file = "Networks" + i + ".json";
-            //    NeuralNetwork f = FromFile(file);
-            //    w.networks[i] = f;
-            //}
+            NetworkTrainer w = new NetworkTrainer(784, 10, 16, 16, 100);
+            for (int i = 0; i < 100; i++)
+            {
+                String file = "Networks" + i + ".json";
+                NeuralNetwork f = FromFile(file);
+                w.networks[i] = f;
+            }
             NeuralNetwork final = w.Train();
             //NeuralNetwork bestFromFIle = FromFile("Best.json");
             // testing
-            final.Input = new double[2] { 0, 0 };
-            final.Forward();
-
-            int greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
+            // get data
+            Image[] testingdata = new Image[5];
+            int k = 0;
+            foreach (var image in MnistReader.ReadTestData())
             {
-                if (final.Output[i] > final.Output[greatestIndex])
+                while (k < 5)
                 {
-                    greatestIndex = i;
+                    testingdata[k] = image;
+                    k++;
                 }
+
             }
-            Console.WriteLine(greatestIndex);
+            int greatestIndex;
 
-            final.Input = new double[2] { 9, 9 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
+            for (int g = 0; g < 5; g++)
             {
-                if (final.Output[i] > final.Output[greatestIndex])
+                // expected
+                Console.WriteLine("expected: " + testingdata[g].Label.ToString());
+                // input
+                final.Input = new double[784];
+                int b = 0;
+                for (int m = 0; m < 28; m++)
                 {
-                    greatestIndex = i;
+                    for (int n = 0; n < 28; n++)
+                    {
+                        final.Input[b] = (double)testingdata[g].Data[m, n];
+                    }
                 }
-            }
-            Console.WriteLine(greatestIndex);
 
-            final.Input = new double[2] { 6, 8 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
+                // output
+                final.Forward();
+                greatestIndex = 0;
+                for (int i = 0; i < final.Output.Length; i++)
                 {
-                    greatestIndex = i;
+                    if (final.Output[i] > final.Output[greatestIndex])
+                    {
+                        greatestIndex = i;
+                    }
                 }
+                // actual
+                Console.WriteLine("actual: " + greatestIndex);
             }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 1, 3 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 2, 7 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 9, 3 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 3, 3 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 11, 3 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-
-            final.Input = new double[2] { 11, 15 };
-            final.Forward();
-
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
         }
 
 
