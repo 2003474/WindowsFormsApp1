@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Extra helper methods to help the MnistReader class
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

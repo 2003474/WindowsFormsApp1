@@ -1,6 +1,5 @@
 ﻿// a "calculation" layer of neurons
 // the output of a layer is an array of the neurons in the layer
-// constructor either takes inputs, or takes 2 layers and makes a singe layer
 
 using System;
 using System.Diagnostics;
@@ -10,6 +9,8 @@ namespace WindowsFormsApp1
 {
     class HiddenLayer : Layer
     {
+        // constructor
+        // parameters: an array of Neurons, an array of outpus, the number of neurons
         [Newtonsoft.Json.JsonConstructor]
         public HiddenLayer(Neuron[] neurons, double[] output, int numNeurons)
         {
@@ -18,6 +19,8 @@ namespace WindowsFormsApp1
             this.numNeurons = numNeurons;
         }
 
+        // constructor
+        // 
         public HiddenLayer(int num_inputs, int num_neurons)
         //: base(null, null, 0)
         {

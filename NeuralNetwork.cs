@@ -1,5 +1,5 @@
-﻿// essentially a collection of layers
-// can construct a neural network with number inputs, or with 2 other neural networks and it produces a single neural network
+﻿// a collection of layers with extra characteristis such as Breedability, Mutibility, and repetition
+
 
 namespace WindowsFormsApp1
 {

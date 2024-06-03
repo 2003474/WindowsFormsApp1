@@ -1,4 +1,5 @@
-﻿using System;
+﻿// takes mnist files and turns them into images
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

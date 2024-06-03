@@ -59,7 +59,7 @@ namespace WindowsFormsApp1
             }
             numNeurons = neurons.Length;
             // for every neuron
-            neurons = new OutputNeuron[oLayer1.neurons.Length];
+            neurons = new Neuron[oLayer1.neurons.Length];
             int num;
             for (int i = 0; i < neurons.Length; i++)
             {

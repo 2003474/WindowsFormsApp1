@@ -6,6 +6,8 @@ namespace WindowsFormsApp1
 {
     internal class GreaterThanNeuron : Neuron
     {
+        // constructor
+        // parameters: number of inputs
         public GreaterThanNeuron(int number)
             : base(number)
         {
@@ -13,6 +15,8 @@ namespace WindowsFormsApp1
             Type = "GT";
         }
 
+        // constructor
+        // parameters: 2 Neurons, Desired Level of Mutation, Number of Input Neurons
         public GreaterThanNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
             : base(neuron1, neuron2, MutationLvl, num_inputs)
         {
@@ -20,7 +24,8 @@ namespace WindowsFormsApp1
             Type = "GT";
         }
 
-
+        // calculates the output of the neuron
+        // parameter: array of input values
         public override void Forward(double[] inputs)
         {
             Output = Matrix.Dot(Weight, inputs) + Bias;

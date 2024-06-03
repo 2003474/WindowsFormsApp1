@@ -1,4 +1,5 @@
-﻿using System;
+﻿// a class to define what an image is
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

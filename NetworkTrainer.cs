@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; convergence == false && k < 5000; k++)
+            for (int k = 5000; convergence == false && k < 50000; k++)
             {
                 if (k % 250 == 0)
                 {
@@ -80,11 +80,11 @@ namespace WindowsFormsApp1
                         {
                             for (int n = 0; n < 28; n++)
                             {
-                                networks[i].Input[b] = (double)data[60000 % j].Data[m, n];
+                                networks[i].Input[b] = (double)data[j % 60000].Data[m, n];
                             }
                         }
                         networks[i].Forward();
-                        tempLoss[j - batchSize * k] = Loss(networks[i].Output, data[60000 % j].Label);
+                        tempLoss[j - batchSize * k] = Loss(networks[i].Output, data[j % 60000].Label);
                     }
                     loss[i] = tempLoss.Sum();
                     Console.WriteLine(k + "Network #" + (i + 1) + ": loss: " + loss[i] / (double)batchSize);
