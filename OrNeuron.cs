@@ -4,6 +4,9 @@ namespace WindowsFormsApp1
 {
     internal class OrNeuron : Neuron
     {
+
+        // constructor
+        // parameters: number of inputs
         public OrNeuron(int number)
             : base(number)
         {
@@ -11,6 +14,8 @@ namespace WindowsFormsApp1
             Type = "O";
         }
 
+        // constructor
+        // parameters: 2 Neurons, Desired Level of Mutation, Number of Input Neurons
         public OrNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
             : base(neuron1, neuron2, MutationLvl, num_inputs)
         {
@@ -18,6 +23,8 @@ namespace WindowsFormsApp1
             Type = "O";
         }
 
+        // calculates the output of the neuron
+        // parameter: array of input values
         public override void Forward(double[] inputs)
         {
             Output = 0.0;

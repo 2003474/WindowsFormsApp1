@@ -20,7 +20,7 @@ namespace WindowsFormsApp1
         }
 
         // constructor
-        // 
+        // parameters: number of Inputs (number of neurons in the previous layer), Number of Neurons in the current layer
         public HiddenLayer(int num_inputs, int num_neurons)
         //: base(null, null, 0)
         {
@@ -59,6 +59,8 @@ namespace WindowsFormsApp1
             }
         }
 
+        // constructor
+        // parameters: 2 Neuron Layers, Desired Level of Mutation, Number of inputs from previous Layer
         public HiddenLayer(HiddenLayer layer1, HiddenLayer layer2, double mutationLvl, int num_inputs)
         //: base(null, null, 0)
         {
@@ -148,6 +150,8 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Puts all of the outputs from the Neurons into an array
+        // parameters: array of numbers as input (outpus from the previous array)
         public override double[] SingleOutput(double[] inputs)
         {
             double[] tempOutput = new double[numNeurons];

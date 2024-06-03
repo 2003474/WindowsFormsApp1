@@ -6,6 +6,9 @@ namespace WindowsFormsApp1
 {
     internal class LessThanNeuron : Neuron
     {
+
+        // constructor
+        // parameters: number of inputs
         public LessThanNeuron(int number)
             : base(number)
         {
@@ -13,13 +16,16 @@ namespace WindowsFormsApp1
             Type = "LT";
         }
 
+        // constructor
+        // parameters: 2 Neurons, Desired Level of Mutation, Number of Input Neurons
         public LessThanNeuron(Neuron neuron1, Neuron neuron2, double MutationLvl, int num_inputs)
             : base(neuron1, neuron2, MutationLvl, num_inputs)
         {
             Type = "LT";
         }
 
-
+        // calculates the output of the neuron
+        // parameter: array of input values
         public override void Forward(double[] inputs)
         {
 

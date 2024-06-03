@@ -44,6 +44,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        // trains the generated array of networks
         public NeuralNetwork Train()
         {
             NeuralNetwork best1 = null;
@@ -71,8 +72,6 @@ namespace WindowsFormsApp1
                     double[] tempLoss = new double[batchSize];
                     for (int j = batchSize * k; j < batchSize * k + tempLoss.Length; j++)
                     {
-                        if (j > (data.Length - 1))
-                            Console.WriteLine(j + " is not a valid index in trainingData of size : " + data.Length);
 
                         networks[i].Input = new double[784];
                         int b = 0;
@@ -157,6 +156,8 @@ namespace WindowsFormsApp1
             return best1;
         }
 
+        // writes a neural network to a file
+        // parameters: the index of a network
         private void ToFile(int numNetwork)
         {
             //C:\\Users\\nikbr\\projects\\WindowsFormsApp1
@@ -170,6 +171,8 @@ namespace WindowsFormsApp1
 
         }
 
+        // calculates the loss value
+        // parameters: actual output values, desired output value
         public double Loss(double[] output, double expOutput)
         {
             return -(Math.Log10(output[(int)expOutput]));

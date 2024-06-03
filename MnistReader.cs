@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
         private const string TestImages = "MNIST/t10k-images.idx3-ubyte";
         private const string TestLabels = "MNIST/t10k-labels.idx1-ubyte";
 
+        // reads image data from training data file
         public static IEnumerable<Image> ReadTrainingData()
         {
             foreach (var item in Read(TrainImages, TrainLabels))
@@ -23,6 +24,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        // reads image data from test data file
         public static IEnumerable<Image> ReadTestData()
         {
             foreach (var item in Read(TestImages, TestLabels))
@@ -31,6 +33,8 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Reads data from an input file and turns it into an iterator of images
+        // parameters: files to read
         private static IEnumerable<Image> Read(string imagesPath, string labelsPath)
         {
             BinaryReader labels = new BinaryReader(new FileStream(labelsPath, FileMode.Open));
