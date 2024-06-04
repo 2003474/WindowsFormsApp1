@@ -10,6 +10,7 @@ namespace WindowsFormsApp1
     internal class OutputLayer : Layer
     {
 
+        //
         [Newtonsoft.Json.JsonConstructor]
         public OutputLayer(Neuron[] neurons, double[] output, int numNeurons)
         {

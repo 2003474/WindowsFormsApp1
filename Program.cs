@@ -16,41 +16,45 @@ namespace WindowsFormsApp1
         {
             // starts the training proccess
             NetworkTrainer w = new NetworkTrainer(784, 10, 16, 16, 100);
-            for (int i = 0; i < 100; i++)
-            {
-                String file = "Networks" + i + ".json";
-                NeuralNetwork f = FromFile(file);
-                w.networks[i] = f;
-            }
-            NeuralNetwork final = w.Train();
-            //NeuralNetwork bestFromFIle = FromFile("Best.json");
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    String file = "Networks" + i + ".json";
+            //    NeuralNetwork f = FromFile(file);
+            //    w.networks[i] = f;
+            //}
+            NeuralNetwork final;
+            final = w.Train();
+            final = FromFile("Best.json");
             // testing
             // get data
-            Image[] testingdata = new Image[5];
+            Image[] testingdata = new Image[10000];
             int k = 0;
             foreach (var image in MnistReader.ReadTestData())
             {
-                while (k < 5)
-                {
                     testingdata[k] = image;
                     k++;
+                if (k == 10000)
+                {
+                    break;
                 }
-
             }
             int greatestIndex;
 
-            for (int g = 0; g < 5; g++)
+            for (int g = 0; g < 10000; g++)
             {
                 // expected
                 Console.WriteLine("expected: " + testingdata[g].Label.ToString());
                 // input
                 final.Input = new double[784];
+
+
                 int b = 0;
                 for (int m = 0; m < 28; m++)
                 {
                     for (int n = 0; n < 28; n++)
                     {
                         final.Input[b] = (double)testingdata[g].Data[m, n];
+                        b++;
                     }
                 }
 
@@ -70,9 +74,9 @@ namespace WindowsFormsApp1
         }
 
 
-#pragma warning disable IDE0051 // Remove unused private members
+
         static NeuralNetwork FromFile(string file)
-#pragma warning restore IDE0051 // Remove unused private members
+
         {
             string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
             //Console.WriteLine(File.ReadAllText(Path.Combine(docPath, "Networks.json")));

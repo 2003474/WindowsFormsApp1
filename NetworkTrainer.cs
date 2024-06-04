@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 
 namespace WindowsFormsApp1
@@ -50,7 +51,7 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 5000; convergence == false && k < 50000; k++)
+            for (int k = 0; convergence == false && k < 50000; k++)
             {
                 if (k % 250 == 0)
                 {
@@ -72,16 +73,25 @@ namespace WindowsFormsApp1
                     double[] tempLoss = new double[batchSize];
                     for (int j = batchSize * k; j < batchSize * k + tempLoss.Length; j++)
                     {
+                        double[] flatData = new double[784];
 
-                        networks[i].Input = new double[784];
+                        // go through each value in 
+
+
                         int b = 0;
                         for (int m = 0; m < 28; m++)
                         {
                             for (int n = 0; n < 28; n++)
                             {
-                                networks[i].Input[b] = (double)data[j % 60000].Data[m, n];
+                                flatData[b] = data[j % 60000].Data[m, n];
+                                b++;
                             }
                         }
+
+
+
+
+                        networks[i].Input = flatData;
                         networks[i].Forward();
                         tempLoss[j - batchSize * k] = Loss(networks[i].Output, data[j % 60000].Label);
                     }
