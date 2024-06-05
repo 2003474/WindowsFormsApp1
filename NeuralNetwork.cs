@@ -50,9 +50,9 @@ namespace WindowsFormsApp1
             DLayers[0] = new HiddenLayer(numInputs, numNeurons);
             for (int i = 1; i < NumLayers; i++)
             {
-                DLayers[i] = new HiddenLayer(DLayers[i - 1].numNeurons, numNeurons);
+                DLayers[i] = new HiddenLayer(DLayers[i - 1].NumNeurons, numNeurons);
             }
-            OLayer = new OutputLayer(DLayers[NumLayers - 1].numNeurons, numOutputs);
+            OLayer = new OutputLayer(DLayers[NumLayers - 1].NumNeurons, numOutputs);
             Breedibility = Globals.rnd.NextDouble();
             Mutibility = Globals.rnd.NextDouble() * 10;
         }
@@ -109,10 +109,10 @@ namespace WindowsFormsApp1
             for (int i = 1; i < DLayers.Length; i++)
             {
                 //issue
-                DLayers[i] = new HiddenLayer(network1.DLayers[i % n1DLength], network2.DLayers[i % n2DLength], mutation, DLayers[i - 1].numNeurons);
+                DLayers[i] = new HiddenLayer(network1.DLayers[i % n1DLength], network2.DLayers[i % n2DLength], mutation, DLayers[i - 1].NumNeurons);
 
             }
-            OLayer = new OutputLayer(network1.OLayer, network2.OLayer, mutation, DLayers[DLayers.Length - 1].numNeurons);
+            OLayer = new OutputLayer(network1.OLayer, network2.OLayer, mutation, DLayers[DLayers.Length - 1].NumNeurons);
             num = Globals.rnd.Next(1, 4);
             if (num == 1)
             {
@@ -136,10 +136,10 @@ namespace WindowsFormsApp1
             DLayers[0].Forward(Input);
             for (int i = 1; i < DLayers.Length; i++)
             {
-                DLayers[i].Forward(DLayers[i - 1].output);
+                DLayers[i].Forward(DLayers[i - 1].Output);
             }
-            OLayer.Forward(DLayers[DLayers.Length - 1].output);
-            Output = OLayer.output;
+            OLayer.Forward(DLayers[DLayers.Length - 1].Output);
+            Output = OLayer.Output;
         }
     }
 }

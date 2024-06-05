@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 
 
 namespace WindowsFormsApp1
@@ -70,6 +69,10 @@ namespace WindowsFormsApp1
                         convergence = true;
                     }
                     int batchSize = 8;
+                    if (k == 500)
+                    {
+                        batchSize = 16;
+                    }
                     double[] tempLoss = new double[batchSize];
                     for (int j = batchSize * k; j < batchSize * k + tempLoss.Length; j++)
                     {
@@ -87,8 +90,6 @@ namespace WindowsFormsApp1
                                 b++;
                             }
                         }
-
-
 
 
                         networks[i].Input = flatData;
@@ -153,6 +154,14 @@ namespace WindowsFormsApp1
 
                 networks = tempNetworks;
                 best1 = top10[0];
+
+                string path = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+                // Write the string array to a new file named "WriteLines.txt".
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "Best.json")))
+                {
+                    outputFile.WriteLine(JsonConvert.SerializeObject(best1));
+                }
+
             }
 
 

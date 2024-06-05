@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(784, 10, 16, 16, 100);
+            NetworkTrainer w = new NetworkTrainer(784, 10, 128, 256, 100);
             //for (int i = 0; i < 100; i++)
             //{
             //    String file = "Networks" + i + ".json";
@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             //    w.networks[i] = f;
             //}
             NeuralNetwork final;
-            final = w.Train();
+            //final = w.Train();
             final = FromFile("Best.json");
             // testing
             // get data
@@ -31,8 +31,8 @@ namespace WindowsFormsApp1
             int k = 0;
             foreach (var image in MnistReader.ReadTestData())
             {
-                    testingdata[k] = image;
-                    k++;
+                testingdata[k] = image;
+                k++;
                 if (k == 10000)
                 {
                     break;
@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
             }
             int greatestIndex;
 
-            for (int g = 0; g < 10000; g++)
+            for (int g = 1; g < 10; g++)
             {
                 // expected
                 Console.WriteLine("expected: " + testingdata[g].Label.ToString());
@@ -84,14 +84,14 @@ namespace WindowsFormsApp1
             var f = JsonConvert.DeserializeObject<NeuralNetwork>(s);
             for (int i = 0; i < f.DLayers.Length; i++)
             {
-                for (int k = 0; k < f.DLayers[i].neurons.Length; k++)
+                for (int k = 0; k < f.DLayers[i].Neurons.Length; k++)
                 {
-                    string type = f.DLayers[i].neurons[k].Type;
-                    Neuron cur = (Neuron)f.DLayers[i].neurons[k].Clone();
+                    string type = f.DLayers[i].Neurons[k].Type;
+                    Neuron cur = (Neuron)f.DLayers[i].Neurons[k].Clone();
                     switch (type)
                     {
                         case "O":
-                            f.DLayers[i].neurons[k] = new OrNeuron(cur.Weight.Length)
+                            f.DLayers[i].Neurons[k] = new OrNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -99,7 +99,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "A":
-                            f.DLayers[i].neurons[k] = new AndNeuron(cur.Weight.Length)
+                            f.DLayers[i].Neurons[k] = new AndNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -107,7 +107,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "GT":
-                            f.DLayers[i].neurons[k] = new GreaterThanNeuron(cur.Weight.Length)
+                            f.DLayers[i].Neurons[k] = new GreaterThanNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "LT":
-                            f.DLayers[i].neurons[k] = new LessThanNeuron(cur.Weight.Length)
+                            f.DLayers[i].Neurons[k] = new LessThanNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,
@@ -123,7 +123,7 @@ namespace WindowsFormsApp1
                             };
                             break;
                         case "OT":
-                            f.DLayers[i].neurons[k] = new OutputNeuron(cur.Weight.Length)
+                            f.DLayers[i].Neurons[k] = new OutputNeuron(cur.Weight.Length)
                             {
                                 Weight = cur.Weight,
                                 Bias = cur.Bias,

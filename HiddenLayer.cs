@@ -14,9 +14,9 @@ namespace WindowsFormsApp1
         [Newtonsoft.Json.JsonConstructor]
         public HiddenLayer(Neuron[] neurons, double[] output, int numNeurons)
         {
-            this.neurons = neurons;
-            this.output = output;
-            this.numNeurons = numNeurons;
+            this.Neurons = neurons;
+            this.Output = output;
+            this.NumNeurons = numNeurons;
         }
 
         // constructor
@@ -28,32 +28,32 @@ namespace WindowsFormsApp1
             int num;
             //Console.WriteLine(num);
             //num_neurons += num;
-            this.numNeurons = num_neurons;
+            this.NumNeurons = num_neurons;
             int change = Globals.rnd.Next(-8, 9);
-            this.numNeurons += change;
-            if (numNeurons < 2)
+            this.NumNeurons += change;
+            if (NumNeurons < 2)
             {
-                numNeurons = 2;
+                NumNeurons = 2;
             }
-            this.neurons = new Neuron[numNeurons];
-            for (int i = 0; i < numNeurons; i++)
+            this.Neurons = new Neuron[NumNeurons];
+            for (int i = 0; i < NumNeurons; i++)
             {
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    this.neurons[i] = new AndNeuron(num_inputs);
+                    this.Neurons[i] = new AndNeuron(num_inputs);
                 }
                 else if (num == 2)
                 {
-                    this.neurons[i] = new OrNeuron(num_inputs);
+                    this.Neurons[i] = new OrNeuron(num_inputs);
                 }
                 else if (num == 3)
                 {
-                    this.neurons[i] = new GreaterThanNeuron(num_inputs);
+                    this.Neurons[i] = new GreaterThanNeuron(num_inputs);
                 }
                 else
                 {
-                    this.neurons[i] = new LessThanNeuron(num_inputs);
+                    this.Neurons[i] = new LessThanNeuron(num_inputs);
                 }
 
             }
@@ -66,8 +66,8 @@ namespace WindowsFormsApp1
         {
             // for every neuron
             int num_inputs_TEST = num_inputs;
-            int l1NLength = layer1.neurons.Length;
-            int l2NLength = layer2.neurons.Length;
+            int l1NLength = layer1.Neurons.Length;
+            int l2NLength = layer2.Neurons.Length;
 
             // makes a new layer array with length from parents or average
             if (l1NLength != l2NLength)
@@ -75,32 +75,32 @@ namespace WindowsFormsApp1
                 int numb = Globals.rnd.Next(1, 4);
                 if (numb == 1)
                 {
-                    neurons = new Neuron[l1NLength];
+                    Neurons = new Neuron[l1NLength];
                 }
                 else if (numb == 2)
                 {
-                    neurons = new Neuron[l2NLength];
+                    Neurons = new Neuron[l2NLength];
                 }
                 else
                 {
-                    neurons = new Neuron[(l1NLength + l2NLength) / 2];
+                    Neurons = new Neuron[(l1NLength + l2NLength) / 2];
                 }
             }
             else
             {
-                neurons = new Neuron[l1NLength];
+                Neurons = new Neuron[l1NLength];
             }
-            numNeurons = neurons.Length;
+            NumNeurons = Neurons.Length;
             int num;
-            for (int i = 0; i < neurons.Length; i++)
+            for (int i = 0; i < Neurons.Length; i++)
             {
 
                 Neuron n1;
                 Neuron n2;
                 Neuron nChild;
 
-                n1 = layer1.neurons[i % l1NLength];
-                n2 = layer2.neurons[i % l2NLength];
+                n1 = layer1.Neurons[i % l1NLength];
+                n2 = layer2.Neurons[i % l2NLength];
 
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
@@ -145,8 +145,8 @@ namespace WindowsFormsApp1
                     nChild.Weight = newWeights;
                 }
 
-                neurons[i] = nChild;
-                Debug.Assert(neurons[i].Weight.Length == num_inputs_TEST);
+                Neurons[i] = nChild;
+                Debug.Assert(Neurons[i].Weight.Length == num_inputs_TEST);
             }
         }
 
@@ -154,11 +154,11 @@ namespace WindowsFormsApp1
         // parameters: array of numbers as input (outpus from the previous array)
         public override double[] SingleOutput(double[] inputs)
         {
-            double[] tempOutput = new double[numNeurons];
-            for (int i = 0; i < numNeurons; i++)
+            double[] tempOutput = new double[NumNeurons];
+            for (int i = 0; i < NumNeurons; i++)
             {
-                neurons[i].Forward(inputs);
-                tempOutput[i] = neurons[i].Output;
+                Neurons[i].Forward(inputs);
+                tempOutput[i] = Neurons[i].Output;
             }
             return tempOutput;
         }

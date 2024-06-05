@@ -14,28 +14,28 @@ namespace WindowsFormsApp1
         [Newtonsoft.Json.JsonConstructor]
         public OutputLayer(Neuron[] neurons, double[] output, int numNeurons)
         {
-            this.neurons = neurons;
-            this.output = output;
-            this.numNeurons = numNeurons;
+            this.Neurons = neurons;
+            this.Output = output;
+            this.NumNeurons = numNeurons;
         }
 
         public OutputLayer(int num_inputs, int num_neurons)
             //:base(null, null, 0)
         {
 
-            this.numNeurons = num_neurons;
-            neurons = new OutputNeuron[num_neurons];
+            this.NumNeurons = num_neurons;
+            Neurons = new OutputNeuron[num_neurons];
             for (int i = 0; i < num_neurons; i++)
             {
-                neurons[i] = new OutputNeuron(num_inputs);
+                Neurons[i] = new OutputNeuron(num_inputs);
             }
         }
 
         public OutputLayer(OutputLayer oLayer1, OutputLayer oLayer2, double mutationLvl, int num_inputs)
             //: base(null, null, 0)
         {
-            int l1NLength = oLayer1.neurons.Length;
-            int l2NLength = oLayer2.neurons.Length;
+            int l1NLength = oLayer1.Neurons.Length;
+            int l2NLength = oLayer2.Neurons.Length;
 
             // makes a new layer array with length from parents or average
             if (l1NLength != l2NLength)
@@ -43,52 +43,52 @@ namespace WindowsFormsApp1
                 int numb = Globals.rnd.Next(1, 4);
                 if (numb == 1)
                 {
-                    neurons = new Neuron[l1NLength];
+                    Neurons = new Neuron[l1NLength];
                 }
                 else if (numb == 2)
                 {
-                    neurons = new Neuron[l2NLength];
+                    Neurons = new Neuron[l2NLength];
                 }
                 else
                 {
-                    neurons = new Neuron[(l1NLength + l2NLength) / 2];
+                    Neurons = new Neuron[(l1NLength + l2NLength) / 2];
                 }
             }
             else
             {
-                neurons = new Neuron[l1NLength];
+                Neurons = new Neuron[l1NLength];
             }
-            numNeurons = neurons.Length;
+            NumNeurons = Neurons.Length;
             // for every neuron
-            neurons = new Neuron[oLayer1.neurons.Length];
+            Neurons = new Neuron[oLayer1.Neurons.Length];
             int num;
-            for (int i = 0; i < neurons.Length; i++)
+            for (int i = 0; i < Neurons.Length; i++)
             {
                 Neuron n1;
                 Neuron n2;
 
-                n1 = oLayer1.neurons[i % l1NLength];
-                n2 = oLayer2.neurons[i % l2NLength];
+                n1 = oLayer1.Neurons[i % l1NLength];
+                n2 = oLayer2.Neurons[i % l2NLength];
 
 
 
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    neurons[i] = (Neuron)n1.Clone();
+                    Neurons[i] = (Neuron)n1.Clone();
                 }
                 else if (num == 2)
                 {
-                    neurons[i] = (Neuron)n2.Clone();
+                    Neurons[i] = (Neuron)n2.Clone();
                 }
                 else
                 {
-                    neurons[i] = new OutputNeuron(n1, n2, mutationLvl, num_inputs);
+                    Neurons[i] = new OutputNeuron(n1, n2, mutationLvl, num_inputs);
                 }
 
-                if (neurons[i].Weight.Length != num_inputs)
+                if (Neurons[i].Weight.Length != num_inputs)
                 {
-                    Neuron n = neurons[i];
+                    Neuron n = Neurons[i];
                     double[] oldWeights = n.Weight;
                     n.Weight = new double[num_inputs];
                     for (int k = 0; k < num_inputs; k++)
@@ -108,11 +108,11 @@ namespace WindowsFormsApp1
         public override double[] SingleOutput(double[] inputs)
         {
 
-            double[] tempOutput = new double[neurons.Length];
-            for (int i = 0; i < neurons.Length; i++)
+            double[] tempOutput = new double[Neurons.Length];
+            for (int i = 0; i < Neurons.Length; i++)
             {
-                neurons[i].Forward(inputs);
-                tempOutput[i] = neurons[i].Output;
+                Neurons[i].Forward(inputs);
+                tempOutput[i] = Neurons[i].Output;
             }
             double maxValue = tempOutput.Max();
             for (int i = 0; i < tempOutput.Length; i++)
