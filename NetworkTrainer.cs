@@ -34,9 +34,7 @@ namespace WindowsFormsApp1
                     double[] tempLoss = new double[16];
                     for (int j = 16 * k; j < 16 * k + tempLoss.Length; j++)
                     {
-                        if (j > (trainingData.Length - 1))
-                            Console.WriteLine(j + " is not a valid index in trainingData of size : " + trainingData.Length);
-
+                        
                         networks[i].input = trainingData[j].input;
                         networks[i].Forward();
                         tempLoss[j - 16 * k] = Loss(networks[i].output, trainingData[j].output[0]);
