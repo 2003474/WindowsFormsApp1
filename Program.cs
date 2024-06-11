@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
 
 namespace WindowsFormsApp1
 {
@@ -13,7 +15,17 @@ namespace WindowsFormsApp1
             NetworkTrainer w = new NetworkTrainer(2, 10, 16, 16, 100);
             NeuralNetwork final = w.Train();
 
-            final.input = new double[2] { 0,0 };
+
+            string path = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "Working.json")))
+            {
+                outputFile.WriteLine(JsonConvert.SerializeObject(final));
+            }
+
+
+
+            final.input = new double[2] { 0, 0 };
             final.Forward();
             // should return 0 and 1 or extremely close
             int greatestIndex = 0;
@@ -26,7 +38,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] {3,2};
+            final.input = new double[2] { 3, 2 };
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
@@ -39,7 +51,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 1,1 };
+            final.input = new double[2] { 1, 1 };
             final.Forward();
             // should return 0 and 1 or extremely close
             greatestIndex = 0;
@@ -52,7 +64,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] {2,2 };
+            final.input = new double[2] { 2, 2 };
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
@@ -65,7 +77,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 3,3};
+            final.input = new double[2] { 3, 3 };
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
