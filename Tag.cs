@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// a tag has confidence and name
+// used for serializing JSON
 
 namespace WindowsFormsApp1
 {

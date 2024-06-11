@@ -1,12 +1,9 @@
-﻿using System;
-using System.Diagnostics.Tracing;
-using System.Drawing;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Windows.Forms;
-//using Newtonsoft.Json;
+﻿// describes behavior of buttons
+
 using RestSharp;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
@@ -24,7 +21,7 @@ namespace WindowsFormsApp1
 
         private void File_Click(object sender, EventArgs e)
         {
-            
+            // opens file explorer allowing user to choose a file
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "select file",
@@ -46,17 +43,15 @@ namespace WindowsFormsApp1
             progressBar4.Value = 0;
             progressBar5.Value = 0;
 
+            // sets up the server
             string apiKey = "acc_9c5c51261ab01d5";
             string apiSecret = "b680d8eedfbe4612f74f93e42c02b25f";
             string image = filePath.Text;
-            string basicAuthValue = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
- 
-
-
-
+            string basicAuthValue = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret)));
             var client = new RestClient("https://api.imagga.com");
 
-            // POST request
+
+            // gets an image id
             var request = new RestRequest("v2/uploads", Method.Post)
             {
                 AlwaysMultipartFormData = true
@@ -65,8 +60,7 @@ namespace WindowsFormsApp1
             request.AddFile("image", image);
 
             RestResponse response = await client.ExecuteAsync(request);
-            //dynamic postResponse = JsonSerializer.Deserialize<dynamic>(response.Content);
-            //string uploadID = postResponse.result.upload_id;
+
             dynamic x = Newtonsoft.Json.JsonConvert.DeserializeObject(response.Content);
             var result = x.result;
             string upload_id = result.upload_id;
@@ -74,7 +68,7 @@ namespace WindowsFormsApp1
 
 
 
-            //GET request
+            // gets the describing words 
             request = new RestRequest("v2/tags", Method.Get);
             request.AddParameter("image_upload_id", upload_id);
             request.AddHeader("Authorization", String.Format("Basic {0}", basicAuthValue));
@@ -85,7 +79,7 @@ namespace WindowsFormsApp1
             var tagsPlaceholder = result.tags;
             Tag[] tags = new Tag[10];
 
-           
+
             for (int i = 0; i < tags.Length; i++)
             {
                 Console.Out.WriteLine();
@@ -96,6 +90,7 @@ namespace WindowsFormsApp1
                 };
             }
 
+            // prints everything to screen
             textBox1.Visible = true;
             textBox2.Visible = true;
             textBox3.Visible = true;
