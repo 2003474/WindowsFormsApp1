@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(784, 10, 128, 256, 100);
+            NetworkTrainer w = new NetworkTrainer(784, 10, 32, 8, 100);
             //for (int i = 0; i < 100; i++)
             //{
             //    String file = "Networks" + i + ".json";
@@ -25,6 +25,7 @@ namespace WindowsFormsApp1
             NeuralNetwork final;
             //final = w.Train();
             final = FromFile("Best.json");
+            final = new NeuralNetwork(784, 10, 32, 8);
             // testing
             // get data
             Image[] testingdata = new Image[10000];
@@ -40,7 +41,7 @@ namespace WindowsFormsApp1
             }
             int greatestIndex;
 
-            for (int g = 1; g < 10; g++)
+            for (int g = 1; g < 100; g++)
             {
                 // expected
                 Console.WriteLine("expected: " + testingdata[g].Label.ToString());
@@ -78,7 +79,7 @@ namespace WindowsFormsApp1
         static NeuralNetwork FromFile(string file)
 
         {
-            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            string docPath = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
             //Console.WriteLine(File.ReadAllText(Path.Combine(docPath, "Networks.json")));
             var s = File.ReadAllText(Path.Combine(docPath, file));
             var f = JsonConvert.DeserializeObject<NeuralNetwork>(s);

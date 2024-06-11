@@ -155,7 +155,7 @@ namespace WindowsFormsApp1
                 networks = tempNetworks;
                 best1 = top10[0];
 
-                string path = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+                string path = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
                 // Write the string array to a new file named "WriteLines.txt".
                 using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "Best.json")))
                 {
@@ -166,7 +166,7 @@ namespace WindowsFormsApp1
 
 
 
-            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            string docPath = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Best.json")))
             {
@@ -181,7 +181,7 @@ namespace WindowsFormsApp1
         {
             //C:\\Users\\nikbr\\projects\\WindowsFormsApp1
             //C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1
-            string docPath = "C:\\Users\\2003474\\source\\repos\\WindowsFormsApp1";
+            string docPath = "C:\\Users\\nikbr\\projects\\WindowsFormsApp1";
             // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "Networks" + numNetwork + ".json")))
             {
