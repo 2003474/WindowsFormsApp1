@@ -6,19 +6,6 @@ namespace WindowsFormsApp1
 {
     internal class OutputNeuron : Neuron
     {
-        [Newtonsoft.Json.JsonConstructor]
-        public OutputNeuron(double[] weight, double bias, double output, double threshold, string type)
-            : base(weight, bias, output, threshold, type)
-        {
-
-            this.Weight = weight;
-            this.Bias = bias;
-            this.Output = output;
-            this.Threshold = threshold;
-            this.Type = type;
-
-
-        }
         public OutputNeuron(int num_inputs)
             : base(num_inputs)
         {

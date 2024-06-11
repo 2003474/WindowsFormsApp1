@@ -23,9 +23,9 @@ namespace WindowsFormsApp1
             //    w.networks[i] = f;
             //}
             NeuralNetwork final;
-            //final = w.Train();
-            final = FromFile("Best.json");
-            final = new NeuralNetwork(784, 10, 32, 8);
+            final = w.Train();
+            //final = FromFile("Best.json");
+            //final = new NeuralNetwork(784, 10, 32, 8);
             // testing
             // get data
             Image[] testingdata = new Image[10000];

@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
             this.Neurons = new Neuron[NumNeurons];
             for (int i = 0; i < NumNeurons; i++)
             {
-                num = Globals.rnd.Next(1, 4);
+                num = Globals.rnd.Next(1, 5);
                 if (num == 1)
                 {
                     this.Neurons[i] = new AndNeuron(num_inputs);
