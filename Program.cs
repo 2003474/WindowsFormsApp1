@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             // starts the training proccess
-            NetworkTrainer w = new NetworkTrainer(784, 10, 32, 8, 100);
+            NetworkTrainer w = new NetworkTrainer(784, 10, 16, 64, 100);
             //for (int i = 0; i < 100; i++)
             //{
             //    String file = "Networks" + i + ".json";
@@ -23,8 +23,8 @@ namespace WindowsFormsApp1
             //    w.networks[i] = f;
             //}
             NeuralNetwork final;
-            //final = w.Train();
-            final = FromFile("Working.json");
+            final = w.Train();
+            //final = FromFile("Working.json");
             //final = new NeuralNetwork(784, 10, 32, 8);
             // testing
             // get data
@@ -40,85 +40,6 @@ namespace WindowsFormsApp1
                 }
             }
             int greatestIndex = 0;
-
-
-            final.Input = new double[2] { 0, 0 };
-            final.Forward();
-            // should return 0 and 1 or extremely close
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 3, 2 };
-            final.Forward();
-            // should return 1 and 0 or extremely close
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 1, 1 };
-            final.Forward();
-            // should return 0 and 1 or extremely close
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 2, 2 };
-            final.Forward();
-            // should return 1 and 0 or extremely close
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-            final.Input = new double[2] { 3, 3 };
-            final.Forward();
-            // should return 1 and 0 or extremely close
-            greatestIndex = 0;
-            for (int i = 0; i < final.Output.Length; i++)
-            {
-                if (final.Output[i] > final.Output[greatestIndex])
-                {
-                    greatestIndex = i;
-                }
-            }
-            Console.WriteLine(greatestIndex);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
