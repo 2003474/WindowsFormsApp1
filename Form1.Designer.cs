@@ -47,6 +47,8 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
+            this.aboutMe = new System.Windows.Forms.Button();
+            this.aboutMeText = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,7 +92,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(956, 59);
+            this.progressBar1.Location = new System.Drawing.Point(985, 46);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(204, 20);
             this.progressBar1.Step = 1;
@@ -100,7 +102,7 @@
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(956, 79);
+            this.progressBar2.Location = new System.Drawing.Point(985, 66);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(204, 20);
             this.progressBar2.Step = 1;
@@ -110,7 +112,7 @@
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(956, 98);
+            this.progressBar3.Location = new System.Drawing.Point(985, 85);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(204, 20);
             this.progressBar3.Step = 1;
@@ -120,7 +122,7 @@
             // 
             // progressBar4
             // 
-            this.progressBar4.Location = new System.Drawing.Point(956, 118);
+            this.progressBar4.Location = new System.Drawing.Point(985, 105);
             this.progressBar4.Name = "progressBar4";
             this.progressBar4.Size = new System.Drawing.Size(204, 20);
             this.progressBar4.Step = 1;
@@ -130,7 +132,7 @@
             // 
             // progressBar5
             // 
-            this.progressBar5.Location = new System.Drawing.Point(956, 138);
+            this.progressBar5.Location = new System.Drawing.Point(985, 125);
             this.progressBar5.Name = "progressBar5";
             this.progressBar5.Size = new System.Drawing.Size(204, 20);
             this.progressBar5.Step = 1;
@@ -140,52 +142,52 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(839, 59);
+            this.textBox1.Location = new System.Drawing.Point(826, 46);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(78, 20);
+            this.textBox1.Size = new System.Drawing.Size(120, 20);
             this.textBox1.TabIndex = 10;
             this.textBox1.Visible = false;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(839, 79);
+            this.textBox2.Location = new System.Drawing.Point(826, 66);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(78, 20);
+            this.textBox2.Size = new System.Drawing.Size(120, 20);
             this.textBox2.TabIndex = 11;
             this.textBox2.Visible = false;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(839, 98);
+            this.textBox3.Location = new System.Drawing.Point(826, 85);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(78, 20);
+            this.textBox3.Size = new System.Drawing.Size(120, 20);
             this.textBox3.TabIndex = 12;
             this.textBox3.Visible = false;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(839, 118);
+            this.textBox4.Location = new System.Drawing.Point(826, 105);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(78, 20);
+            this.textBox4.Size = new System.Drawing.Size(120, 20);
             this.textBox4.TabIndex = 13;
             this.textBox4.Visible = false;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(839, 138);
+            this.textBox5.Location = new System.Drawing.Point(826, 125);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(78, 20);
+            this.textBox5.Size = new System.Drawing.Size(120, 20);
             this.textBox5.TabIndex = 14;
             this.textBox5.Visible = false;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(915, 138);
+            this.textBox6.Location = new System.Drawing.Point(944, 125);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(45, 20);
@@ -194,7 +196,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(915, 118);
+            this.textBox7.Location = new System.Drawing.Point(944, 105);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(45, 20);
@@ -203,7 +205,7 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(915, 98);
+            this.textBox8.Location = new System.Drawing.Point(944, 85);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(45, 20);
@@ -212,7 +214,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(915, 79);
+            this.textBox9.Location = new System.Drawing.Point(944, 66);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(45, 20);
@@ -221,18 +223,41 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(915, 59);
+            this.textBox10.Location = new System.Drawing.Point(944, 46);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(45, 20);
             this.textBox10.TabIndex = 15;
             this.textBox10.Visible = false;
             // 
+            // aboutMe
+            // 
+            this.aboutMe.Location = new System.Drawing.Point(1133, 502);
+            this.aboutMe.Name = "aboutMe";
+            this.aboutMe.Size = new System.Drawing.Size(75, 23);
+            this.aboutMe.TabIndex = 20;
+            this.aboutMe.Text = "About Me";
+            this.aboutMe.UseVisualStyleBackColor = true;
+            this.aboutMe.Click += new System.EventHandler(this.aboutMe_Click);
+            // 
+            // aboutMeText
+            // 
+            this.aboutMeText.Location = new System.Drawing.Point(867, 369);
+            this.aboutMeText.Name = "aboutMeText";
+            this.aboutMeText.Size = new System.Drawing.Size(341, 127);
+            this.aboutMeText.TabIndex = 22;
+            this.aboutMeText.Text = "Nik Brusilovski \nAdvanced Programming Topics\nPeriod 2\nCompleted 06/09/2024\n\nImage" +
+    " Classifier\nChooses 5 words to describe whatever image you input\nVisual Studio C" +
+    "#\n";
+            this.aboutMeText.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1220, 537);
+            this.Controls.Add(this.aboutMeText);
+            this.Controls.Add(this.aboutMe);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox8);
@@ -282,6 +307,8 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button aboutMe;
+        private System.Windows.Forms.RichTextBox aboutMeText;
     }
 }
 

@@ -136,5 +136,9 @@ namespace WindowsFormsApp1
 
         }
 
+        private void aboutMe_Click(object sender, EventArgs e)
+        {
+            aboutMeText.Visible = !aboutMeText.Visible;
+        }
     }
 }
