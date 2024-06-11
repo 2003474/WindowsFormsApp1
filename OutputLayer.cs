@@ -62,22 +62,22 @@ namespace WindowsFormsApp1
             int num;
             for (int i = 0; i < Neurons.Length; i++)
             {
-                OutputNeuron n1;
-                OutputNeuron n2;
+                Neuron n1;
+                Neuron n2;
 
-                n1 = (OutputNeuron)oLayer1.Neurons[i % l1NLength];
-                n2 = (OutputNeuron)oLayer2.Neurons[i % l2NLength];
+                n1 = oLayer1.Neurons[i % l1NLength];
+                n2 = oLayer2.Neurons[i % l2NLength];
 
 
 
                 num = Globals.rnd.Next(1, 4);
                 if (num == 1)
                 {
-                    Neurons[i] = (OutputNeuron)n1.Clone();
+                    Neurons[i] = (Neuron)n1.Clone();
                 }
                 else if (num == 2)
                 {
-                    Neurons[i] = (OutputNeuron)n2.Clone();
+                    Neurons[i] = (Neuron)n2.Clone();
                 }
                 else
                 {

@@ -50,9 +50,9 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; convergence == false && k < 50000; k++)
+            for (int k = 0; /*convergence == false &&*/ k < 50000; k++)
             {
-                if (k % 250 == 0)
+                if (k % 500 == 0)
                 {
                     for (int i = 0; i < 100; i++)
                     {
@@ -68,11 +68,7 @@ namespace WindowsFormsApp1
                     {
                         convergence = true;
                     }
-                    int batchSize = 8;
-                    if (k == 500)
-                    {
-                        batchSize = 16;
-                    }
+                    int batchSize = 16;
                     double[] tempLoss = new double[batchSize];
                     for (int j = batchSize * k; j < batchSize * k + tempLoss.Length; j++)
                     {
