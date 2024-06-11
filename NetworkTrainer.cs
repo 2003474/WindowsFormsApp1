@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
             NeuralNetwork best1 = null;
             loss = new double[networks.Length];
             Boolean convergence = false;
-            for (int k = 0; k < 100; k++)
+            for (int k = 0; k < 1000; k++)
             {
                 for (int i = 0; i < networks.Length; i++)
                 {
@@ -42,7 +42,7 @@ namespace WindowsFormsApp1
                         tempLoss[j - 16 * k] = Loss(networks[i].output, trainingData[j].output[0]);
                     }
                     loss[i] = tempLoss.Sum();
-                    Console.WriteLine("Network #" + (i + 1) + ": loss: " + loss[i]);
+                    Console.WriteLine(k + " Network #" + (i + 1) + ": loss: " + loss[i]);
                 }
                 // take the top 10% of networks
                 top10 = new NeuralNetwork[networks.Length / 10];

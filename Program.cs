@@ -10,10 +10,10 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            NetworkTrainer w = new NetworkTrainer(2, 2, 16, 16, 100);
+            NetworkTrainer w = new NetworkTrainer(2, 10, 16, 16, 100);
             NeuralNetwork final = w.Train();
 
-            final.input = new double[2] { 10.78, 3.234 };
+            final.input = new double[2] { 0,0 };
             final.Forward();
             // should return 0 and 1 or extremely close
             int greatestIndex = 0;
@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 2.435, 8.678953};
+            final.input = new double[2] {3,2};
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 7.23455, 5.432543 };
+            final.input = new double[2] { 1,1 };
             final.Forward();
             // should return 0 and 1 or extremely close
             greatestIndex = 0;
@@ -52,7 +52,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] {9.2345423, 1.2345342 };
+            final.input = new double[2] {2,2 };
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
@@ -65,7 +65,7 @@ namespace WindowsFormsApp1
             }
             Console.WriteLine(greatestIndex);
 
-            final.input = new double[2] { 9.2345, 9.1645267};
+            final.input = new double[2] { 3,3};
             final.Forward();
             // should return 1 and 0 or extremely close
             greatestIndex = 0;
